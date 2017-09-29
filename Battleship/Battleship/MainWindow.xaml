@@ -3,23 +3,449 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
-        Title="Battleship" Height="350" Width="525">
+        Title="Battleship" Height="500" Width="625">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="95"/>
             <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="180"/>
         </Grid.RowDefinitions>
+        <Button Content="Browse" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Reset" Grid.Row="0" Grid.Column="1"/>
+        <Button Content="Run Competition" Grid.Row="0" Grid.Column="2"/>
+        <Button Content="Stop" Grid.Row="0" Grid.Column="3"/>
+        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Number of Matches: " VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0">
+            <TextBlock Text="Total Progress:" VerticalAlignment="Center"/>
+            <TextBlock Text="Current Match:" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!--Row 2-->
+        <DataGrid ItemsSource="{Binding Captains}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Captain Name" Binding="{Binding CaptainName}"/>
+                <DataGridTextColumn Header="Score" Binding="{Binding Score}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Select an opponent:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <ComboBox ItemsSource="{Binding Opponents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="2" Grid.Column="1" />
+
+            <TextBlock Text="Losses Against:" Grid.Row="3" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="3" Grid.Column="1" />
+
+            <TextBlock Text="Hits:" Grid.Row="4" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="4" Grid.Column="1" />
+
+            <TextBlock Text="Misses:" Grid.Row="5" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="5" Grid.Column="1" />
+
+            <TextBlock Text="Accuracy:" Grid.Row="6" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="6" Grid.Column="1" />
+
+            <TextBlock Text="Avg. Attacks For a Win:" Grid.Row="7" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="7" Grid.Column="1" />
+
+            <TextBlock Text="Avg. Attacks For a Loss:" Grid.Row="8" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="8" Grid.Column="1" />
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Background="LightGray">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Border Background="White" CornerRadius="5" Margin="0,0,5,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="39"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="0" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="1" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="2" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="3" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="4" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="5" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="6" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="7" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="9" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="0" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="1" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="2" Grid.Column="3" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="3" Grid.Column="4" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="4" Grid.Column="5" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="5" Grid.Column="6" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="6" Grid.Column="7" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="7" Grid.Column="8" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="8" Grid.Column="9" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="9" Grid.Column="10" Grid.Row="11" HorizontalAlignment="Center"/>
+
+                        <!--Row 1-->
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="10"/>
+
+                        <!--Row 2-->
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="10"/>
+
+                        <!--Row 3-->
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="10"/>
+
+                        <!--Row 4-->
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="10"/>
+
+                        <!--Row 5-->
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="10"/>
+
+                        <!--Row 6-->
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="10"/>
+
+                        <!--Row 7-->
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="10"/>
+
+                        <!--Row 8-->
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="10"/>
+
+                        <!--Row 9-->
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="9"/>
+                        <Rectangle Fill="Red" Grid.Row="9" Grid.Column="10"/>
+
+                        <!--Row 10-->
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="10"/>
+                        <TextBlock Text="Placement Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" HorizontalAlignment="Center"/>
+
+                    </Grid>
+
+                </Border>
+
+                <Border Background="White" CornerRadius="5" Margin="0,0,5,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="39"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="0" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="1" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="2" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="3" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="4" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="5" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="6" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="7" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"/>
+                        <TextBlock Text="9" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="0" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="1" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="2" Grid.Column="3" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="3" Grid.Column="4" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="4" Grid.Column="5" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="5" Grid.Column="6" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="6" Grid.Column="7" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="7" Grid.Column="8" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="8" Grid.Column="9" Grid.Row="11" HorizontalAlignment="Center"/>
+                        <TextBlock Text="9" Grid.Column="10" Grid.Row="11" HorizontalAlignment="Center"/>
+
+                        <!--Row 1-->
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="10"/>
+
+                        <!--Row 2-->
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="2" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="2" Grid.Column="10"/>
+
+                        <!--Row 3-->
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="3" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="3" Grid.Column="10"/>
+
+                        <!--Row 4-->
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="4" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="4" Grid.Column="10"/>
+
+                        <!--Row 5-->
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="5" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="5" Grid.Column="10"/>
+
+                        <!--Row 6-->
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="6" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="6" Grid.Column="10"/>
+
+                        <!--Row 7-->
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="7" Grid.Column="9"/>
+                        <Rectangle Fill="Red"  Grid.Row="7" Grid.Column="10"/>
+
+                        <!--Row 8-->
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="8" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="8" Grid.Column="10"/>
+
+                        <!--Row 9-->
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="1"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="2"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="3"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="4"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="5"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="6"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="7"/>
+                        <Rectangle Fill="Red"  Grid.Row="9" Grid.Column="8"/>
+                        <Rectangle Fill="Blue" Grid.Row="9" Grid.Column="9"/>
+                        <Rectangle Fill="Red" Grid.Row="9" Grid.Column="10"/>
+
+                        <!--Row 10-->
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="1"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="2"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="3"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="4"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="5"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="6"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="7"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="8"/>
+                        <Rectangle Fill="Red"  Grid.Row="10" Grid.Column="9"/>
+                        <Rectangle Fill="Blue" Grid.Row="10" Grid.Column="10"/>
+
+                        <TextBlock Text="Attack Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
