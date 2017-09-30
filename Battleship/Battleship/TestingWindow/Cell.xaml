@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Battleship.TestingWindow.Cell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Battleship.TestingWindow"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:command="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
+    </UserControl.Resources>
+    <Border Background="Aqua" BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp">
+        <!--<i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonUp">
+                <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="0"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>-->
+        <!--Fill="{Binding GameBoard2[0][0], Converter={StaticResource CellCodeToFill}}"-->
+        <Ellipse  Fill="{Binding AttackCode, Converter={StaticResource CellCodeToFill}}"/>
+    </Border>
+</UserControl>

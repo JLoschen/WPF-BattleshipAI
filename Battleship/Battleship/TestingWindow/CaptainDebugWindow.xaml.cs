@@ -17,11 +17,12 @@ namespace Battleship.TestingWindow
         
         private void UIElement_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            var border = sender as Border;
+            //var border = sender as Border;
+            var cell = sender as Cell;
             var vm = DataContext as CaptainDebugViewModel;
-            if (border == null || vm == null) return;
-            var row = Grid.GetRow(border);
-            var col = Grid.GetColumn(border);
+            if (cell == null || vm == null) return;
+            var row = Grid.GetRow(cell);
+            var col = Grid.GetColumn(cell);
 
             switch (vm.GameState)
             {

@@ -81,6 +81,9 @@
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
       <DependentUpon>CaptainDebugWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestingWindow\Cell.xaml.cs">
+      <DependentUpon>Cell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestingWindow\CellCodeToFillConverter.cs" />
     <Compile Include="TestingWindow\CellCodeToVisibility.cs" />
     <Compile Include="TestingWindow\GameState.cs" />
@@ -105,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TestingWindow\CaptainDebugWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestingWindow\Cell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
