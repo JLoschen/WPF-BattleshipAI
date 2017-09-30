@@ -81,6 +81,7 @@
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
       <DependentUpon>CaptainDebugWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestingWindow\CellCodeToFillConverter.cs" />
     <Compile Include="TestingWindow\CellCodeToVisibility.cs" />
     <Compile Include="TestingWindow\GameState.cs" />
     <Page Include="MainWindow.xaml">

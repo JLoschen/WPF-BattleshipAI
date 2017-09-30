@@ -41,7 +41,7 @@ namespace Battleship.Captains
 
         public Coordinate MakeAttack()
         {
-            return new Coordinate(generator.Next(10), generator.Next(10));
+            return new Coordinate(generator.Next(10), generator.Next(2));
         }
 
         public void ResultOfAttack(int result)

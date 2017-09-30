@@ -3,8 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship.TestingWindow"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="CaptainDebugWindow" Height="500" Width="800">
+    <Window.Resources>
+        <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
+    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -20,6 +26,12 @@
                 <Setter Property="BorderBrush" Value="Black"/>
                 <Setter Property="BorderThickness" Value="1"/>
             </Style>
+            
+            <Style TargetType="Ellipse">
+                <Setter Property="Fill" Value="LightGray"/>
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </Style>
+            
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -87,325 +99,838 @@
 
             
             <!--Row 0-->
-            <!--Visibility="{Binding }"-->
-            <Border Grid.Row="0" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="0"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="2"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="3"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="4"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="5"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="7" >
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="6"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="7"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="8"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="0" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="9"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][0], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 1-->
-            <Border Grid.Row="1" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="1" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="1" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 2-->
-            <Border Grid.Row="2" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="2" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="2" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][2], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 3-->
-            <Border Grid.Row="3" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="3" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="3" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][3], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 4-->
-            <Border Grid.Row="4" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="4" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="4" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][4], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 5-->
-            <Border Grid.Row="5" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp" >
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>               
+                <Ellipse Fill="{Binding GameBoard2[8][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="5" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="5" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}"   CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][5], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 6-->
-            <Border Grid.Row="6" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="6" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="6" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][6], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 7-->
-            <Border Grid.Row="7" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="7" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="7" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][7], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 8-->
-            <Border Grid.Row="8" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="6"  MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="8" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="8" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][8], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 9-->
-            <Border  Grid.Row="9" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="1" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[0][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="2" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[1][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="3" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[2][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="4" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[3][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="5" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[4][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="6" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[5][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="7" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[6][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="8" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[7][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border  Grid.Row="9" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border  Grid.Row="9" Grid.Column="9" MouseEnter="UIElement_OnMouseEnter">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[8][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
-            <Border Grid.Row="9" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+            <Border Grid.Row="9" Grid.Column="10" MouseEnter="UIElement_OnMouseEnter" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <command:EventToCommand Command="{Binding Mode=OneWay, Path=CellClickedCommand}" CommandParameter="1"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Ellipse Fill="{Binding GameBoard2[9][9], Converter={StaticResource CellCodeToFill}}" />
             </Border>
+            
+            <!--Render Battleship-->
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="SubmarineHorizontal" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="BattleshipHorizontal" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AircraftCarrierHorizontal" />
+
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PatrolVertical" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="DestroyerVertical" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="SubmarineVertical" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="BattleshipVertical" />
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AircraftCarrierVertical" />
+            
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="4">
@@ -462,322 +987,322 @@
             <!--Row 0-->
             <!--Visibility="{Binding }"-->
             <Border Grid.Row="0" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="7" >
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="0" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 1-->
             <Border Grid.Row="1" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="1" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 2-->
             <Border Grid.Row="2" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="2" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 3-->
             <Border Grid.Row="3" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="3" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 4-->
             <Border Grid.Row="4" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="4" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 5-->
             <Border Grid.Row="5" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="5" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 6-->
             <Border Grid.Row="6" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="6" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 7-->
             <Border Grid.Row="7" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="7" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 8-->
             <Border Grid.Row="8" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="8" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
 
             <!--Row 9-->
             <Border  Grid.Row="9" Grid.Column="1">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="2">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="3">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="4">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="5">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="6">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="7">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="8">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border  Grid.Row="9" Grid.Column="9">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
             <Border Grid.Row="9" Grid.Column="10">
-                <Ellipse Fill="#FFFFFF00" />
+                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
             </Border>
         </Grid>
 
