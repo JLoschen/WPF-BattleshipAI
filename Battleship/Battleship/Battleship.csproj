@@ -75,6 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Captains\CaptainLoco.cs" />
+    <Compile Include="Core\CaptainDebugger.cs" />
+    <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />
+    <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
+      <DependentUpon>CaptainDebugWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,11 +89,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Captain.cs" />
+    <Compile Include="Controls\MultiSelectDataGrid.cs" />
+    <Compile Include="Core\ICaptain.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\Coordinate.cs" />
+    <Compile Include="Core\Fleet.cs" />
+    <Compile Include="Core\Ship.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TestingWindow\CaptainDebugWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -117,6 +134,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
