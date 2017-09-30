@@ -74,7 +74,22 @@ namespace Battleship.Core
             _fleet[model] = null;
             return false;
         }
-        
+
+        public bool PlaceShip(Coordinate location, bool isVertical, int model)
+        {
+            if (model >= 6 || model <= -1 || _fleet[model] != null) return false;
+
+            var direction = isVertical ? 0 : 1;
+            _fleet[model] = new Ship(location, direction, model);
+            if (IsValid(model))
+            {
+                //CaptainDebugger.addShip(location, direction, model, true);
+                return true;
+            }
+            _fleet[model] = null;
+            return false;
+        }
+
         public bool PlaceShip(int x, int y, int direction, int model)
         {
             return PlaceShip(new Coordinate(x, y), direction, model);

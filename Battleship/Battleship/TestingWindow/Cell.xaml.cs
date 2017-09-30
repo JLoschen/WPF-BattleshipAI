@@ -14,6 +14,7 @@ namespace Battleship.TestingWindow
         public static readonly DependencyProperty AttackCodeProperty = DependencyProperty.Register("AttackCode", typeof(int), typeof(Cell), new PropertyMetadata(0));
         public static readonly DependencyProperty LocationIdProperty = DependencyProperty.Register("LocationId", typeof(int), typeof(Cell), new PropertyMetadata(0));
         public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register("ClickCommand", typeof(ICommand), typeof(Cell));
+        public static readonly DependencyProperty RightClickCommandProperty = DependencyProperty.Register("RightClickCommand", typeof(ICommand), typeof(Cell));
 
         public int AttackCode
         {
@@ -33,9 +34,20 @@ namespace Battleship.TestingWindow
             set { SetValue(ClickCommandProperty, value); }
         }
 
+        public ICommand RightClickCommand
+        {
+            get { return (ICommand)GetValue(RightClickCommandProperty); }
+            set { SetValue(RightClickCommandProperty, value); }
+        }
+
         private void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ClickCommand?.Execute(LocationId);
+        }
+
+        private void UIElement_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            RightClickCommand?.Execute(null);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Battleship.TestingWindow
         HumanPlayerPlacingDestroyer,
         HumanPlayerPlacingBattleship,
         HumanPlayerPlacingAircraftCarrier,
+        ReadyWaitingToStart,
         HumansTurn,
         AIsTurn
     }

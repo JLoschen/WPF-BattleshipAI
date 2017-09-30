@@ -1,10 +1,7 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using Battleship.TestingWindow.GridExtensions;
-
 
 namespace Battleship.TestingWindow
 {
@@ -21,39 +18,39 @@ namespace Battleship.TestingWindow
             var cell = sender as Cell;
             var vm = DataContext as CaptainDebugViewModel;
             if (cell == null || vm == null) return;
-            var row = Grid.GetRow(cell);
-            var col = Grid.GetColumn(cell);
-
+            var row = cell.LocationId / 10; 
+            var col = cell.LocationId % 10 +1;
+            
             switch (vm.GameState)
             {
                 case GameState.HumanPlayerPlacingPatrol:
-                    if (!vm.IsSettingVertical && col < 10)
+                    if (col < 10)
                         PatrolHorizontal.SetGridPosition(col, row);
-                    else if(row < 9)
+                    if(row < 9)
                         PatrolVertical.SetGridPosition(col, row);
                     break;
                 case GameState.HumanPlayerPlacingDestroyer:
-                    if (!vm.IsSettingVertical && col < 9)
+                    if (col < 9)
                         DestroyerHorizontal.SetGridPosition(col, row);
-                    else if (row < 8)
+                    if (row < 8)
                         DestroyerVertical.SetGridPosition(col, row);
                     break;
                 case GameState.HumanPlayerPlacingSubmarine:
-                    if (!vm.IsSettingVertical && col < 9)
+                    if (col < 9)
                         SubmarineHorizontal.SetGridPosition(col, row);
-                    else if (row < 9)
+                    if (row < 8)
                         SubmarineVertical.SetGridPosition(col, row);
                     break;
                 case GameState.HumanPlayerPlacingBattleship:
-                    if (!vm.IsSettingVertical && col < 8)
+                    if (col < 8)
                         BattleshipHorizontal.SetGridPosition(col, row);
-                    else if (row < 7)
+                    if (row < 7)
                         BattleshipVertical.SetGridPosition(col, row);
                     break;
                 case GameState.HumanPlayerPlacingAircraftCarrier:
-                    if (!vm.IsSettingVertical && col < 7)
+                    if ( col < 7)
                         AircraftCarrierHorizontal.SetGridPosition(col, row);
-                    else if (row < 6)
+                    if (row < 6)
                         AircraftCarrierVertical.SetGridPosition(col, row);
                     break;
             }

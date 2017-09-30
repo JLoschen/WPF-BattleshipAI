@@ -4,12 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship.TestingWindow"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="CaptainDebugWindow" Height="500" Width="800">
     <Window.Resources>
-        <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:GameStateToReadyButtonVisibilityConverter x:Key="GameStateToReadyButtonVisibilityConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.Resources>
@@ -17,27 +16,12 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
-            <Style TargetType="Rectangle">
-                <Setter Property="Fill" Value="Aqua"/>
-            </Style>
 
-            <Style TargetType="Border">
-                <Setter Property="Background" Value="Aqua"/>
-                <Setter Property="BorderBrush" Value="Black"/>
-                <Setter Property="BorderThickness" Value="1"/>
-            </Style>
-            
             <Style TargetType="Ellipse">
                 <Setter Property="Fill" Value="LightGray"/>
                 <Setter Property="IsHitTestVisible" Value="False"/>
             </Style>
-            
-            <Style TargetType="local:Cell">
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="ClickCommand" Value="{Binding CellClickedCommand}"/>
-                <EventSetter Event="MouseEnter" Handler="UIElement_OnMouseEnter"/>
-            </Style>
-            
+
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -102,142 +86,150 @@
             <TextBlock Text="7" Grid.Column="8" Grid.Row="10" />
             <TextBlock Text="8" Grid.Column="9" Grid.Row="10" />
             <TextBlock Text="9" Grid.Column="10" Grid.Row="10" />
-            
+
             <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
-            <!--Row 0-->
-            <local:Cell LocationId="0" AttackCode="{Binding GameBoard2[0][0]}" />
-            <local:Cell LocationId="1" AttackCode="{Binding GameBoard2[1][0]}" />
-            <local:Cell LocationId="2" AttackCode="{Binding GameBoard2[2][0]}" />
-            <local:Cell LocationId="3" AttackCode="{Binding GameBoard2[3][0]}" />
-            <local:Cell LocationId="4" AttackCode="{Binding GameBoard2[4][0]}" />
-            <local:Cell LocationId="5" AttackCode="{Binding GameBoard2[5][0]}" />
-            <local:Cell LocationId="6" AttackCode="{Binding GameBoard2[6][0]}" />
-            <local:Cell LocationId="7" AttackCode="{Binding GameBoard2[7][0]}" />
-            <local:Cell LocationId="8" AttackCode="{Binding GameBoard2[8][0]}" />
-            <local:Cell LocationId="9" AttackCode="{Binding GameBoard2[9][0]}" />
-            
-            <!--Row 1-->
-            <local:Cell LocationId="10" AttackCode="{Binding GameBoard2[0][1]}" />
-            <local:Cell LocationId="11" AttackCode="{Binding GameBoard2[1][1]}" />
-            <local:Cell LocationId="12" AttackCode="{Binding GameBoard2[2][1]}" />
-            <local:Cell LocationId="13" AttackCode="{Binding GameBoard2[3][1]}" />
-            <local:Cell LocationId="14" AttackCode="{Binding GameBoard2[4][1]}" />
-            <local:Cell LocationId="15" AttackCode="{Binding GameBoard2[5][1]}" />
-            <local:Cell LocationId="16" AttackCode="{Binding GameBoard2[6][1]}" />
-            <local:Cell LocationId="17" AttackCode="{Binding GameBoard2[7][1]}" />
-            <local:Cell LocationId="18" AttackCode="{Binding GameBoard2[8][1]}" />
-            <local:Cell LocationId="19" AttackCode="{Binding GameBoard2[9][1]}" />
-            
-            <!--Row 2-->
-            <local:Cell LocationId="20" AttackCode="{Binding GameBoard2[0][2]}" />
-            <local:Cell LocationId="21" AttackCode="{Binding GameBoard2[1][2]}" />
-            <local:Cell LocationId="22" AttackCode="{Binding GameBoard2[2][2]}" />
-            <local:Cell LocationId="23" AttackCode="{Binding GameBoard2[3][2]}" />
-            <local:Cell LocationId="24" AttackCode="{Binding GameBoard2[4][2]}" />
-            <local:Cell LocationId="25" AttackCode="{Binding GameBoard2[5][2]}" />
-            <local:Cell LocationId="26" AttackCode="{Binding GameBoard2[6][2]}" />
-            <local:Cell LocationId="27" AttackCode="{Binding GameBoard2[7][2]}" />
-            <local:Cell LocationId="28" AttackCode="{Binding GameBoard2[8][2]}" />
-            <local:Cell LocationId="29" AttackCode="{Binding GameBoard2[9][2]}" />
-            
-            <!--Row 3-->
-            <local:Cell LocationId="30" AttackCode="{Binding GameBoard2[0][3]}" />
-            <local:Cell LocationId="31" AttackCode="{Binding GameBoard2[1][3]}" />
-            <local:Cell LocationId="32" AttackCode="{Binding GameBoard2[2][3]}" />
-            <local:Cell LocationId="33" AttackCode="{Binding GameBoard2[3][3]}" />
-            <local:Cell LocationId="34" AttackCode="{Binding GameBoard2[4][3]}" />
-            <local:Cell LocationId="35" AttackCode="{Binding GameBoard2[5][3]}" />
-            <local:Cell LocationId="36" AttackCode="{Binding GameBoard2[6][3]}" />
-            <local:Cell LocationId="37" AttackCode="{Binding GameBoard2[7][3]}" />
-            <local:Cell LocationId="38" AttackCode="{Binding GameBoard2[8][3]}" />
-            <local:Cell LocationId="39" AttackCode="{Binding GameBoard2[9][3]}" />
-            
-            <!--Row 4-->
-            <local:Cell LocationId="40" AttackCode="{Binding GameBoard2[0][4]}" />
-            <local:Cell LocationId="41" AttackCode="{Binding GameBoard2[1][4]}" />
-            <local:Cell LocationId="42" AttackCode="{Binding GameBoard2[2][4]}" />
-            <local:Cell LocationId="43" AttackCode="{Binding GameBoard2[3][4]}" />
-            <local:Cell LocationId="44" AttackCode="{Binding GameBoard2[4][4]}" />
-            <local:Cell LocationId="45" AttackCode="{Binding GameBoard2[5][4]}" />
-            <local:Cell LocationId="46" AttackCode="{Binding GameBoard2[6][4]}" />
-            <local:Cell LocationId="47" AttackCode="{Binding GameBoard2[7][4]}" />
-            <local:Cell LocationId="48" AttackCode="{Binding GameBoard2[8][4]}" />
-            <local:Cell LocationId="49" AttackCode="{Binding GameBoard2[9][4]}" />
+                <UniformGrid.Resources>
+                    <Style TargetType="local:Cell">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="ClickCommand" Value="{Binding CellClickedCommand}"/>
+                        <Setter Property="RightClickCommand" Value="{Binding RightClickCommand}"/>
+                        <EventSetter Event="MouseEnter" Handler="UIElement_OnMouseEnter"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <!--Row 0-->
+                <local:Cell LocationId="0" AttackCode="{Binding AIGameBoard[0][0]}" />
+                <local:Cell LocationId="1" AttackCode="{Binding AIGameBoard[1][0]}" />
+                <local:Cell LocationId="2" AttackCode="{Binding AIGameBoard[2][0]}" />
+                <local:Cell LocationId="3" AttackCode="{Binding AIGameBoard[3][0]}" />
+                <local:Cell LocationId="4" AttackCode="{Binding AIGameBoard[4][0]}" />
+                <local:Cell LocationId="5" AttackCode="{Binding AIGameBoard[5][0]}" />
+                <local:Cell LocationId="6" AttackCode="{Binding AIGameBoard[6][0]}" />
+                <local:Cell LocationId="7" AttackCode="{Binding AIGameBoard[7][0]}" />
+                <local:Cell LocationId="8" AttackCode="{Binding AIGameBoard[8][0]}" />
+                <local:Cell LocationId="9" AttackCode="{Binding AIGameBoard[9][0]}" />
 
-            <!--Row 5-->
-            <local:Cell LocationId="50" AttackCode="{Binding GameBoard2[0][5]}" />
-            <local:Cell LocationId="51" AttackCode="{Binding GameBoard2[1][5]}" />
-            <local:Cell LocationId="52" AttackCode="{Binding GameBoard2[2][5]}" />
-            <local:Cell LocationId="53" AttackCode="{Binding GameBoard2[3][5]}" />
-            <local:Cell LocationId="54" AttackCode="{Binding GameBoard2[4][5]}" />
-            <local:Cell LocationId="55" AttackCode="{Binding GameBoard2[5][5]}" />
-            <local:Cell LocationId="56" AttackCode="{Binding GameBoard2[6][5]}" />
-            <local:Cell LocationId="57" AttackCode="{Binding GameBoard2[7][5]}" />
-            <local:Cell LocationId="58" AttackCode="{Binding GameBoard2[8][5]}" />
-            <local:Cell LocationId="59" AttackCode="{Binding GameBoard2[9][5]}" />
+                <!--Row 1-->
+                <local:Cell LocationId="10" AttackCode="{Binding AIGameBoard[0][1]}" />
+                <local:Cell LocationId="11" AttackCode="{Binding AIGameBoard[1][1]}" />
+                <local:Cell LocationId="12" AttackCode="{Binding AIGameBoard[2][1]}" />
+                <local:Cell LocationId="13" AttackCode="{Binding AIGameBoard[3][1]}" />
+                <local:Cell LocationId="14" AttackCode="{Binding AIGameBoard[4][1]}" />
+                <local:Cell LocationId="15" AttackCode="{Binding AIGameBoard[5][1]}" />
+                <local:Cell LocationId="16" AttackCode="{Binding AIGameBoard[6][1]}" />
+                <local:Cell LocationId="17" AttackCode="{Binding AIGameBoard[7][1]}" />
+                <local:Cell LocationId="18" AttackCode="{Binding AIGameBoard[8][1]}" />
+                <local:Cell LocationId="19" AttackCode="{Binding AIGameBoard[9][1]}" />
 
-            <!--Row 6-->
-            <local:Cell LocationId="60" AttackCode="{Binding GameBoard2[0][6]}" />
-            <local:Cell LocationId="61" AttackCode="{Binding GameBoard2[1][6]}" />
-            <local:Cell LocationId="62" AttackCode="{Binding GameBoard2[2][6]}" />
-            <local:Cell LocationId="63" AttackCode="{Binding GameBoard2[3][6]}" />
-            <local:Cell LocationId="64" AttackCode="{Binding GameBoard2[4][6]}" />
-            <local:Cell LocationId="65" AttackCode="{Binding GameBoard2[5][6]}" />
-            <local:Cell LocationId="66" AttackCode="{Binding GameBoard2[6][6]}" />
-            <local:Cell LocationId="67" AttackCode="{Binding GameBoard2[7][6]}" />
-            <local:Cell LocationId="68" AttackCode="{Binding GameBoard2[8][6]}" />
-            <local:Cell LocationId="69" AttackCode="{Binding GameBoard2[9][6]}" />
+                <!--Row 2-->
+                <local:Cell LocationId="20" AttackCode="{Binding AIGameBoard[0][2]}" />
+                <local:Cell LocationId="21" AttackCode="{Binding AIGameBoard[1][2]}" />
+                <local:Cell LocationId="22" AttackCode="{Binding AIGameBoard[2][2]}" />
+                <local:Cell LocationId="23" AttackCode="{Binding AIGameBoard[3][2]}" />
+                <local:Cell LocationId="24" AttackCode="{Binding AIGameBoard[4][2]}" />
+                <local:Cell LocationId="25" AttackCode="{Binding AIGameBoard[5][2]}" />
+                <local:Cell LocationId="26" AttackCode="{Binding AIGameBoard[6][2]}" />
+                <local:Cell LocationId="27" AttackCode="{Binding AIGameBoard[7][2]}" />
+                <local:Cell LocationId="28" AttackCode="{Binding AIGameBoard[8][2]}" />
+                <local:Cell LocationId="29" AttackCode="{Binding AIGameBoard[9][2]}" />
 
-            <!--Row 7-->
-            <local:Cell LocationId="70" AttackCode="{Binding GameBoard2[0][7]}" />
-            <local:Cell LocationId="71" AttackCode="{Binding GameBoard2[1][7]}" />
-            <local:Cell LocationId="72" AttackCode="{Binding GameBoard2[2][7]}" />
-            <local:Cell LocationId="73" AttackCode="{Binding GameBoard2[3][7]}" />
-            <local:Cell LocationId="74" AttackCode="{Binding GameBoard2[4][7]}" />
-            <local:Cell LocationId="75" AttackCode="{Binding GameBoard2[5][7]}" />
-            <local:Cell LocationId="76" AttackCode="{Binding GameBoard2[6][7]}" />
-            <local:Cell LocationId="77" AttackCode="{Binding GameBoard2[7][7]}" />
-            <local:Cell LocationId="78" AttackCode="{Binding GameBoard2[8][7]}" />
-            <local:Cell LocationId="79" AttackCode="{Binding GameBoard2[9][7]}" />
+                <!--Row 3-->
+                <local:Cell LocationId="30" AttackCode="{Binding AIGameBoard[0][3]}" />
+                <local:Cell LocationId="31" AttackCode="{Binding AIGameBoard[1][3]}" />
+                <local:Cell LocationId="32" AttackCode="{Binding AIGameBoard[2][3]}" />
+                <local:Cell LocationId="33" AttackCode="{Binding AIGameBoard[3][3]}" />
+                <local:Cell LocationId="34" AttackCode="{Binding AIGameBoard[4][3]}" />
+                <local:Cell LocationId="35" AttackCode="{Binding AIGameBoard[5][3]}" />
+                <local:Cell LocationId="36" AttackCode="{Binding AIGameBoard[6][3]}" />
+                <local:Cell LocationId="37" AttackCode="{Binding AIGameBoard[7][3]}" />
+                <local:Cell LocationId="38" AttackCode="{Binding AIGameBoard[8][3]}" />
+                <local:Cell LocationId="39" AttackCode="{Binding AIGameBoard[9][3]}" />
 
-            <!--Row 8-->
-            <local:Cell LocationId="80" AttackCode="{Binding GameBoard2[0][8]}" />
-            <local:Cell LocationId="81" AttackCode="{Binding GameBoard2[1][8]}" />
-            <local:Cell LocationId="82" AttackCode="{Binding GameBoard2[2][8]}" />
-            <local:Cell LocationId="83" AttackCode="{Binding GameBoard2[3][8]}" />
-            <local:Cell LocationId="84" AttackCode="{Binding GameBoard2[4][8]}" />
-            <local:Cell LocationId="85" AttackCode="{Binding GameBoard2[5][8]}" />
-            <local:Cell LocationId="86" AttackCode="{Binding GameBoard2[6][8]}" />
-            <local:Cell LocationId="87" AttackCode="{Binding GameBoard2[7][8]}" />
-            <local:Cell LocationId="88" AttackCode="{Binding GameBoard2[8][8]}" />
-            <local:Cell LocationId="89" AttackCode="{Binding GameBoard2[9][8]}" />
+                <!--Row 4-->
+                <local:Cell LocationId="40" AttackCode="{Binding AIGameBoard[0][4]}" />
+                <local:Cell LocationId="41" AttackCode="{Binding AIGameBoard[1][4]}" />
+                <local:Cell LocationId="42" AttackCode="{Binding AIGameBoard[2][4]}" />
+                <local:Cell LocationId="43" AttackCode="{Binding AIGameBoard[3][4]}" />
+                <local:Cell LocationId="44" AttackCode="{Binding AIGameBoard[4][4]}" />
+                <local:Cell LocationId="45" AttackCode="{Binding AIGameBoard[5][4]}" />
+                <local:Cell LocationId="46" AttackCode="{Binding AIGameBoard[6][4]}" />
+                <local:Cell LocationId="47" AttackCode="{Binding AIGameBoard[7][4]}" />
+                <local:Cell LocationId="48" AttackCode="{Binding AIGameBoard[8][4]}" />
+                <local:Cell LocationId="49" AttackCode="{Binding AIGameBoard[9][4]}" />
 
-            <!--Row 9-->
-            <local:Cell LocationId="90" AttackCode="{Binding GameBoard2[0][9]}" />
-            <local:Cell LocationId="91" AttackCode="{Binding GameBoard2[1][9]}" />
-            <local:Cell LocationId="92" AttackCode="{Binding GameBoard2[2][9]}" />
-            <local:Cell LocationId="93" AttackCode="{Binding GameBoard2[3][9]}" />
-            <local:Cell LocationId="94" AttackCode="{Binding GameBoard2[4][9]}" />
-            <local:Cell LocationId="95" AttackCode="{Binding GameBoard2[5][9]}" />
-            <local:Cell LocationId="96" AttackCode="{Binding GameBoard2[6][9]}" />
-            <local:Cell LocationId="97" AttackCode="{Binding GameBoard2[7][9]}" />
-            <local:Cell LocationId="98" AttackCode="{Binding GameBoard2[8][9]}" />
-            <local:Cell LocationId="99" AttackCode="{Binding GameBoard2[9][9]}" />
+                <!--Row 5-->
+                <local:Cell LocationId="50" AttackCode="{Binding AIGameBoard[0][5]}" />
+                <local:Cell LocationId="51" AttackCode="{Binding AIGameBoard[1][5]}" />
+                <local:Cell LocationId="52" AttackCode="{Binding AIGameBoard[2][5]}" />
+                <local:Cell LocationId="53" AttackCode="{Binding AIGameBoard[3][5]}" />
+                <local:Cell LocationId="54" AttackCode="{Binding AIGameBoard[4][5]}" />
+                <local:Cell LocationId="55" AttackCode="{Binding AIGameBoard[5][5]}" />
+                <local:Cell LocationId="56" AttackCode="{Binding AIGameBoard[6][5]}" />
+                <local:Cell LocationId="57" AttackCode="{Binding AIGameBoard[7][5]}" />
+                <local:Cell LocationId="58" AttackCode="{Binding AIGameBoard[8][5]}" />
+                <local:Cell LocationId="59" AttackCode="{Binding AIGameBoard[9][5]}" />
+
+                <!--Row 6-->
+                <local:Cell LocationId="60" AttackCode="{Binding AIGameBoard[0][6]}" />
+                <local:Cell LocationId="61" AttackCode="{Binding AIGameBoard[1][6]}" />
+                <local:Cell LocationId="62" AttackCode="{Binding AIGameBoard[2][6]}" />
+                <local:Cell LocationId="63" AttackCode="{Binding AIGameBoard[3][6]}" />
+                <local:Cell LocationId="64" AttackCode="{Binding AIGameBoard[4][6]}" />
+                <local:Cell LocationId="65" AttackCode="{Binding AIGameBoard[5][6]}" />
+                <local:Cell LocationId="66" AttackCode="{Binding AIGameBoard[6][6]}" />
+                <local:Cell LocationId="67" AttackCode="{Binding AIGameBoard[7][6]}" />
+                <local:Cell LocationId="68" AttackCode="{Binding AIGameBoard[8][6]}" />
+                <local:Cell LocationId="69" AttackCode="{Binding AIGameBoard[9][6]}" />
+
+                <!--Row 7-->
+                <local:Cell LocationId="70" AttackCode="{Binding AIGameBoard[0][7]}" />
+                <local:Cell LocationId="71" AttackCode="{Binding AIGameBoard[1][7]}" />
+                <local:Cell LocationId="72" AttackCode="{Binding AIGameBoard[2][7]}" />
+                <local:Cell LocationId="73" AttackCode="{Binding AIGameBoard[3][7]}" />
+                <local:Cell LocationId="74" AttackCode="{Binding AIGameBoard[4][7]}" />
+                <local:Cell LocationId="75" AttackCode="{Binding AIGameBoard[5][7]}" />
+                <local:Cell LocationId="76" AttackCode="{Binding AIGameBoard[6][7]}" />
+                <local:Cell LocationId="77" AttackCode="{Binding AIGameBoard[7][7]}" />
+                <local:Cell LocationId="78" AttackCode="{Binding AIGameBoard[8][7]}" />
+                <local:Cell LocationId="79" AttackCode="{Binding AIGameBoard[9][7]}" />
+
+                <!--Row 8-->
+                <local:Cell LocationId="80" AttackCode="{Binding AIGameBoard[0][8]}" />
+                <local:Cell LocationId="81" AttackCode="{Binding AIGameBoard[1][8]}" />
+                <local:Cell LocationId="82" AttackCode="{Binding AIGameBoard[2][8]}" />
+                <local:Cell LocationId="83" AttackCode="{Binding AIGameBoard[3][8]}" />
+                <local:Cell LocationId="84" AttackCode="{Binding AIGameBoard[4][8]}" />
+                <local:Cell LocationId="85" AttackCode="{Binding AIGameBoard[5][8]}" />
+                <local:Cell LocationId="86" AttackCode="{Binding AIGameBoard[6][8]}" />
+                <local:Cell LocationId="87" AttackCode="{Binding AIGameBoard[7][8]}" />
+                <local:Cell LocationId="88" AttackCode="{Binding AIGameBoard[8][8]}" />
+                <local:Cell LocationId="89" AttackCode="{Binding AIGameBoard[9][8]}" />
+
+                <!--Row 9-->
+                <local:Cell LocationId="90" AttackCode="{Binding AIGameBoard[0][9]}" />
+                <local:Cell LocationId="91" AttackCode="{Binding AIGameBoard[1][9]}" />
+                <local:Cell LocationId="92" AttackCode="{Binding AIGameBoard[2][9]}" />
+                <local:Cell LocationId="93" AttackCode="{Binding AIGameBoard[3][9]}" />
+                <local:Cell LocationId="94" AttackCode="{Binding AIGameBoard[4][9]}" />
+                <local:Cell LocationId="95" AttackCode="{Binding AIGameBoard[5][9]}" />
+                <local:Cell LocationId="96" AttackCode="{Binding AIGameBoard[6][9]}" />
+                <local:Cell LocationId="97" AttackCode="{Binding AIGameBoard[7][9]}" />
+                <local:Cell LocationId="98" AttackCode="{Binding AIGameBoard[8][9]}" />
+                <local:Cell LocationId="99" AttackCode="{Binding AIGameBoard[9][9]}" />
             </UniformGrid>
-            
-            <!--Render Battleship-->
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="SubmarineHorizontal" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="BattleshipHorizontal" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AircraftCarrierHorizontal" />
 
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PatrolVertical" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="DestroyerVertical" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="SubmarineVertical" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="BattleshipVertical" />
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AircraftCarrierVertical" />
-            
+            <!--Render Battleship-->
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal" Visibility="{Binding PlayerShipVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" Visibility="{Binding PlayerShipVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="SubmarineHorizontal" Visibility="{Binding PlayerShipVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="BattleshipHorizontal" Visibility="{Binding PlayerShipVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AircraftCarrierHorizontal" Visibility="{Binding PlayerShipVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PatrolVertical" Visibility="{Binding PlayerShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="DestroyerVertical" Visibility="{Binding PlayerShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="SubmarineVertical" Visibility="{Binding PlayerShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="BattleshipVertical" Visibility="{Binding PlayerShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AircraftCarrierVertical" Visibility="{Binding PlayerShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="4">
@@ -290,327 +282,147 @@
             <TextBlock Text="8" Grid.Column="9" Grid.Row="10" />
             <TextBlock Text="9" Grid.Column="10" Grid.Row="10" />
 
+            <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
+                <UniformGrid.Resources>
+                    <Style TargetType="local:Cell">
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="ClickCommand" Value="{Binding PlayerCellClickedCommand}"/>
+                        <!--<EventSetter Event="MouseEnter" Handler="UIElement_OnMouseEnter"/>-->
+                    </Style>
+                </UniformGrid.Resources>
+                <!--Row 0-->
+                <local:Cell LocationId="0" AttackCode="{Binding PlayerGameBoard[0][0]}" />
+                <local:Cell LocationId="1" AttackCode="{Binding PlayerGameBoard[1][0]}" />
+                <local:Cell LocationId="2" AttackCode="{Binding PlayerGameBoard[2][0]}" />
+                <local:Cell LocationId="3" AttackCode="{Binding PlayerGameBoard[3][0]}" />
+                <local:Cell LocationId="4" AttackCode="{Binding PlayerGameBoard[4][0]}" />
+                <local:Cell LocationId="5" AttackCode="{Binding PlayerGameBoard[5][0]}" />
+                <local:Cell LocationId="6" AttackCode="{Binding PlayerGameBoard[6][0]}" />
+                <local:Cell LocationId="7" AttackCode="{Binding PlayerGameBoard[7][0]}" />
+                <local:Cell LocationId="8" AttackCode="{Binding PlayerGameBoard[8][0]}" />
+                <local:Cell LocationId="9" AttackCode="{Binding PlayerGameBoard[9][0]}" />
 
-            <!--Row 0-->
-            <!--Visibility="{Binding }"-->
-            <Border Grid.Row="0" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="7" >
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="0" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 1-->
+                <local:Cell LocationId="10" AttackCode="{Binding PlayerGameBoard[0][1]}" />
+                <local:Cell LocationId="11" AttackCode="{Binding PlayerGameBoard[1][1]}" />
+                <local:Cell LocationId="12" AttackCode="{Binding PlayerGameBoard[2][1]}" />
+                <local:Cell LocationId="13" AttackCode="{Binding PlayerGameBoard[3][1]}" />
+                <local:Cell LocationId="14" AttackCode="{Binding PlayerGameBoard[4][1]}" />
+                <local:Cell LocationId="15" AttackCode="{Binding PlayerGameBoard[5][1]}" />
+                <local:Cell LocationId="16" AttackCode="{Binding PlayerGameBoard[6][1]}" />
+                <local:Cell LocationId="17" AttackCode="{Binding PlayerGameBoard[7][1]}" />
+                <local:Cell LocationId="18" AttackCode="{Binding PlayerGameBoard[8][1]}" />
+                <local:Cell LocationId="19" AttackCode="{Binding PlayerGameBoard[9][1]}" />
 
-            <!--Row 1-->
-            <Border Grid.Row="1" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="1" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 2-->
+                <local:Cell LocationId="20" AttackCode="{Binding PlayerGameBoard[0][2]}" />
+                <local:Cell LocationId="21" AttackCode="{Binding PlayerGameBoard[1][2]}" />
+                <local:Cell LocationId="22" AttackCode="{Binding PlayerGameBoard[2][2]}" />
+                <local:Cell LocationId="23" AttackCode="{Binding PlayerGameBoard[3][2]}" />
+                <local:Cell LocationId="24" AttackCode="{Binding PlayerGameBoard[4][2]}" />
+                <local:Cell LocationId="25" AttackCode="{Binding PlayerGameBoard[5][2]}" />
+                <local:Cell LocationId="26" AttackCode="{Binding PlayerGameBoard[6][2]}" />
+                <local:Cell LocationId="27" AttackCode="{Binding PlayerGameBoard[7][2]}" />
+                <local:Cell LocationId="28" AttackCode="{Binding PlayerGameBoard[8][2]}" />
+                <local:Cell LocationId="29" AttackCode="{Binding PlayerGameBoard[9][2]}" />
 
-            <!--Row 2-->
-            <Border Grid.Row="2" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="2" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 3-->
+                <local:Cell LocationId="30" AttackCode="{Binding PlayerGameBoard[0][3]}" />
+                <local:Cell LocationId="31" AttackCode="{Binding PlayerGameBoard[1][3]}" />
+                <local:Cell LocationId="32" AttackCode="{Binding PlayerGameBoard[2][3]}" />
+                <local:Cell LocationId="33" AttackCode="{Binding PlayerGameBoard[3][3]}" />
+                <local:Cell LocationId="34" AttackCode="{Binding PlayerGameBoard[4][3]}" />
+                <local:Cell LocationId="35" AttackCode="{Binding PlayerGameBoard[5][3]}" />
+                <local:Cell LocationId="36" AttackCode="{Binding PlayerGameBoard[6][3]}" />
+                <local:Cell LocationId="37" AttackCode="{Binding PlayerGameBoard[7][3]}" />
+                <local:Cell LocationId="38" AttackCode="{Binding PlayerGameBoard[8][3]}" />
+                <local:Cell LocationId="39" AttackCode="{Binding PlayerGameBoard[9][3]}" />
 
-            <!--Row 3-->
-            <Border Grid.Row="3" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="3" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 4-->
+                <local:Cell LocationId="40" AttackCode="{Binding PlayerGameBoard[0][4]}" />
+                <local:Cell LocationId="41" AttackCode="{Binding PlayerGameBoard[1][4]}" />
+                <local:Cell LocationId="42" AttackCode="{Binding PlayerGameBoard[2][4]}" />
+                <local:Cell LocationId="43" AttackCode="{Binding PlayerGameBoard[3][4]}" />
+                <local:Cell LocationId="44" AttackCode="{Binding PlayerGameBoard[4][4]}" />
+                <local:Cell LocationId="45" AttackCode="{Binding PlayerGameBoard[5][4]}" />
+                <local:Cell LocationId="46" AttackCode="{Binding PlayerGameBoard[6][4]}" />
+                <local:Cell LocationId="47" AttackCode="{Binding PlayerGameBoard[7][4]}" />
+                <local:Cell LocationId="48" AttackCode="{Binding PlayerGameBoard[8][4]}" />
+                <local:Cell LocationId="49" AttackCode="{Binding PlayerGameBoard[9][4]}" />
 
-            <!--Row 4-->
-            <Border Grid.Row="4" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="4" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 5-->
+                <local:Cell LocationId="50" AttackCode="{Binding PlayerGameBoard[0][5]}" />
+                <local:Cell LocationId="51" AttackCode="{Binding PlayerGameBoard[1][5]}" />
+                <local:Cell LocationId="52" AttackCode="{Binding PlayerGameBoard[2][5]}" />
+                <local:Cell LocationId="53" AttackCode="{Binding PlayerGameBoard[3][5]}" />
+                <local:Cell LocationId="54" AttackCode="{Binding PlayerGameBoard[4][5]}" />
+                <local:Cell LocationId="55" AttackCode="{Binding PlayerGameBoard[5][5]}" />
+                <local:Cell LocationId="56" AttackCode="{Binding PlayerGameBoard[6][5]}" />
+                <local:Cell LocationId="57" AttackCode="{Binding PlayerGameBoard[7][5]}" />
+                <local:Cell LocationId="58" AttackCode="{Binding PlayerGameBoard[8][5]}" />
+                <local:Cell LocationId="59" AttackCode="{Binding PlayerGameBoard[9][5]}" />
 
-            <!--Row 5-->
-            <Border Grid.Row="5" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="5" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 6-->
+                <local:Cell LocationId="60" AttackCode="{Binding PlayerGameBoard[0][6]}" />
+                <local:Cell LocationId="61" AttackCode="{Binding PlayerGameBoard[1][6]}" />
+                <local:Cell LocationId="62" AttackCode="{Binding PlayerGameBoard[2][6]}" />
+                <local:Cell LocationId="63" AttackCode="{Binding PlayerGameBoard[3][6]}" />
+                <local:Cell LocationId="64" AttackCode="{Binding PlayerGameBoard[4][6]}" />
+                <local:Cell LocationId="65" AttackCode="{Binding PlayerGameBoard[5][6]}" />
+                <local:Cell LocationId="66" AttackCode="{Binding PlayerGameBoard[6][6]}" />
+                <local:Cell LocationId="67" AttackCode="{Binding PlayerGameBoard[7][6]}" />
+                <local:Cell LocationId="68" AttackCode="{Binding PlayerGameBoard[8][6]}" />
+                <local:Cell LocationId="69" AttackCode="{Binding PlayerGameBoard[9][6]}" />
 
-            <!--Row 6-->
-            <Border Grid.Row="6" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="6" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 7-->
+                <local:Cell LocationId="70" AttackCode="{Binding PlayerGameBoard[0][7]}" />
+                <local:Cell LocationId="71" AttackCode="{Binding PlayerGameBoard[1][7]}" />
+                <local:Cell LocationId="72" AttackCode="{Binding PlayerGameBoard[2][7]}" />
+                <local:Cell LocationId="73" AttackCode="{Binding PlayerGameBoard[3][7]}" />
+                <local:Cell LocationId="74" AttackCode="{Binding PlayerGameBoard[4][7]}" />
+                <local:Cell LocationId="75" AttackCode="{Binding PlayerGameBoard[5][7]}" />
+                <local:Cell LocationId="76" AttackCode="{Binding PlayerGameBoard[6][7]}" />
+                <local:Cell LocationId="77" AttackCode="{Binding PlayerGameBoard[7][7]}" />
+                <local:Cell LocationId="78" AttackCode="{Binding PlayerGameBoard[8][7]}" />
+                <local:Cell LocationId="79" AttackCode="{Binding PlayerGameBoard[9][7]}" />
 
-            <!--Row 7-->
-            <Border Grid.Row="7" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="7" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 8-->
+                <local:Cell LocationId="80" AttackCode="{Binding PlayerGameBoard[0][8]}" />
+                <local:Cell LocationId="81" AttackCode="{Binding PlayerGameBoard[1][8]}" />
+                <local:Cell LocationId="82" AttackCode="{Binding PlayerGameBoard[2][8]}" />
+                <local:Cell LocationId="83" AttackCode="{Binding PlayerGameBoard[3][8]}" />
+                <local:Cell LocationId="84" AttackCode="{Binding PlayerGameBoard[4][8]}" />
+                <local:Cell LocationId="85" AttackCode="{Binding PlayerGameBoard[5][8]}" />
+                <local:Cell LocationId="86" AttackCode="{Binding PlayerGameBoard[6][8]}" />
+                <local:Cell LocationId="87" AttackCode="{Binding PlayerGameBoard[7][8]}" />
+                <local:Cell LocationId="88" AttackCode="{Binding PlayerGameBoard[8][8]}" />
+                <local:Cell LocationId="89" AttackCode="{Binding PlayerGameBoard[9][8]}" />
 
-            <!--Row 8-->
-            <Border Grid.Row="8" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="8" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+                <!--Row 9-->
+                <local:Cell LocationId="90" AttackCode="{Binding PlayerGameBoard[0][9]}" />
+                <local:Cell LocationId="91" AttackCode="{Binding PlayerGameBoard[1][9]}" />
+                <local:Cell LocationId="92" AttackCode="{Binding PlayerGameBoard[2][9]}" />
+                <local:Cell LocationId="93" AttackCode="{Binding PlayerGameBoard[3][9]}" />
+                <local:Cell LocationId="94" AttackCode="{Binding PlayerGameBoard[4][9]}" />
+                <local:Cell LocationId="95" AttackCode="{Binding PlayerGameBoard[5][9]}" />
+                <local:Cell LocationId="96" AttackCode="{Binding PlayerGameBoard[6][9]}" />
+                <local:Cell LocationId="97" AttackCode="{Binding PlayerGameBoard[7][9]}" />
+                <local:Cell LocationId="98" AttackCode="{Binding PlayerGameBoard[8][9]}" />
+                <local:Cell LocationId="99" AttackCode="{Binding PlayerGameBoard[9][9]}" />
+            </UniformGrid>
 
-            <!--Row 9-->
-            <Border  Grid.Row="9" Grid.Column="1">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="2">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="3">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="4">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="5">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="6">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="7">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="8">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border  Grid.Row="9" Grid.Column="9">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
-            <Border Grid.Row="9" Grid.Column="10">
-                <Ellipse Fill="{Binding GameBoard2[9][1], Converter={StaticResource CellCodeToFill}}" />
-            </Border>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AIPatrolHorizontal" Visibility="{Binding PlayerShipVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AIDestroyerHorizontal" Visibility="{Binding PlayerShipVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AISubmarineHorizontal" Visibility="{Binding PlayerShipVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AIBattleshipHorizontal" Visibility="{Binding PlayerShipVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AIAircraftCarrierHorizontal" Visibility="{Binding PlayerShipVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="AIPatrolVertical" Visibility="{Binding PlayerShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AIDestroyerVertical" Visibility="{Binding PlayerShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AISubmarineVertical" Visibility="{Binding PlayerShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="AIBattleshipVertical" Visibility="{Binding PlayerShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AIAircraftCarrierVertical" Visibility="{Binding PlayerShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
         </Grid>
 
         <CheckBox IsChecked="{Binding ShowShips}" Grid.Row="2" Grid.Column="0">Show Ships</CheckBox>
@@ -623,5 +435,6 @@
         </StackPanel>
 
         <Button Content="New Game" Command="{Binding NewGameCommand}" Grid.Row="3" Grid.Column="0"/>
+        <Button Content="Ready" Command="{Binding StartGameCommand}" Grid.Row="3" Grid.Column="0" Visibility="{Binding GameState, Converter={StaticResource GameStateToReadyButtonVisibilityConverter}}"/>
     </Grid>
 </Window>

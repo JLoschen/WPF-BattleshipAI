@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Battleship.Core;
 using GalaSoft.MvvmLight;
@@ -11,45 +12,116 @@ namespace Battleship.TestingWindow
     public class CaptainDebugViewModel:ViewModelBase
     {
         private readonly ICaptain _captain;
-
-        private int[,] _gameBoard;
-        
         public CaptainDebugViewModel(ICaptain captain)
         {
             _captain = captain;
-            CaptainName = _captain.GetName();
-            AIWins = 4;
-            AILosses = 6;
             NewGameCommand = new RelayCommand(CreateNewGame);
+            PlayerCellClickedCommand = new RelayCommand<int>(PlayerCellClicked);
             CellClickedCommand = new RelayCommand<int>(CellClicked);
-            GameState = GameState.Waiting;
-            GameBoard2 = GetBlankBoard2();
-            PlayerShipVisibility = new ObservableCollection<bool> {false, false, false, false, false};
+            RightClickCommand = new RelayCommand<int>(CellRightClicked);
+            StartGameCommand = new RelayCommand(StartGame, () => PlayerFleet.IsReady);
+            AIGameBoard = GetBlankBoard();
+            PlayerGameBoard = GetBlankBoard();
+        }
+
+        private void StartGame()
+        {
+               
+        }
+
+        private void CellRightClicked(int cell)
+        {
+            switch (GameState)
+            {
+                case GameState.HumanPlayerPlacingPatrol:
+                    PlayerShipVisibility[Constants.PatrolBoat] = !PlayerShipVisibility[Constants.PatrolBoat];
+                    PlayerShipVerticalVisibility[Constants.PatrolBoat] = !PlayerShipVerticalVisibility[Constants.PatrolBoat];
+                    break;
+                case GameState.HumanPlayerPlacingDestroyer:
+                    PlayerShipVisibility[Constants.Destroyer] = !PlayerShipVisibility[Constants.Destroyer];
+                    PlayerShipVerticalVisibility[Constants.Destroyer] = !PlayerShipVerticalVisibility[Constants.Destroyer];
+                    break;
+                case GameState.HumanPlayerPlacingSubmarine:
+                    PlayerShipVisibility[Constants.Submarine] = !PlayerShipVisibility[Constants.Submarine];
+                    PlayerShipVerticalVisibility[Constants.Submarine] = !PlayerShipVerticalVisibility[Constants.Submarine];
+                    break;
+                case GameState.HumanPlayerPlacingBattleship:
+                    PlayerShipVisibility[Constants.Battleship] = !PlayerShipVisibility[Constants.Battleship];
+                    PlayerShipVerticalVisibility[Constants.Battleship] = !PlayerShipVerticalVisibility[Constants.Battleship];
+                    break;
+                case GameState.HumanPlayerPlacingAircraftCarrier:
+                    PlayerShipVisibility[Constants.AircraftCarrier] = !PlayerShipVisibility[Constants.AircraftCarrier];
+                    PlayerShipVerticalVisibility[Constants.AircraftCarrier] = !PlayerShipVerticalVisibility[Constants.AircraftCarrier];
+                    break;
+            }
+        }
+
+        private void PlayerCellClicked(int cell)
+        {
+            if(GameState != GameState.HumansTurn) return;
+
+            var x = cell % 10;
+            var y = cell / 10;
+            var attackedCell = new Coordinate(x, y);
+            _captain.OpponentAttack(attackedCell);
+            var result = AiFleet.Attacked(attackedCell);
+            PlayerGameBoard[x][y] = result;
+
+            if (result == Constants.Defeated)
+            {
+                MessageBox.Show("You win!");
+                GameState = GameState.Waiting;
+                return;
+            }
+            GameState = GameState.AIsTurn;
         }
 
         private void CellClicked(int cell)
         {
-            //if (GameState == GameState.Waiting) return;
+            var coord = new Coordinate(cell % 10, cell / 10);
             switch (GameState)
             {
                 case GameState.HumanPlayerPlacingPatrol:
-                    GameState = GameState.HumanPlayerPlacingDestroyer;
-                    PlayerShipVisibility[Constants.Destroyer] = true;
+                    var ptVertical = PlayerShipVisibility[Constants.PatrolBoat];
+                    if (PlayerFleet.PlaceShip(coord, ptVertical, Constants.PatrolBoat))
+                    {
+                        GameState = GameState.HumanPlayerPlacingDestroyer;
+                        PlayerShipVisibility[Constants.Destroyer] = true;
+                    }
                     break;
                 case GameState.HumanPlayerPlacingDestroyer:
-                    GameState = GameState.HumanPlayerPlacingSubmarine;
-                    PlayerShipVisibility[Constants.Submarine] = true;
+                    var destVertical = PlayerShipVisibility[Constants.Destroyer];
+                    if (PlayerFleet.PlaceShip(coord, destVertical, Constants.Destroyer))
+                    {
+                        GameState = GameState.HumanPlayerPlacingSubmarine;
+                        PlayerShipVisibility[Constants.Submarine] = true;
+                    }
                     break;
                 case GameState.HumanPlayerPlacingSubmarine:
-                    GameState = GameState.HumanPlayerPlacingBattleship;
-                    PlayerShipVisibility[Constants.Battleship] = true;
+                    var subVertical = PlayerShipVisibility[Constants.Submarine];
+                    
+                    if (PlayerFleet.PlaceShip(coord, subVertical, Constants.Submarine))
+                    {
+                        GameState = GameState.HumanPlayerPlacingBattleship;
+                        PlayerShipVisibility[Constants.Battleship] = true;
+                    }
+                        
                     break;
                 case GameState.HumanPlayerPlacingBattleship:
-                    GameState = GameState.HumanPlayerPlacingAircraftCarrier;
-                    PlayerShipVisibility[Constants.AircraftCarrier] = true;
+                    var batVertical = PlayerShipVisibility[Constants.Battleship];
+                    if (PlayerFleet.PlaceShip(coord, batVertical, Constants.Battleship))
+                    {
+                        GameState = GameState.HumanPlayerPlacingAircraftCarrier;
+                        PlayerShipVisibility[Constants.AircraftCarrier] = true;
+                    }
                     break;
                 case GameState.HumanPlayerPlacingAircraftCarrier:
-                    GameState = GameState.HumansTurn;
+                    var airVertical = PlayerShipVisibility[Constants.AircraftCarrier];
+                    if (PlayerFleet.PlaceShip(coord, airVertical, Constants.AircraftCarrier))
+                    {
+                        GameState = GameState.ReadyWaitingToStart;
+                    }
+                        
                     break;
             }
             //var x = cell % 10;
@@ -58,15 +130,13 @@ namespace Battleship.TestingWindow
             //Grid.SetRow();
         }
 
-        public string CaptainName { get; set; }
+        public string CaptainName => _captain?.GetName();
 
         public ICommand NewGameCommand { get; set; }
         private void CreateNewGame()
         {
-            
-            _gameBoard = GetBlankBoard();
-
             GameState = GameState.HumanPlayerPlacingPatrol;
+            PlayerShipVisibility[Constants.PatrolBoat] = true;
             //WaitForHumanPlayerToSetFleet();
 
             //IsPlayersTurn = true;
@@ -80,7 +150,12 @@ namespace Battleship.TestingWindow
 
         }
         
-        public GameState GameState { get; set; }
+        public GameState GameState 
+        { 
+            get{ return _gameState; } 
+            set{ Set(ref _gameState, value); } 
+        } 
+        private GameState _gameState = GameState.Waiting;
 
         private async void EnterGameLoop()
         {
@@ -97,32 +172,14 @@ namespace Battleship.TestingWindow
 
                 PlayerFleet = _captain.GetFleet();
 
-                GameBoard2[attack.X][attack.Y] = 106;
+                AIGameBoard[attack.X][attack.Y] = 106;
                 numAttacks++;
                 IsGameInProgress = numAttacks < 20;
                 await Task.Delay(TimeSpan.FromMilliseconds(2000)); //wait 2 seconds between shots
             }
         }
 
-        private int[,] GetBlankBoard()
-        {
-            var board = new[,] 
-            { 
-                {0,0,0,0,0,0,0,0,0,0}, //0
-                {0,0,0,0,0,0,0,0,0,0}, //1
-                {0,0,0,0,0,0,0,0,0,0}, //2
-                {0,0,0,0,0,0,0,0,0,0}, //3
-                {0,0,0,0,0,0,0,0,0,0}, //4
-                {0,0,0,0,0,0,0,0,0,0}, //5
-                {0,0,0,0,0,0,0,0,0,0}, //6
-                {0,0,0,0,0,0,0,0,0,0}, //7
-                {0,0,0,0,0,0,0,0,0,0}, //8
-                {0,0,0,0,0,0,0,0,0,0}, //9 
-            };
-            return board;
-        }
-
-        private ObservableCollection<ObservableCollection<int>> GetBlankBoard2()
+        private ObservableCollection<ObservableCollection<int>> GetBlankBoard()
         {
             var row0 = new ObservableCollection<int>(GetBoardRow());
             var row1 = new ObservableCollection<int>(GetBoardRow());
@@ -148,22 +205,29 @@ namespace Battleship.TestingWindow
             get{ return _aiFleet; } 
             set{ Set(ref _aiFleet, value); } 
         } 
-        private Fleet _aiFleet;
+        private Fleet _aiFleet = new Fleet();
 
         public Fleet PlayerFleet
         {
             get { return _playerFleet; }
             set { Set(ref _playerFleet, value); }
         }
-        private Fleet _playerFleet;
+        private Fleet _playerFleet = new Fleet(); 
 
         //I'll be surprised if this works
-        public ObservableCollection<ObservableCollection<int>> GameBoard2
+        public ObservableCollection<ObservableCollection<int>> AIGameBoard
         {
-            get { return _gameBoard2; }
-            set { Set(nameof(GameBoard2), ref _gameBoard2, value); }
+            get { return _aiGameBoard; }
+            set { Set(nameof(AIGameBoard), ref _aiGameBoard, value); }
         }
-        private ObservableCollection<ObservableCollection<int>> _gameBoard2;
+        private ObservableCollection<ObservableCollection<int>> _aiGameBoard;
+
+        public ObservableCollection<ObservableCollection<int>> PlayerGameBoard
+        {
+            get { return _playerGameBoard; }
+            set { Set(nameof(AIGameBoard), ref _playerGameBoard, value); }
+        }
+        private ObservableCollection<ObservableCollection<int>> _playerGameBoard;
 
         public bool IsGameInProgress
         {
@@ -200,8 +264,14 @@ namespace Battleship.TestingWindow
         }
         private int _aILosses;
 
-        public ObservableCollection<bool> PlayerShipVisibility { get; set; }
+        public ObservableCollection<bool> PlayerShipVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
+        public ObservableCollection<bool> PlayerShipVerticalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
+        //public ObservableCollection<bool> AIShipHorizontalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
+        //public ObservableCollection<bool> AIShipVerticalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
 
         public ICommand CellClickedCommand { get; set; }
+        public ICommand PlayerCellClickedCommand { get; set; }
+        public ICommand RightClickCommand { get; set; }
+        public ICommand StartGameCommand { get; set; }
     }
 }
