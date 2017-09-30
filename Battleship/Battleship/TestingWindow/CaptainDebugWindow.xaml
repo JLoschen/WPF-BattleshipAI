@@ -85,127 +85,327 @@
             <TextBlock Text="8" Grid.Column="9" Grid.Row="10" />
             <TextBlock Text="9" Grid.Column="10" Grid.Row="10" />
 
+            
             <!--Row 0-->
+            <!--Visibility="{Binding }"-->
             <Border Grid.Row="0" Grid.Column="1">
-                
+                <Ellipse Fill="#FFFFFF00" />
             </Border>
-            <Border Grid.Row="0" Grid.Column="2"/>
-            <Border Grid.Row="0" Grid.Column="3"/>
-            <Border Grid.Row="0" Grid.Column="4"/>
-            <Border Grid.Row="0" Grid.Column="5"/>
-            <Border Grid.Row="0" Grid.Column="6"/>
-            <Border Grid.Row="0" Grid.Column="7"/>
-            <Border Grid.Row="0" Grid.Column="8"/>
-            <Border Grid.Row="0" Grid.Column="9"/>
-            <Border Grid.Row="0" Grid.Column="10"/>
+            <Border Grid.Row="0" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="7" >
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 1-->
-            <Border Grid.Row="1" Grid.Column="1"/>
-            <Border Grid.Row="1" Grid.Column="2"/>
-            <Border Grid.Row="1" Grid.Column="3"/>
-            <Border Grid.Row="1" Grid.Column="4"/>
-            <Border Grid.Row="1" Grid.Column="5"/>
-            <Border Grid.Row="1" Grid.Column="6"/>
-            <Border Grid.Row="1" Grid.Column="7"/>
-            <Border Grid.Row="1" Grid.Column="8"/>
-            <Border Grid.Row="1" Grid.Column="9"/>
-            <Border Grid.Row="1" Grid.Column="10"/>
+            <Border Grid.Row="1" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 2-->
-            <Border Grid.Row="2" Grid.Column="1"/>
-            <Border Grid.Row="2" Grid.Column="2"/>
-            <Border Grid.Row="2" Grid.Column="3"/>
-            <Border Grid.Row="2" Grid.Column="4"/>
-            <Border Grid.Row="2" Grid.Column="5"/>
-            <Border Grid.Row="2" Grid.Column="6"/>
-            <Border Grid.Row="2" Grid.Column="7"/>
-            <Border Grid.Row="2" Grid.Column="8"/>
-            <Border Grid.Row="2" Grid.Column="9"/>
-            <Border Grid.Row="2" Grid.Column="10"/>
+            <Border Grid.Row="2" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 3-->
-            <Border Grid.Row="3" Grid.Column="1"/>
-            <Border Grid.Row="3" Grid.Column="2"/>
-            <Border Grid.Row="3" Grid.Column="3"/>
-            <Border Grid.Row="3" Grid.Column="4"/>
-            <Border Grid.Row="3" Grid.Column="5"/>
-            <Border Grid.Row="3" Grid.Column="6"/>
-            <Border Grid.Row="3" Grid.Column="7"/>
-            <Border Grid.Row="3" Grid.Column="8"/>
-            <Border Grid.Row="3" Grid.Column="9"/>
-            <Border Grid.Row="3" Grid.Column="10"/>
+            <Border Grid.Row="3" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 4-->
-            <Border Grid.Row="4" Grid.Column="1"/>
-            <Border Grid.Row="4" Grid.Column="2"/>
-            <Border Grid.Row="4" Grid.Column="3"/>
-            <Border Grid.Row="4" Grid.Column="4"/>
-            <Border Grid.Row="4" Grid.Column="5"/>
-            <Border Grid.Row="4" Grid.Column="6"/>
-            <Border Grid.Row="4" Grid.Column="7"/>
-            <Border Grid.Row="4" Grid.Column="8"/>
-            <Border Grid.Row="4" Grid.Column="9"/>
-            <Border Grid.Row="4" Grid.Column="10"/>
+            <Border Grid.Row="4" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 5-->
-            <Border Grid.Row="5" Grid.Column="1"/>
-            <Border Grid.Row="5" Grid.Column="2"/>
-            <Border Grid.Row="5" Grid.Column="3"/>
-            <Border Grid.Row="5" Grid.Column="4"/>
-            <Border Grid.Row="5" Grid.Column="5"/>
-            <Border Grid.Row="5" Grid.Column="6"/>
-            <Border Grid.Row="5" Grid.Column="7"/>
-            <Border Grid.Row="5" Grid.Column="8"/>
-            <Border Grid.Row="5" Grid.Column="9"/>
-            <Border Grid.Row="5" Grid.Column="10"/>
+            <Border Grid.Row="5" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 6-->
-            <Border Grid.Row="6" Grid.Column="1"/>
-            <Border Grid.Row="6" Grid.Column="2"/>
-            <Border Grid.Row="6" Grid.Column="3"/>
-            <Border Grid.Row="6" Grid.Column="4"/>
-            <Border Grid.Row="6" Grid.Column="5"/>
-            <Border Grid.Row="6" Grid.Column="6"/>
-            <Border Grid.Row="6" Grid.Column="7"/>
-            <Border Grid.Row="6" Grid.Column="8"/>
-            <Border Grid.Row="6" Grid.Column="9"/>
-            <Border Grid.Row="6" Grid.Column="10"/>
+            <Border Grid.Row="6" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 7-->
-            <Border Grid.Row="7" Grid.Column="1"/>
-            <Border Grid.Row="7" Grid.Column="2"/>
-            <Border Grid.Row="7" Grid.Column="3"/>
-            <Border Grid.Row="7" Grid.Column="4"/>
-            <Border Grid.Row="7" Grid.Column="5"/>
-            <Border Grid.Row="7" Grid.Column="6"/>
-            <Border Grid.Row="7" Grid.Column="7"/>
-            <Border Grid.Row="7" Grid.Column="8"/>
-            <Border Grid.Row="7" Grid.Column="9"/>
-            <Border Grid.Row="7" Grid.Column="10"/>
+            <Border Grid.Row="7" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 8-->
-            <Border Grid.Row="8" Grid.Column="1"/>
-            <Border Grid.Row="8" Grid.Column="2"/>
-            <Border Grid.Row="8" Grid.Column="3"/>
-            <Border Grid.Row="8" Grid.Column="4"/>
-            <Border Grid.Row="8" Grid.Column="5"/>
-            <Border Grid.Row="8" Grid.Column="6"/>
-            <Border Grid.Row="8" Grid.Column="7"/>
-            <Border Grid.Row="8" Grid.Column="8"/>
-            <Border Grid.Row="8" Grid.Column="9"/>
-            <Border Grid.Row="8" Grid.Column="10"/>
+            <Border Grid.Row="8" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 9-->
-            <Border  Grid.Row="9" Grid.Column="1"/>
-            <Border  Grid.Row="9" Grid.Column="2"/>
-            <Border  Grid.Row="9" Grid.Column="3"/>
-            <Border  Grid.Row="9" Grid.Column="4"/>
-            <Border  Grid.Row="9" Grid.Column="5"/>
-            <Border  Grid.Row="9" Grid.Column="6"/>
-            <Border  Grid.Row="9" Grid.Column="7"/>
-            <Border  Grid.Row="9" Grid.Column="8"/>
-            <Border  Grid.Row="9" Grid.Column="9"/>
-            <Border Grid.Row="9" Grid.Column="10"/>
+            <Border  Grid.Row="9" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="9" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="4">
@@ -258,126 +458,327 @@
             <TextBlock Text="8" Grid.Column="9" Grid.Row="10" />
             <TextBlock Text="9" Grid.Column="10" Grid.Row="10" />
 
+
             <!--Row 0-->
-            <!--<Rectangle />-->
-            <Border Grid.Row="0" Grid.Column="1"/>
-            <Border Grid.Row="0" Grid.Column="2"/>
-            <Border Grid.Row="0" Grid.Column="3"/>
-            <Border Grid.Row="0" Grid.Column="4"/>
-            <Border Grid.Row="0" Grid.Column="5"/>
-            <Border Grid.Row="0" Grid.Column="6"/>
-            <Border Grid.Row="0" Grid.Column="7"/>
-            <Border Grid.Row="0" Grid.Column="8"/>
-            <Border Grid.Row="0" Grid.Column="9"/>
-            <Border Grid.Row="0" Grid.Column="10"/>
+            <!--Visibility="{Binding }"-->
+            <Border Grid.Row="0" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="7" >
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 1-->
-            <Border Grid.Row="1" Grid.Column="1"/>
-            <Border Grid.Row="1" Grid.Column="2"/>
-            <Border Grid.Row="1" Grid.Column="3"/>
-            <Border Grid.Row="1" Grid.Column="4"/>
-            <Border Grid.Row="1" Grid.Column="5"/>
-            <Border Grid.Row="1" Grid.Column="6"/>
-            <Border Grid.Row="1" Grid.Column="7"/>
-            <Border Grid.Row="1" Grid.Column="8"/>
-            <Border Grid.Row="1" Grid.Column="9"/>
-            <Border Grid.Row="1" Grid.Column="10"/>
+            <Border Grid.Row="1" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 2-->
-            <Border  Grid.Row="2" Grid.Column="1"/>
-            <Border  Grid.Row="2" Grid.Column="2"/>
-            <Border  Grid.Row="2" Grid.Column="3"/>
-            <Border  Grid.Row="2" Grid.Column="4"/>
-            <Border  Grid.Row="2" Grid.Column="5"/>
-            <Border  Grid.Row="2" Grid.Column="6"/>
-            <Border  Grid.Row="2" Grid.Column="7"/>
-            <Border  Grid.Row="2" Grid.Column="8"/>
-            <Border  Grid.Row="2" Grid.Column="9"/>
-            <Border  Grid.Row="2" Grid.Column="10"/>
+            <Border Grid.Row="2" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 3-->
-            <Border Grid.Row="3" Grid.Column="1"/>
-            <Border Grid.Row="3" Grid.Column="2"/>
-            <Border Grid.Row="3" Grid.Column="3"/>
-            <Border Grid.Row="3" Grid.Column="4"/>
-            <Border Grid.Row="3" Grid.Column="5"/>
-            <Border Grid.Row="3" Grid.Column="6"/>
-            <Border Grid.Row="3" Grid.Column="7"/>
-            <Border Grid.Row="3" Grid.Column="8"/>
-            <Border Grid.Row="3" Grid.Column="9"/>
-            <Border Grid.Row="3" Grid.Column="10"/>
+            <Border Grid.Row="3" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 4-->
-            <Border Grid.Row="4" Grid.Column="1"/>
-            <Border Grid.Row="4" Grid.Column="2"/>
-            <Border Grid.Row="4" Grid.Column="3"/>
-            <Border Grid.Row="4" Grid.Column="4"/>
-            <Border Grid.Row="4" Grid.Column="5"/>
-            <Border Grid.Row="4" Grid.Column="6"/>
-            <Border Grid.Row="4" Grid.Column="7"/>
-            <Border Grid.Row="4" Grid.Column="8"/>
-            <Border Grid.Row="4" Grid.Column="9"/>
-            <Border Grid.Row="4" Grid.Column="10"/>
+            <Border Grid.Row="4" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 5-->
-            <Border Grid.Row="5" Grid.Column="1"/>
-            <Border Grid.Row="5" Grid.Column="2"/>
-            <Border Grid.Row="5" Grid.Column="3"/>
-            <Border Grid.Row="5" Grid.Column="4"/>
-            <Border Grid.Row="5" Grid.Column="5"/>
-            <Border Grid.Row="5" Grid.Column="6"/>
-            <Border Grid.Row="5" Grid.Column="7"/>
-            <Border Grid.Row="5" Grid.Column="8"/>
-            <Border Grid.Row="5" Grid.Column="9"/>
-            <Border Grid.Row="5" Grid.Column="10"/>
+            <Border Grid.Row="5" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 6-->
-            <Border Grid.Row="6" Grid.Column="1"/>
-            <Border Grid.Row="6" Grid.Column="2"/>
-            <Border Grid.Row="6" Grid.Column="3"/>
-            <Border Grid.Row="6" Grid.Column="4"/>
-            <Border Grid.Row="6" Grid.Column="5"/>
-            <Border Grid.Row="6" Grid.Column="6"/>
-            <Border Grid.Row="6" Grid.Column="7"/>
-            <Border Grid.Row="6" Grid.Column="8"/>
-            <Border Grid.Row="6" Grid.Column="9"/>
-            <Border Grid.Row="6" Grid.Column="10"/>
+            <Border Grid.Row="6" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="6" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 7-->
-            <Border Grid.Row="7" Grid.Column="1"/>
-            <Border Grid.Row="7" Grid.Column="2"/>
-            <Border Grid.Row="7" Grid.Column="3"/>
-            <Border Grid.Row="7" Grid.Column="4"/>
-            <Border Grid.Row="7" Grid.Column="5"/>
-            <Border Grid.Row="7" Grid.Column="6"/>
-            <Border Grid.Row="7" Grid.Column="7"/>
-            <Border Grid.Row="7" Grid.Column="8"/>
-            <Border Grid.Row="7" Grid.Column="9"/>
-            <Border Grid.Row="7" Grid.Column="10"/>
+            <Border Grid.Row="7" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="7" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 8-->
-            <Border Grid.Row="8" Grid.Column="1"/>
-            <Border Grid.Row="8" Grid.Column="2"/>
-            <Border Grid.Row="8" Grid.Column="3"/>
-            <Border Grid.Row="8" Grid.Column="4"/>
-            <Border Grid.Row="8" Grid.Column="5"/>
-            <Border Grid.Row="8" Grid.Column="6"/>
-            <Border Grid.Row="8" Grid.Column="7"/>
-            <Border Grid.Row="8" Grid.Column="8"/>
-            <Border Grid.Row="8" Grid.Column="9"/>
-            <Border Grid.Row="8" Grid.Column="10"/>
+            <Border Grid.Row="8" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="8" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
 
             <!--Row 9-->
-            <Border  Grid.Row="9" Grid.Column="1"/>
-            <Border  Grid.Row="9" Grid.Column="2"/>
-            <Border  Grid.Row="9" Grid.Column="3"/>
-            <Border  Grid.Row="9" Grid.Column="4"/>
-            <Border  Grid.Row="9" Grid.Column="5"/>
-            <Border  Grid.Row="9" Grid.Column="6"/>
-            <Border  Grid.Row="9" Grid.Column="7"/>
-            <Border  Grid.Row="9" Grid.Column="8"/>
-            <Border  Grid.Row="9" Grid.Column="9"/>
-            <Border  Grid.Row="9" Grid.Column="10"/>
+            <Border  Grid.Row="9" Grid.Column="1">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="2">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="3">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="4">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="5">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="6">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="7">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="8">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border  Grid.Row="9" Grid.Column="9">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
+            <Border Grid.Row="9" Grid.Column="10">
+                <Ellipse Fill="#FFFFFF00" />
+            </Border>
         </Grid>
 
         <CheckBox IsChecked="{Binding ShowShips}" Grid.Row="2" Grid.Column="0">Show Ships</CheckBox>
