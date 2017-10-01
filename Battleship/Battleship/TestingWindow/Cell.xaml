@@ -10,6 +10,6 @@
         <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
     </UserControl.Resources>
     <Border Background="Aqua" BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseRightButtonUp="UIElement_OnMouseRightButtonUp">
-        <Ellipse  Fill="{Binding AttackCode, Converter={StaticResource CellCodeToFill}}"/>
+        <!--<Ellipse  Fill="{Binding AttackCode, Converter={StaticResource CellCodeToFill}}"/>-->
     </Border>
 </UserControl>

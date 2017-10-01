@@ -19,14 +19,24 @@ namespace Battleship.TestingWindow
             PlayerCellClickedCommand = new RelayCommand<int>(PlayerCellClicked);
             CellClickedCommand = new RelayCommand<int>(CellClicked);
             RightClickCommand = new RelayCommand<int>(CellRightClicked);
-            StartGameCommand = new RelayCommand(StartGame, () => PlayerFleet.IsReady);
+            //StartGameCommand = new RelayCommand(StartGame, () => PlayerFleet.IsReady);
             AIGameBoard = GetBlankBoard();
             PlayerGameBoard = GetBlankBoard();
         }
 
-        private void StartGame()
+        //private void StartGame()
+        //{
+        //    //AiFleet = _captain.GetFleet();
+            
+
+        //}
+
+        public Fleet CreateFleet()
         {
-               
+            _captain.Initialize(1, 2, "Player");
+            AiFleet = _captain.GetFleet();
+            GameState = GameState.HumansTurn;
+            return AiFleet;
         }
 
         private void CellRightClicked(int cell)
@@ -74,6 +84,20 @@ namespace Battleship.TestingWindow
                 return;
             }
             GameState = GameState.AIsTurn;
+
+            var aiAttack = _captain.MakeAttack();
+            result = PlayerFleet.Attacked(aiAttack);
+            _captain.ResultOfAttack(result);
+
+            AIGameBoard[aiAttack.X][aiAttack.Y] = result;
+
+            if (result == Constants.Defeated)
+            {
+                MessageBox.Show("You lose :(");
+                GameState = GameState.Waiting;
+                return;
+            }
+            GameState = GameState.HumansTurn;
         }
 
         private void CellClicked(int cell)
@@ -236,20 +260,13 @@ namespace Battleship.TestingWindow
         }
         private bool _isGameInProgress;
 
-        public bool IsPlayersTurn
-        {
-            get { return _isPlayersTurn; }
-            set { Set(ref _isPlayersTurn, value); }
-        }
-        private bool _isPlayersTurn;
-
-        public bool IsSettingVertical 
+        public bool ShowAiShips 
         { 
-            get{ return _isSettingVertical; } 
-            set{ Set(ref _isSettingVertical, value); } 
+            get{ return _showAiShips; } 
+            set{ Set(ref _showAiShips, value); } 
         } 
-        private bool _isSettingVertical;
-
+        private bool _showAiShips;
+        
         public int AIWins
         {
             get { return _aIWins; }
@@ -266,8 +283,8 @@ namespace Battleship.TestingWindow
 
         public ObservableCollection<bool> PlayerShipVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
         public ObservableCollection<bool> PlayerShipVerticalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
-        //public ObservableCollection<bool> AIShipHorizontalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
-        //public ObservableCollection<bool> AIShipVerticalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
+        public ObservableCollection<bool> AIShipHorizontalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
+        public ObservableCollection<bool> AIShipVerticalVisibility { get; set; } = new ObservableCollection<bool> { false, false, false, false, false };
 
         public ICommand CellClickedCommand { get; set; }
         public ICommand PlayerCellClickedCommand { get; set; }

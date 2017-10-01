@@ -55,6 +55,8 @@ namespace Battleship.Core
             return Sunk;
         }
 
+        public bool IsVertical => Direction == 1;
+
         public bool IsValid()
         {
             if (Direction == Constants.Horizontal)

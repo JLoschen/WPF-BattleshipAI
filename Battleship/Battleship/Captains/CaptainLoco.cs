@@ -7,6 +7,7 @@ namespace Battleship.Captains
     {
         protected Random generator;
         protected Fleet myFleet;
+        private bool[,] attacked;
         public string GetName()
         {
             return "Captain Loco";
@@ -32,7 +33,10 @@ namespace Battleship.Captains
             while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.AircraftCarrier))
             {
             }
+
+            attacked = new bool[10,10];
         }
+
 
         public Fleet GetFleet()
         {
@@ -41,7 +45,13 @@ namespace Battleship.Captains
 
         public Coordinate MakeAttack()
         {
-            return new Coordinate(generator.Next(10), generator.Next(2));
+            var coord = new Coordinate(generator.Next(10), generator.Next(10));
+            while (attacked[coord.X, coord.Y])
+            {
+                coord = new Coordinate(generator.Next(10), generator.Next(10));
+            }
+            attacked[coord.X, coord.Y] = true;
+            return coord;
         }
 
         public void ResultOfAttack(int result)
