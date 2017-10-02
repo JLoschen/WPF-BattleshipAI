@@ -77,6 +77,7 @@
     </ApplicationDefinition>
     <Compile Include="Captains\CaptainLoco.cs" />
     <Compile Include="Core\CaptainDebugger.cs" />
+    <Compile Include="TestingWindow\BooleanNotToVisibilityConverter.cs" />
     <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
       <DependentUpon>CaptainDebugWindow.xaml</DependentUpon>
@@ -84,8 +85,12 @@
     <Compile Include="TestingWindow\Cell.xaml.cs">
       <DependentUpon>Cell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestingWindow\CellCodeToBackgroundConverter.cs" />
     <Compile Include="TestingWindow\CellCodeToFillConverter.cs" />
     <Compile Include="TestingWindow\CellCodeToVisibility.cs" />
+    <Compile Include="TestingWindow\GameBoard.xaml.cs">
+      <DependentUpon>GameBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestingWindow\GameState.cs" />
     <Compile Include="TestingWindow\GameStateToReadyButtonVisibilityConverter.cs" />
     <Page Include="MainWindow.xaml">
@@ -113,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestingWindow\Cell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestingWindow\GameBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

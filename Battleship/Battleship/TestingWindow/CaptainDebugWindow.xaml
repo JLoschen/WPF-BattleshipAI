@@ -10,6 +10,8 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <local:CellCodeToFillConverter x:Key="CellCodeToFillConverter"/>
+        <local:CellCodeToBackgroundConverter x:Key="CellCodeToBackgroundConverter"/>
+        <local:BooleanNotToVisibilityConverter x:Key="BooleanNotToVisibilityConverter"/>
         <local:GameStateToReadyButtonVisibilityConverter x:Key="GameStateToReadyButtonVisibilityConverter"/>
     </Window.Resources>
     <Grid>
@@ -406,131 +408,131 @@
                     </Style>
                 </UniformGrid.Resources>
                 <!--Row 0-->
-                <local:Cell LocationId="0" />
-                <local:Cell LocationId="1" />
-                <local:Cell LocationId="2" />
-                <local:Cell LocationId="3" />
-                <local:Cell LocationId="4" />
-                <local:Cell LocationId="5" />
-                <local:Cell LocationId="6" />
-                <local:Cell LocationId="7" />
-                <local:Cell LocationId="8" />
-                <local:Cell LocationId="9" />
+                <local:Cell LocationId="0" CellCode="{Binding PlayerGameBoard[0][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="1" CellCode="{Binding PlayerGameBoard[1][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="2" CellCode="{Binding PlayerGameBoard[2][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="3" CellCode="{Binding PlayerGameBoard[3][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="4" CellCode="{Binding PlayerGameBoard[4][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="5" CellCode="{Binding PlayerGameBoard[5][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="6" CellCode="{Binding PlayerGameBoard[6][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="7" CellCode="{Binding PlayerGameBoard[7][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="8" CellCode="{Binding PlayerGameBoard[8][0]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="9" CellCode="{Binding PlayerGameBoard[9][0]}" GameState="{Binding GameState}"/>
 
                 <!--Row 1-->
-                <local:Cell LocationId="10"  />
-                <local:Cell LocationId="11"  />
-                <local:Cell LocationId="12"  />
-                <local:Cell LocationId="13"  />
-                <local:Cell LocationId="14"  />
-                <local:Cell LocationId="15"  />
-                <local:Cell LocationId="16"  />
-                <local:Cell LocationId="17"  />
-                <local:Cell LocationId="18"  />
-                <local:Cell LocationId="19"  />
+                <local:Cell LocationId="10"  CellCode="{Binding PlayerGameBoard[0][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="11"  CellCode="{Binding PlayerGameBoard[1][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="12"  CellCode="{Binding PlayerGameBoard[2][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="13"  CellCode="{Binding PlayerGameBoard[3][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="14"  CellCode="{Binding PlayerGameBoard[4][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="15"  CellCode="{Binding PlayerGameBoard[5][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="16"  CellCode="{Binding PlayerGameBoard[6][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="17"  CellCode="{Binding PlayerGameBoard[7][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="18"  CellCode="{Binding PlayerGameBoard[8][1]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="19"  CellCode="{Binding PlayerGameBoard[9][1]}" GameState="{Binding GameState}"/>
 
                 <!--Row 2-->
-                <local:Cell LocationId="20"  />
-                <local:Cell LocationId="21"  />
-                <local:Cell LocationId="22"  />
-                <local:Cell LocationId="23"  />
-                <local:Cell LocationId="24"  />
-                <local:Cell LocationId="25"  />
-                <local:Cell LocationId="26"  />
-                <local:Cell LocationId="27"  />
-                <local:Cell LocationId="28"  />
-                <local:Cell LocationId="29"  />
+                <local:Cell LocationId="20" CellCode="{Binding PlayerGameBoard[0][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="21" CellCode="{Binding PlayerGameBoard[1][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="22" CellCode="{Binding PlayerGameBoard[2][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="23" CellCode="{Binding PlayerGameBoard[3][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="24" CellCode="{Binding PlayerGameBoard[4][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="25" CellCode="{Binding PlayerGameBoard[5][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="26" CellCode="{Binding PlayerGameBoard[6][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="27" CellCode="{Binding PlayerGameBoard[7][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="28" CellCode="{Binding PlayerGameBoard[8][2]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="29" CellCode="{Binding PlayerGameBoard[9][2]}" GameState="{Binding GameState}"/>
 
                 <!--Row 3-->
-                <local:Cell LocationId="30"  />
-                <local:Cell LocationId="31"  />
-                <local:Cell LocationId="32"  />
-                <local:Cell LocationId="33"  />
-                <local:Cell LocationId="34"  />
-                <local:Cell LocationId="35"  />
-                <local:Cell LocationId="36"  />
-                <local:Cell LocationId="37"  />
-                <local:Cell LocationId="38"  />
-                <local:Cell LocationId="39"  />
+                <local:Cell LocationId="30" CellCode="{Binding PlayerGameBoard[0][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="31" CellCode="{Binding PlayerGameBoard[1][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="32" CellCode="{Binding PlayerGameBoard[2][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="33" CellCode="{Binding PlayerGameBoard[3][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="34" CellCode="{Binding PlayerGameBoard[4][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="35" CellCode="{Binding PlayerGameBoard[5][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="36" CellCode="{Binding PlayerGameBoard[6][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="37" CellCode="{Binding PlayerGameBoard[7][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="38" CellCode="{Binding PlayerGameBoard[8][3]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="39" CellCode="{Binding PlayerGameBoard[9][3]}" GameState="{Binding GameState}"/>
 
                 <!--Row 4-->
-                <local:Cell LocationId="40" />
-                <local:Cell LocationId="41" />
-                <local:Cell LocationId="42" />
-                <local:Cell LocationId="43" />
-                <local:Cell LocationId="44" />
-                <local:Cell LocationId="45" />
-                <local:Cell LocationId="46" />
-                <local:Cell LocationId="47" />
-                <local:Cell LocationId="48" />
-                <local:Cell LocationId="49" />
+                <local:Cell LocationId="40" CellCode="{Binding PlayerGameBoard[0][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="41" CellCode="{Binding PlayerGameBoard[1][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="42" CellCode="{Binding PlayerGameBoard[2][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="43" CellCode="{Binding PlayerGameBoard[3][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="44" CellCode="{Binding PlayerGameBoard[4][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="45" CellCode="{Binding PlayerGameBoard[5][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="46" CellCode="{Binding PlayerGameBoard[6][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="47" CellCode="{Binding PlayerGameBoard[7][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="48" CellCode="{Binding PlayerGameBoard[8][4]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="49" CellCode="{Binding PlayerGameBoard[9][4]}" GameState="{Binding GameState}"/>
 
                 <!--Row 5-->
-                <local:Cell LocationId="50" />
-                <local:Cell LocationId="51" />
-                <local:Cell LocationId="52" />
-                <local:Cell LocationId="53" />
-                <local:Cell LocationId="54" />
-                <local:Cell LocationId="55" />
-                <local:Cell LocationId="56" />
-                <local:Cell LocationId="57" />
-                <local:Cell LocationId="58" />
-                <local:Cell LocationId="59" />
+                <local:Cell LocationId="50" CellCode="{Binding PlayerGameBoard[0][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="51" CellCode="{Binding PlayerGameBoard[1][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="52" CellCode="{Binding PlayerGameBoard[2][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="53" CellCode="{Binding PlayerGameBoard[3][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="54" CellCode="{Binding PlayerGameBoard[4][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="55" CellCode="{Binding PlayerGameBoard[5][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="56" CellCode="{Binding PlayerGameBoard[6][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="57" CellCode="{Binding PlayerGameBoard[7][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="58" CellCode="{Binding PlayerGameBoard[8][5]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="59" CellCode="{Binding PlayerGameBoard[9][5]}" GameState="{Binding GameState}"/>
 
                 <!--Row 6-->
-                <local:Cell LocationId="60" />
-                <local:Cell LocationId="61" />
-                <local:Cell LocationId="62" />
-                <local:Cell LocationId="63" />
-                <local:Cell LocationId="64" />
-                <local:Cell LocationId="65" />
-                <local:Cell LocationId="66" />
-                <local:Cell LocationId="67" />
-                <local:Cell LocationId="68" />
-                <local:Cell LocationId="69" />
+                <local:Cell LocationId="60" CellCode="{Binding PlayerGameBoard[0][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="61" CellCode="{Binding PlayerGameBoard[1][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="62" CellCode="{Binding PlayerGameBoard[2][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="63" CellCode="{Binding PlayerGameBoard[3][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="64" CellCode="{Binding PlayerGameBoard[4][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="65" CellCode="{Binding PlayerGameBoard[5][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="66" CellCode="{Binding PlayerGameBoard[6][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="67" CellCode="{Binding PlayerGameBoard[7][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="68" CellCode="{Binding PlayerGameBoard[8][6]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="69" CellCode="{Binding PlayerGameBoard[9][6]}" GameState="{Binding GameState}"/>
 
                 <!--Row 7-->
-                <local:Cell LocationId="70" />
-                <local:Cell LocationId="71" />
-                <local:Cell LocationId="72" />
-                <local:Cell LocationId="73" />
-                <local:Cell LocationId="74" />
-                <local:Cell LocationId="75" />
-                <local:Cell LocationId="76" />
-                <local:Cell LocationId="77" />
-                <local:Cell LocationId="78" />
-                <local:Cell LocationId="79" />
+                <local:Cell LocationId="70" CellCode="{Binding PlayerGameBoard[0][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="71" CellCode="{Binding PlayerGameBoard[1][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="72" CellCode="{Binding PlayerGameBoard[2][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="73" CellCode="{Binding PlayerGameBoard[3][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="74" CellCode="{Binding PlayerGameBoard[4][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="75" CellCode="{Binding PlayerGameBoard[5][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="76" CellCode="{Binding PlayerGameBoard[6][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="77" CellCode="{Binding PlayerGameBoard[7][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="78" CellCode="{Binding PlayerGameBoard[8][7]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="79" CellCode="{Binding PlayerGameBoard[9][7]}" GameState="{Binding GameState}"/>
 
                 <!--Row 8-->
-                <local:Cell LocationId="80" />
-                <local:Cell LocationId="81" />
-                <local:Cell LocationId="82" />
-                <local:Cell LocationId="83" />
-                <local:Cell LocationId="84" />
-                <local:Cell LocationId="85" />
-                <local:Cell LocationId="86" />
-                <local:Cell LocationId="87" />
-                <local:Cell LocationId="88" />
-                <local:Cell LocationId="89" />
+                <local:Cell LocationId="80" CellCode="{Binding PlayerGameBoard[0][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="81" CellCode="{Binding PlayerGameBoard[1][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="82" CellCode="{Binding PlayerGameBoard[2][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="83" CellCode="{Binding PlayerGameBoard[3][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="84" CellCode="{Binding PlayerGameBoard[4][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="85" CellCode="{Binding PlayerGameBoard[5][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="86" CellCode="{Binding PlayerGameBoard[6][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="87" CellCode="{Binding PlayerGameBoard[7][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="88" CellCode="{Binding PlayerGameBoard[8][8]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="89" CellCode="{Binding PlayerGameBoard[9][8]}" GameState="{Binding GameState}"/>
 
                 <!--Row 9-->
-                <local:Cell LocationId="90" />
-                <local:Cell LocationId="91" />
-                <local:Cell LocationId="92" />
-                <local:Cell LocationId="93" />
-                <local:Cell LocationId="94" />
-                <local:Cell LocationId="95" />
-                <local:Cell LocationId="96" />
-                <local:Cell LocationId="97" />
-                <local:Cell LocationId="98" />
-                <local:Cell LocationId="99" />
+                <local:Cell LocationId="90" CellCode="{Binding PlayerGameBoard[0][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="91" CellCode="{Binding PlayerGameBoard[1][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="92" CellCode="{Binding PlayerGameBoard[2][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="93" CellCode="{Binding PlayerGameBoard[3][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="94" CellCode="{Binding PlayerGameBoard[4][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="95" CellCode="{Binding PlayerGameBoard[5][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="96" CellCode="{Binding PlayerGameBoard[6][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="97" CellCode="{Binding PlayerGameBoard[7][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="98" CellCode="{Binding PlayerGameBoard[8][9]}" GameState="{Binding GameState}"/>
+                <local:Cell LocationId="99" CellCode="{Binding PlayerGameBoard[9][9]}" GameState="{Binding GameState}"/>
             </UniformGrid>
 
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AIPatrolHorizontal" Visibility="{Binding AIShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AIDestroyerHorizontal" Visibility="{Binding AIShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AISubmarineHorizontal" Visibility="{Binding AIShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AIBattleshipHorizontal" Visibility="{Binding AIShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AIAircraftCarrierHorizontal" Visibility="{Binding AIShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AIPatrolHorizontal" Visibility="{Binding AIShipHorizontalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AIDestroyerHorizontal" Visibility="{Binding AIShipHorizontalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AISubmarineHorizontal" Visibility="{Binding AIShipHorizontalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AIBattleshipHorizontal" Visibility="{Binding AIShipHorizontalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AIAircraftCarrierHorizontal" Visibility="{Binding AIShipHorizontalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="AIPatrolVertical" Visibility="{Binding AIShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AIDestroyerVertical" Visibility="{Binding AIShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>

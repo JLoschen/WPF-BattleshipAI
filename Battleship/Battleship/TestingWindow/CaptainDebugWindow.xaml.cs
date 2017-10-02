@@ -26,44 +26,48 @@ namespace Battleship.TestingWindow
             switch (vm.GameState)
             {
                 case GameState.HumanPlayerPlacingPatrol:
-                    if (col < 10)
-                        PatrolHorizontal.SetGridPosition(col, row);
-                    if (row < 9)
-                        PatrolVertical.SetGridPosition(col, row);
+                    SetShipsPosition(PatrolHorizontal, PatrolVertical, col, row, 10);
+                    SetShipsPosition(DestroyerHorizontal, DestroyerVertical, col, row, 9);
+                    SetShipsPosition(SubmarineHorizontal, SubmarineVertical, col, row, 9);
+                    SetShipsPosition(BattleshipHorizontal, BattleshipVertical, col, row, 8);
+                    SetShipsPosition(AircraftCarrierHorizontal, AircraftCarrierVertical, col, row, 7);
                     break;
                 case GameState.HumanPlayerPlacingDestroyer:
-                    if (col < 9)
-                        DestroyerHorizontal.SetGridPosition(col, row);
-                    if (row < 8)
-                        DestroyerVertical.SetGridPosition(col, row);
+                    SetShipsPosition(DestroyerHorizontal, DestroyerVertical, col, row, 9);
+                    SetShipsPosition(SubmarineHorizontal, SubmarineVertical, col, row, 9);
+                    SetShipsPosition(BattleshipHorizontal, BattleshipVertical, col, row, 8);
+                    SetShipsPosition(AircraftCarrierHorizontal, AircraftCarrierVertical, col, row, 7);
                     break;
                 case GameState.HumanPlayerPlacingSubmarine:
-                    if (col < 9)
-                        SubmarineHorizontal.SetGridPosition(col, row);
-                    if (row < 8)
-                        SubmarineVertical.SetGridPosition(col, row);
+                    SetShipsPosition(SubmarineHorizontal, SubmarineVertical, col, row, 9);
+                    SetShipsPosition(BattleshipHorizontal, BattleshipVertical, col, row, 8);
+                    SetShipsPosition(AircraftCarrierHorizontal, AircraftCarrierVertical, col, row, 7);
                     break;
                 case GameState.HumanPlayerPlacingBattleship:
-                    if (col < 8)
-                        BattleshipHorizontal.SetGridPosition(col, row);
-                    if (row < 7)
-                        BattleshipVertical.SetGridPosition(col, row);
+                    SetShipsPosition(BattleshipHorizontal, BattleshipVertical, col, row, 8);
+                    SetShipsPosition(AircraftCarrierHorizontal, AircraftCarrierVertical, col, row, 7);
                     break;
                 case GameState.HumanPlayerPlacingAircraftCarrier:
-                    if (col < 7)
-                        AircraftCarrierHorizontal.SetGridPosition(col, row);
-                    if (row < 6)
-                        AircraftCarrierVertical.SetGridPosition(col, row);
+                    SetShipsPosition(AircraftCarrierHorizontal, AircraftCarrierVertical, col, row, 7);
                     break;
             }
+        }
+
+        private void SetShipsPosition(Ellipse shipHorizontal, Ellipse shipVertical,  int col, int row, int max)
+        {
+            if (col < max)
+                shipHorizontal.SetGridPosition(col, row);
+            if (row < max - 1)// extra grid row so minus 1
+                shipVertical.SetGridPosition(col, row);
         }
 
         //TODO create place ship on board method
         private void Ready_OnClick(object sender, RoutedEventArgs e)
         {
-            HidePreviousShips();
+            //HidePreviousShips();
             var vm = DataContext as CaptainDebugViewModel;
             var aiFleet = vm.CreateFleet().GetFleet();
+
             var ptBoat = aiFleet[Constants.PatrolBoat];
             var destroyer = aiFleet[Constants.Destroyer];
             var submarine = aiFleet[Constants.Submarine];
@@ -150,7 +154,7 @@ namespace Battleship.TestingWindow
             {
                 Grid.SetColumn(element, coord.X +1 );
                 Grid.SetRow(element, coord.Y);
-                element.Visibility = Visibility.Visible;
+                //element.Visibility = Visibility.Visible;
             }
         }
     }

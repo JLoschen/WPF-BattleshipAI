@@ -20,8 +20,8 @@ namespace Battleship.TestingWindow
             CellClickedCommand = new RelayCommand<int>(CellClicked);
             RightClickCommand = new RelayCommand<int>(CellRightClicked);
             //StartGameCommand = new RelayCommand(StartGame, () => PlayerFleet.IsReady);
-            AIGameBoard = GetBlankBoard();
-            PlayerGameBoard = GetBlankBoard();
+            //AIGameBoard = GetBlankBoard();
+            //PlayerGameBoard = GetBlankBoard();
         }
 
         //private void StartGame()
@@ -35,6 +35,13 @@ namespace Battleship.TestingWindow
         {
             _captain.Initialize(1, 2, "Player");
             AiFleet = _captain.GetFleet();
+            for (int ship = 0; ship < 5; ship++)
+            {
+                var isVert = AiFleet.GetFleet()[ship].IsVertical;
+                AIShipVerticalVisibility[ship] = isVert;
+                AIShipHorizontalVisibility[ship] = !isVert;
+            }
+                
             GameState = GameState.HumansTurn;
             return AiFleet;
         }
@@ -159,6 +166,18 @@ namespace Battleship.TestingWindow
         public ICommand NewGameCommand { get; set; }
         private void CreateNewGame()
         {
+            AIGameBoard = GetBlankBoard();
+            PlayerGameBoard = GetBlankBoard();
+            _playerFleet = new Fleet();
+
+            for (int i = 0; i < 5; i++)
+            {
+                AIShipVerticalVisibility[i] = false;
+                AIShipHorizontalVisibility[i] = false;
+                PlayerShipVisibility[i] = false;
+                PlayerShipVerticalVisibility[i] = false;
+            }
+            
             GameState = GameState.HumanPlayerPlacingPatrol;
             PlayerShipVisibility[Constants.PatrolBoat] = true;
             //WaitForHumanPlayerToSetFleet();
@@ -176,8 +195,31 @@ namespace Battleship.TestingWindow
         
         public GameState GameState 
         { 
-            get{ return _gameState; } 
-            set{ Set(ref _gameState, value); } 
+            get{ return _gameState; }
+            set
+            {
+                if (Set(ref _gameState, value))
+                {
+                    switch (_gameState)
+                    {
+                        case GameState.HumanPlayerPlacingPatrol:
+                            CurrentShipBeingPositioned = Constants.PatrolBoat;
+                            break;
+                        case GameState.HumanPlayerPlacingDestroyer:
+                            CurrentShipBeingPositioned = Constants.Destroyer;
+                            break;
+                        case GameState.HumanPlayerPlacingSubmarine:
+                            CurrentShipBeingPositioned = Constants.Submarine;
+                            break;
+                        case GameState.HumanPlayerPlacingBattleship:
+                            CurrentShipBeingPositioned = Constants.Battleship;
+                            break;
+                        case GameState.HumanPlayerPlacingAircraftCarrier:
+                            CurrentShipBeingPositioned = Constants.AircraftCarrier;
+                            break;
+                    }
+                }
+            } 
         } 
         private GameState _gameState = GameState.Waiting;
 
@@ -236,7 +278,14 @@ namespace Battleship.TestingWindow
             get { return _playerFleet; }
             set { Set(ref _playerFleet, value); }
         }
-        private Fleet _playerFleet = new Fleet(); 
+        private Fleet _playerFleet = new Fleet();
+        
+        public int CurrentShipBeingPositioned 
+        { 
+            get{ return _currentShipBeingPositioned; } 
+            set{ Set(ref _currentShipBeingPositioned, value); } 
+        } 
+        private int _currentShipBeingPositioned;
 
         //I'll be surprised if this works
         public ObservableCollection<ObservableCollection<int>> AIGameBoard
@@ -249,7 +298,7 @@ namespace Battleship.TestingWindow
         public ObservableCollection<ObservableCollection<int>> PlayerGameBoard
         {
             get { return _playerGameBoard; }
-            set { Set(nameof(AIGameBoard), ref _playerGameBoard, value); }
+            set { Set(nameof(PlayerGameBoard), ref _playerGameBoard, value); }
         }
         private ObservableCollection<ObservableCollection<int>> _playerGameBoard;
 

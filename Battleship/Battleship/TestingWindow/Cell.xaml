@@ -9,7 +9,27 @@
     <UserControl.Resources>
         <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
     </UserControl.Resources>
-    <Border Background="Aqua" BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseRightButtonUp="UIElement_OnMouseRightButtonUp">
+    <Border  BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseRightButtonUp="UIElement_OnMouseRightButtonUp">
+        <Border.Style>
+            <Style TargetType="Border">
+                <!--Background="Aqua"-->
+                <Setter Property="Background" Value="Aqua"/>
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <!--<Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />-->
+                            <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                            <Condition Binding="{Binding CellCode}" Value="0"/>
+                            <Condition Binding="{Binding GameState}" Value="HumansTurn"/>
+                            <!--<Condition Binding="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False" />
+                        <Condition Binding="{Binding Path=ContextMenu.IsOpen, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False" />-->
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Background" Value="#FF00BBBB" />
+                        <!--<Setter Property="Foreground" Value="{StaticResource InactiveMouseOverSelectedForeground}" />-->
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
         <!--<Ellipse  Fill="{Binding AttackCode, Converter={StaticResource CellCodeToFill}}"/>-->
     </Border>
 </UserControl>
