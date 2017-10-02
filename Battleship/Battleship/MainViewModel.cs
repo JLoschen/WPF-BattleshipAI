@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Battleship.Captains;
+using Battleship.Core;
 using Battleship.TestingWindow;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -13,19 +16,24 @@ namespace Battleship
         {
             _opponents = new List<string> {"Black Beard", "Red Beard", "Dread Pirate Roberts"};
             _numberOfMatchesOptions = new List<int> {500, 1000, 5000, 10000, 50000, 250000, 1000000};
-            _captains = new List<Captain>
-            {
-                new Captain {CaptainName = "Black Beard", Score = 999},
-                new Captain {CaptainName = "Dread Pirate Roberts", Score = 111},
-                new Captain {CaptainName = "Red Beard", Score = 222}
-            };
 
             DoubleClickCommand = new RelayCommand(OnDoubleClick);
+
+            _captains = new List<Captain>();
+            foreach (Type mytype in System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
+                .Where(mytype => mytype.GetInterfaces().Contains(typeof(ICaptain))))
+            {
+                _captains.Add(new Captain {CaptainName = mytype.Name, AssemblyQualifiedName = mytype.AssemblyQualifiedName});
+            }
         }
 
         private void OnDoubleClick()
         {
-            var window = new CaptainDebugWindow {DataContext = new CaptainDebugViewModel(new /*CaptainLoco()*/CaptainMorgan())};
+            //string typex = typeof(CaptainMorgan).AssemblyQualifiedName;
+            //var theCaptain = (ICaptain)Activator.CreateInstance("Battleship", "CaptainMorgan");
+            var type = Type.GetType(SelectedCaptain.AssemblyQualifiedName);
+            var myObject = (ICaptain)Activator.CreateInstance(type);
+            var window = new CaptainDebugWindow {DataContext = new CaptainDebugViewModel(/*new CaptainMorgan()*/myObject) };
             window.Show();
         }
 
