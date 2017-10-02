@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Battleship.Core;
+using Microsoft.CSharp;
 
 namespace Battleship.Captains
 {
@@ -61,14 +63,16 @@ namespace Battleship.Captains
                     {
                         Board[x,y] = new TrackCoords(x, y);
                         targeting[x,y] = 0;
-                        //theirAttacks[x][y] = 0;
+                        //theirAttacks[shotX][shotY] = 0;
                     }
                 }
                 GenerateHunterSeeker();
             }
+            
             attackVector = new List<shipCoord>();
             GeneratePossiblePlacements();
             values = new double[10,10];
+            SetValues();
             _turnNumber = 0;
         }
 
@@ -246,14 +250,13 @@ namespace Battleship.Captains
 
         void removeMiss(int x, int y)
         {//removes the possible opponent placements that overlap the shot(for each ship).
-            int remX, remY, length, orient, ship;
             for (int i = 0; i < allCoords.Count; i++)
             {
-                ship = allCoords[i].ship;
-                remX = allCoords[i].x;
-                remY = allCoords[i].y;
-                length = shipLengths[allCoords[i].ship];
-                orient = allCoords[i].orientation;
+                var ship = allCoords[i].ship;
+                var remX = allCoords[i].x;
+                var remY = allCoords[i].y;
+                var length = shipLengths[allCoords[i].ship];
+                var orient = allCoords[i].orientation;
                 if (x == remX && y <= remY + length - 1 && y >= remY && orient == Constants.Vertical)
                 {//vertical removal
                     removeHeat(remX, remY, Constants.Vertical, ship, i);
@@ -267,8 +270,8 @@ namespace Battleship.Captains
                     allCoords.RemoveAt(i);
                     i--;
                     remainingShips[ship]--;
-                }//else
-            }//for loop
+                }
+            }
         }
 
         void removeHeat(int x, int y, int orient, int ship, int i)
@@ -277,13 +280,13 @@ namespace Battleship.Captains
             switch (orient)
             {
                 case Constants.Vertical:
-                    for (int z = y; z < y + length; z++)
+                    for (var z = y; z < y + length; z++)
                     {
                         values[x,z] -= hunterSeeker[allCoords[i].index].heat;
                     }
                     break;
                 case Constants.Horizontal:
-                    for (int z = x; z < x + length; z++)
+                    for (var z = x; z < x + length; z++)
                     {
                         values[z,y] -= hunterSeeker[allCoords[i].index].heat;
                     }
@@ -293,21 +296,17 @@ namespace Battleship.Captains
 
         private void SetValues()
         {//sets how many ways the remaining ships can be on each tile
-            for (int y = 0; y < 10; y++)
-            {//resets board's values to 0
-                for (int x = 0; x < 10; x++)
-                {
-                    values[x,y] = 0;
-                }
-            }
-            int remX, remY, length, orient;
+            for (var y = 0; y < 10; y++)
+                for (var x = 0; x < 10; x++)
+                    values[x,y] = 0;//resets board's values to 0
+
             float clusterChance = 1.0f;
-            for (int i = 0; i < allCoords.Count; i++)
+            foreach (shipCoord t in allCoords)
             {
-                remX = allCoords[i].x;
-                remY = allCoords[i].y;
-                length = shipLengths[allCoords[i].ship];
-                orient = allCoords[i].orientation;
+                var remX = t.x;
+                var remY = t.y;
+                var length = shipLengths[t.ship];
+                var orient = t.orientation;
 
                 //Not doing whatever this cluster thing is
                 //if (length == 2)
@@ -327,15 +326,11 @@ namespace Battleship.Captains
                 {
                     case Constants.Vertical:
                         for (int z = remY; z < remY + length; z++)
-                        {
-                            values[remX,z] += (hunterSeeker[allCoords[i].index].heat / (float)remainingShips[allCoords[i].ship]) * clusterChance;
-                        }
+                            values[remX,z] += (hunterSeeker[t.index].heat / remainingShips[t.ship]) * clusterChance;
                         break;
                     case Constants.Horizontal:
                         for (int z = remX; z < remX + length; z++)
-                        {
-                            values[z,remY] += (hunterSeeker[allCoords[i].index].heat / (float)remainingShips[allCoords[i].ship]) * clusterChance;
-                        }
+                            values[z,remY] += (hunterSeeker[t.index].heat / remainingShips[t.ship]) * clusterChance;
                         break;
                 }
             }
@@ -357,74 +352,76 @@ namespace Battleship.Captains
             }
             public void updateHeat()
             {
-                heat = used / (double)sinceReset + 0.00000001;//updates heat for that placement
+                heat = used / sinceReset + 0.00000001;//updates heat for that placement
             }
         }
 
-        void removeHit(int x, int y, int hitShip)
+        void removeHit(int shotX, int shotY, int hitShipType)
         {
-            int remX, remY, length, orient, ship;
-            for (int i = 0; i < allCoords.Count; i++)
+            //for (var i = 0; i < allCoords.Count; i++)
+            var shipCoordsToRemove = new List<shipCoord>();
+            foreach (var shipCoord in allCoords)
             {
-                ship = allCoords[i].ship;
-                remX = allCoords[i].x;
-                remY = allCoords[i].y;
-                length = shipLengths[ship];
-                orient = allCoords[i].orientation;
-                if (x != remX && y != remY && hitShip == ship)
-                {//vertical removal
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                else if (y == remY && hitShip == ship && orient == Constants.Vertical && x != remX)
+                var shipType = shipCoord.ship;
+                var shipX = shipCoord.x;
+                var shipY = shipCoord.y;
+                var length = shipLengths[shipType];
+                var orient = shipCoord.orientation;
+
+                if (hitShipType == shipType)
                 {
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
+                    if (shotX == shipX)
+                    {
+                        if (orient == Constants.Horizontal && shotY != shipY)
+                        {
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                        else if (shipY > shotY)
+                        {//same col above
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                        else if ((shipY + length - 1) < shotY && orient == Constants.Vertical)
+                        {//vertical removal
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                    }
+                    else//shotX != remx
+                    {
+                        if (shotY != shipY)
+                        {//vertical removal
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                        else if (shotY == shipY && orient == Constants.Vertical)
+                        {
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                        else if (shotY == shipY && shotX < shipX)
+                        {
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                        else if (shotY == shipY && (shipX + length - 1) < shotX && orient == Constants.Horizontal)
+                        {
+                            shipCoordsToRemove.Add(shipCoord);
+                        }
+                    }
                 }
-                else if (x == remX && hitShip == ship && orient == Constants.Horizontal && y != remY)
+                else //hitShipType != currentShip 
                 {
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                else if (x == remX && ship == hitShip && remY > y)
-                {//same col above
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                else if (y == remY && ship == hitShip && x < remX)
-                {
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                else if (x == remX && (remY + length - 1) < y && ship == hitShip && orient == Constants.Vertical)
-                {//vertical removal
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                else if (y == remY && (remX + length - 1) < x && ship == hitShip && orient == Constants.Horizontal)
-                {
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }// above removed same ship that couldn't be on hit square
-                if (x == remX && y <= remY + length - 1 && y >= remY && orient == Constants.Vertical && ship != hitShip)
-                {//vertical removal
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
-                if (y == remY && x <= remX + length - 1 && x >= remX && orient == Constants.Horizontal && ship != hitShip)
-                {//horizontal removal
-                    allCoords.RemoveAt(i);
-                    remainingShips[ship]--;
-                    i--;
-                }
+                    if (shotX == shipX && shotY <= shipY + length - 1 && shotY >= shipY && orient == Constants.Vertical)
+                    {//vertical removal
+                        shipCoordsToRemove.Add(shipCoord);
+                    }
+                    if (shotY == shipY && shotX <= shipX + length - 1 && shotX >= shipX && orient == Constants.Horizontal)
+                    {//horizontal removal
+                        shipCoordsToRemove.Add(shipCoord);
+                    }
+                }   
+            }
+
+            foreach (var ship in shipCoordsToRemove)
+            {
+                allCoords.Remove(ship);
+                remainingShips[ship.ship]--;
             }
         }
 
