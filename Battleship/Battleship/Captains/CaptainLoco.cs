@@ -16,31 +16,36 @@ namespace Battleship.Captains
         public void Initialize(int numMatches, int numCaptains, string opponent)
         {
             generator = new Random();
-            myFleet = new Fleet();
-
-            while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.PatrolBoat))
-            {
-            }
-            while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Destroyer))
-            {
-            }
-            while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Submarine))
-            {
-            }
-            while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Battleship))
-            {
-            }
-            while (!myFleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.AircraftCarrier))
-            {
-            }
 
             attacked = new bool[10,10];
         }
 
+        private Fleet GetRandomFleet()
+        {
+            var fleet = new Fleet();
+
+            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.PatrolBoat))
+            {
+            }
+            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Destroyer))
+            {
+            }
+            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Submarine))
+            {
+            }
+            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Battleship))
+            {
+            }
+            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.AircraftCarrier))
+            {
+            }
+
+            return fleet;
+        }
 
         public Fleet GetFleet()
         {
-            return myFleet;
+            return GetRandomFleet();
         }
 
         public Coordinate MakeAttack()

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Security.Policy;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using Battleship.Core;
@@ -20,29 +17,13 @@ namespace Battleship.TestingWindow
             PlayerCellClickedCommand = new RelayCommand<int>(PlayerCellClicked);
             CellClickedCommand = new RelayCommand<int>(CellClicked);
             RightClickCommand = new RelayCommand<int>(CellRightClicked);
-            //StartGameCommand = new RelayCommand(StartGame, () => PlayerFleet.IsReady);
-            //AIGameBoard = GetBlankBoard();
-            //PlayerGameBoard = GetBlankBoard();
         }
-
-        //private void StartGame()
-        //{
-        //    //AiFleet = _captain.GetFleet();
-            
-
-        //}
 
         public Fleet CreateFleet()
         {
             _captain.Initialize(1, 2, "Player");
             AiFleet = _captain.GetFleet();
             SetAiShipVisibility();
-            //for (int ship = 0; ship < 5; ship++)
-            //{
-            //    var isVert = AiFleet.GetFleet()[ship].IsVertical;
-            //    AIShipVerticalVisibility[ship] = isVert;
-            //    AIShipHorizontalVisibility[ship] = !isVert;
-            //}
                 
             GameState = GameState.HumansTurn;
             return AiFleet;
@@ -184,17 +165,6 @@ namespace Battleship.TestingWindow
             
             GameState = GameState.HumanPlayerPlacingPatrol;
             PlayerShipVisibility[Constants.PatrolBoat] = true;
-            //WaitForHumanPlayerToSetFleet();
-
-            //IsPlayersTurn = true;
-            //EnterGameLoop();
-        }
-
-        private void WaitForHumanPlayerToSetFleet()
-        {
-            GameState = GameState.HumanPlayerPlacingPatrol;
-
-
         }
         
         public GameState GameState 
@@ -226,28 +196,6 @@ namespace Battleship.TestingWindow
             } 
         } 
         private GameState _gameState = GameState.Waiting;
-
-        private async void EnterGameLoop()
-        {
-            IsGameInProgress = true;
-            var numAttacks = 0;
-            
-            _captain.Initialize(1, 2, "Player");
-            while (IsGameInProgress)
-            {
-
-                var attack =_captain.MakeAttack();
-
-                AiFleet = _captain.GetFleet();
-
-                PlayerFleet = _captain.GetFleet();
-
-                AIGameBoard[attack.X][attack.Y] = 106;
-                numAttacks++;
-                IsGameInProgress = numAttacks < 20;
-                await Task.Delay(TimeSpan.FromMilliseconds(2000)); //wait 2 seconds between shots
-            }
-        }
 
         private ObservableCollection<ObservableCollection<int>> GetBlankBoard()
         {
@@ -332,7 +280,9 @@ namespace Battleship.TestingWindow
                 var fleet = AiFleet.GetFleet();
                 for (var ship = 0; ship < 5; ship++)
                 {
-                    if (fleet[ship].IsVertical)
+                    var s = fleet[ship];
+                    if (s == null) continue;
+                    if (s.IsVertical)
                     {
                         AIShipVerticalVisibility[ship] = true;
                     }

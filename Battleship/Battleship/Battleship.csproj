@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Captains\CaptainLoco.cs" />
+    <Compile Include="Captains\CaptainMorgan.cs" />
     <Compile Include="Core\CaptainDebugger.cs" />
     <Compile Include="TestingWindow\BooleanNotToVisibilityConverter.cs" />
     <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />

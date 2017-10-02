@@ -25,7 +25,7 @@ namespace Battleship
 
         private void OnDoubleClick()
         {
-            var window = new CaptainDebugWindow {DataContext = new CaptainDebugViewModel(new CaptainLoco())};
+            var window = new CaptainDebugWindow {DataContext = new CaptainDebugViewModel(new /*CaptainLoco()*/CaptainMorgan())};
             window.Show();
         }
 
