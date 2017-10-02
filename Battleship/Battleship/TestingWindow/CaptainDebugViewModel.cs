@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -35,12 +36,13 @@ namespace Battleship.TestingWindow
         {
             _captain.Initialize(1, 2, "Player");
             AiFleet = _captain.GetFleet();
-            for (int ship = 0; ship < 5; ship++)
-            {
-                var isVert = AiFleet.GetFleet()[ship].IsVertical;
-                AIShipVerticalVisibility[ship] = isVert;
-                AIShipHorizontalVisibility[ship] = !isVert;
-            }
+            SetAiShipVisibility();
+            //for (int ship = 0; ship < 5; ship++)
+            //{
+            //    var isVert = AiFleet.GetFleet()[ship].IsVertical;
+            //    AIShipVerticalVisibility[ship] = isVert;
+            //    AIShipHorizontalVisibility[ship] = !isVert;
+            //}
                 
             GameState = GameState.HumansTurn;
             return AiFleet;
@@ -87,6 +89,7 @@ namespace Battleship.TestingWindow
             if (result == Constants.Defeated)
             {
                 MessageBox.Show("You win!");
+                AILosses++;
                 GameState = GameState.Waiting;
                 return;
             }
@@ -101,6 +104,7 @@ namespace Battleship.TestingWindow
             if (result == Constants.Defeated)
             {
                 MessageBox.Show("You lose :(");
+                AIWins++;
                 GameState = GameState.Waiting;
                 return;
             }
@@ -312,8 +316,42 @@ namespace Battleship.TestingWindow
         public bool ShowAiShips 
         { 
             get{ return _showAiShips; } 
-            set{ Set(ref _showAiShips, value); } 
-        } 
+            set
+            {
+                if (Set(ref _showAiShips, value))
+                {
+                    SetAiShipVisibility();
+                }
+            } 
+        }
+
+        private void SetAiShipVisibility()
+        {
+            if (ShowAiShips)
+            {
+                var fleet = AiFleet.GetFleet();
+                for (var ship = 0; ship < 5; ship++)
+                {
+                    if (fleet[ship].IsVertical)
+                    {
+                        AIShipVerticalVisibility[ship] = true;
+                    }
+                    else
+                    {
+                        AIShipHorizontalVisibility[ship] = true;
+                    }
+                }
+            }
+            else
+            {
+                for (var ship = 0; ship < 5; ship++)
+                {
+                    AIShipHorizontalVisibility[ship] = false;
+                    AIShipVerticalVisibility[ship] = false;
+                }
+            }
+        }
+
         private bool _showAiShips;
         
         public int AIWins

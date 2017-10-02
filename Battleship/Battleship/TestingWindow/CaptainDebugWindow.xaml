@@ -654,7 +654,7 @@
             </UniformGrid>
         </Grid>
 
-        <CheckBox IsChecked="{Binding ShowShips}" x:Name="ShowShips" Grid.Row="2" Grid.Column="0">Show Ships</CheckBox>
+        <CheckBox IsChecked="{Binding ShowAiShips}" x:Name="ShowShips" Grid.Row="2" Grid.Column="0">Show Ships</CheckBox>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
             <TextBlock Text="AI Record:"/>
