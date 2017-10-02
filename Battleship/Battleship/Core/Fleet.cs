@@ -75,6 +75,11 @@ namespace Battleship.Core
             return false;
         }
 
+        public int GetLastAttackValue()
+        {
+            return attackValue;
+        }
+
         public bool PlaceShip(Coordinate location, bool isVertical, int model)
         {
             if (model >= 6 || model <= -1 || _fleet[model] != null) return false;

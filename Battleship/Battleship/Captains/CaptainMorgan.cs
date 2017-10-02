@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Battleship.Core;
-using Microsoft.CSharp;
 
 namespace Battleship.Captains
 {
@@ -432,7 +430,7 @@ namespace Battleship.Captains
 
         public void ResultOfGame(int result)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

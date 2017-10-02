@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Battleship"
         xmlns:controls="clr-namespace:Battleship.Controls"
         mc:Ignorable="d"
-        Title="Battleship" Height="550" Width="625">
+        Title="Battleship" Height="650" Width="725">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
@@ -26,15 +26,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button Content="Browse" Grid.Row="0" Grid.Column="0"/>
-        <Button Content="Reset" Grid.Row="0" Grid.Column="1"/>
-        <Button Content="Run Competition" Grid.Row="0" Grid.Column="2"/>
+        <Button Content="Reset" Grid.Row="0" Grid.Column="1" Command="{Binding ResetCommand}"/>
+        <Button Content="Run Competition" Grid.Row="0" Grid.Column="2" Command="{Binding RunCompetitionCommand}"/>
         <Button Content="Stop" Grid.Row="0" Grid.Column="3"/>
-        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
+        <StackPanel Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
             <TextBlock Text="Number of Matches: " VerticalAlignment="Center"/>
-            <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}"/>
+            <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}" SelectedItem="{Binding SelectedNumberOfMatches}"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="0">
             <TextBlock Text="Total Progress:" VerticalAlignment="Center"/>
             <TextBlock Text="Current Match:" VerticalAlignment="Center"/>
         </StackPanel>
@@ -42,14 +42,22 @@
         <!--Row 2-->
         <controls:MultiSelectDataGrid ItemsSource="{Binding Captains}" 
                                       Grid.Row="1" 
-                                      Grid.Column="0" 
+                                      Grid.Column="0"
                                       Grid.ColumnSpan="5" 
                                       AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
                                       DoubleClickCommand="{Binding DoubleClickCommand}"
                                       SelectedItem="{Binding SelectedCaptain}">
             <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>    
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Captain Name" Binding="{Binding CaptainName}"/>
-                <DataGridTextColumn Header="Score" Binding="{Binding Score}" Width="*"/>
+                <DataGridTextColumn Header="Score" Binding="{Binding Score, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
             </DataGrid.Columns>
         </controls:MultiSelectDataGrid>
 
@@ -71,7 +79,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Select an opponent:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <ComboBox ItemsSource="{Binding Opponents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
             <TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
             <TextBlock Text="3,396" Grid.Row="2" Grid.Column="1" />
 
@@ -108,33 +116,33 @@
                 <Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
                             <ColumnDefinition Width="10"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="0" Grid.Row="10" Grid.Column="0" />
@@ -287,33 +295,33 @@
                 <Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
-                            <ColumnDefinition Width="19"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
                             <ColumnDefinition Width="10"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
-                            <RowDefinition Height="19"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="0" Grid.Row="10" Grid.Column="0"/>

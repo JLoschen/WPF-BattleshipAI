@@ -75,9 +75,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Captains\CaptainAmerica.cs" />
     <Compile Include="Captains\CaptainLoco.cs" />
     <Compile Include="Captains\CaptainMorgan.cs" />
     <Compile Include="Core\CaptainDebugger.cs" />
+    <Compile Include="Core\CaptainStatistics.cs" />
     <Compile Include="TestingWindow\BooleanNotToVisibilityConverter.cs" />
     <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
