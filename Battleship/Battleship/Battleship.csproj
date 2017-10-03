@@ -80,6 +80,7 @@
     <Compile Include="Captains\CaptainMorgan.cs" />
     <Compile Include="Core\CaptainDebugger.cs" />
     <Compile Include="Core\CaptainStatistics.cs" />
+    <Compile Include="Main\Converter\HeatToColorConverter.cs" />
     <Compile Include="TestingWindow\BooleanNotToVisibilityConverter.cs" />
     <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
@@ -96,7 +97,7 @@
     </Compile>
     <Compile Include="TestingWindow\GameState.cs" />
     <Compile Include="TestingWindow\GameStateToReadyButtonVisibilityConverter.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -104,15 +105,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Captain.cs" />
+    <Compile Include="Main\Captain.cs" />
     <Compile Include="Controls\MultiSelectDataGrid.cs" />
     <Compile Include="Core\ICaptain.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\Coordinate.cs" />
     <Compile Include="Core\Fleet.cs" />
     <Compile Include="Core\Ship.cs" />
-    <Compile Include="MainViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Main\MainViewModel.cs" />
+    <Compile Include="Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

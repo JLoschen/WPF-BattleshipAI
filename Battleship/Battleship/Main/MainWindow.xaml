@@ -1,0 +1,489 @@
+﻿<Window x:Class="Battleship.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship"
+        xmlns:converter="clr-namespace:Battleship.Main.Converter"
+        xmlns:controls="clr-namespace:Battleship.Controls"
+        xmlns:main="clr-namespace:Battleship.Main"
+        mc:Ignorable="d"
+        Title="Battleship" Height="650" Width="725">
+    <Window.Resources>
+        <converter:HeatToColorConverter x:Key="HeatToColorConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <main:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="95"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button Content="Browse" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Reset" Grid.Row="0" Grid.Column="1" Command="{Binding ResetCommand}"/>
+        <Button Content="Run Competition" Grid.Row="0" Grid.Column="2" Command="{Binding RunCompetitionCommand}"/>
+        <Button Content="Stop" Grid.Row="0" Grid.Column="3"/>
+        <StackPanel Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Number of Matches: " VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}" SelectedItem="{Binding SelectedNumberOfMatches}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="0">
+            <TextBlock Text="Total Progress:" VerticalAlignment="Center"/>
+            <TextBlock Text="Current Match:" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!--Row 2-->
+        <controls:MultiSelectDataGrid ItemsSource="{Binding Captains}" 
+                                      Grid.Row="1" 
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="5" 
+                                      AutoGenerateColumns="False"
+                                      CanUserAddRows="False"
+                                      DoubleClickCommand="{Binding DoubleClickCommand}"
+                                      SelectedItem="{Binding SelectedCaptain}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>    
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Captain Name" Binding="{Binding CaptainName}"/>
+                <DataGridTextColumn Header="Score" Binding="{Binding Score, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+            </DataGrid.Columns>
+        </controls:MultiSelectDataGrid>
+
+        <Grid Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Select an opponent:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="2" Grid.Column="1" />
+
+            <TextBlock Text="Losses Against:" Grid.Row="3" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="3" Grid.Column="1" />
+
+            <TextBlock Text="Hits:" Grid.Row="4" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="4" Grid.Column="1" />
+
+            <TextBlock Text="Misses:" Grid.Row="5" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="5" Grid.Column="1" />
+
+            <TextBlock Text="Accuracy:" Grid.Row="6" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="6" Grid.Column="1" />
+
+            <TextBlock Text="Avg. Attacks For a Win:" Grid.Row="7" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="7" Grid.Column="1" />
+
+            <TextBlock Text="Avg. Attacks For a Loss:" Grid.Row="8" Grid.Column="0" />
+            <TextBlock Text="3,396" Grid.Row="8" Grid.Column="1" />
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Background="LightGray">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >-->
+                <Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="0" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="0" Grid.Row="10" Grid.Column="0" />
+                        <TextBlock Text="1" Grid.Row="9" Grid.Column="0" />
+                        <TextBlock Text="2" Grid.Row="8" Grid.Column="0" />
+                        <TextBlock Text="3" Grid.Row="7" Grid.Column="0" />
+                        <TextBlock Text="4" Grid.Row="6" Grid.Column="0" />
+                        <TextBlock Text="5" Grid.Row="5" Grid.Column="0" />
+                        <TextBlock Text="6" Grid.Row="4" Grid.Column="0" />
+                        <TextBlock Text="7" Grid.Row="3" Grid.Column="0" />
+                        <TextBlock Text="8" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="9" Grid.Row="1" Grid.Column="0" />
+
+                        <TextBlock Text="0" Grid.Column="1" Grid.Row="11" />
+                        <TextBlock Text="1" Grid.Column="2" Grid.Row="11" />
+                        <TextBlock Text="2" Grid.Column="3" Grid.Row="11" />
+                        <TextBlock Text="3" Grid.Column="4" Grid.Row="11" />
+                        <TextBlock Text="4" Grid.Column="5" Grid.Row="11" />
+                        <TextBlock Text="5" Grid.Column="6" Grid.Row="11" />
+                        <TextBlock Text="6" Grid.Column="7" Grid.Row="11" />
+                        <TextBlock Text="7" Grid.Column="8" Grid.Row="11" />
+                        <TextBlock Text="8" Grid.Column="9" Grid.Row="11" />
+                        <TextBlock Text="9" Grid.Column="10" Grid.Row="11" />
+
+                        <!--Row 1-->
+                        <!--<Rectangle Fill="Blue" Grid.Row="1" Grid.Column="1"/>
+                            <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="2"/>
+                            <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="3"/>
+                            <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="4"/>
+                            <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="5"/>
+                            <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="6"/>
+                            <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="7"/>
+                            <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="8"/>
+                            <Rectangle Fill="Blue" Grid.Row="1" Grid.Column="9"/>
+                            <Rectangle Fill="Red"  Grid.Row="1" Grid.Column="10"/>-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[0], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[1], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[2], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[3], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[4], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[5], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[6], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[7], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[8], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[9], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="10"/>
+
+                        <!--Row 2-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[10], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[11], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[12], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[13], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[14], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[15], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[16], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[17], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[18], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[19], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="10"/>
+
+                        <!--Row 3-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[20], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[21], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[22], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[23], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[24], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[25], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[26], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[27], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[28], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[29], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="10"/>
+
+                        <!--Row 4-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[30], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[31], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[32], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[33], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[34], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[35], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[36], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[37], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[38], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[39], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="10"/>
+
+                        <!--Row 5-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[40], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[41], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[42], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[43], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[44], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[45], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[46], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[47], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[48], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[49], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="10"/>
+
+                        <!--Row 6-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[50], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[51], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[52], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[53], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[54], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[55], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[56], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[57], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[58], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[59], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="10"/>
+
+                        <!--Row 7-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[60], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[61], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[62], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[63], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[64], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[65], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[66], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[67], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[68], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[69], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="10"/>
+
+                        <!--Row 8-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[70], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[71], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[72], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[73], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[74], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[75], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[76], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[77], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[78], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[79], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="10"/>
+
+                        <!--Row 9-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[80], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[81], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[82], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[83], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[84], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[85], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[86], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[87], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[88], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[89], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="10"/>
+
+                        <!--Row 10-->
+                    <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[90], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="1"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[91], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="2"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[92], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="3"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[93], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="4"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[94], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="5"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[95], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="6"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[96], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="7"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[97], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="8"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[98], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="9"/>
+                        <Rectangle Fill="{Binding SelectedCaptain.PlacementHeat[99], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="10"/>
+                        <TextBlock Text="Placement Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" />
+
+                    </Grid>
+
+                </Border>
+
+                <Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                            <RowDefinition Height="23"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="0" Grid.Row="10" Grid.Column="0"/>
+                        <TextBlock Text="1" Grid.Row="9" Grid.Column="0" />
+                        <TextBlock Text="2" Grid.Row="8" Grid.Column="0" />
+                        <TextBlock Text="3" Grid.Row="7" Grid.Column="0" />
+                        <TextBlock Text="4" Grid.Row="6" Grid.Column="0" />
+                        <TextBlock Text="5" Grid.Row="5" Grid.Column="0" />
+                        <TextBlock Text="6" Grid.Row="4" Grid.Column="0" />
+                        <TextBlock Text="7" Grid.Row="3" Grid.Column="0" />
+                        <TextBlock Text="8" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="9" Grid.Row="1" Grid.Column="0" />
+
+                        <TextBlock Text="0" Grid.Column="1" Grid.Row="11" />
+                        <TextBlock Text="1" Grid.Column="2" Grid.Row="11" />
+                        <TextBlock Text="2" Grid.Column="3" Grid.Row="11" />
+                        <TextBlock Text="3" Grid.Column="4" Grid.Row="11" />
+                        <TextBlock Text="4" Grid.Column="5" Grid.Row="11" />
+                        <TextBlock Text="5" Grid.Column="6" Grid.Row="11" />
+                        <TextBlock Text="6" Grid.Column="7" Grid.Row="11" />
+                        <TextBlock Text="7" Grid.Column="8" Grid.Row="11" />
+                        <TextBlock Text="8" Grid.Column="9" Grid.Row="11" />
+                        <TextBlock Text="9" Grid.Column="10" Grid.Row="11" />
+
+                        <!--Row 1-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[0], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[1], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[2], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[3], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[4], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[5], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[6], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[7], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[8], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[9], Converter={StaticResource HeatToColorConverter}}" Grid.Row="1" Grid.Column="10"/>
+
+                        <!--Row 2-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[10], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[11], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[12], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[13], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[14], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[15], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[16], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[17], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[18], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[19], Converter={StaticResource HeatToColorConverter}}" Grid.Row="2" Grid.Column="10"/>
+
+                        <!--Row 3-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[20], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[21], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[22], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[23], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[24], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[25], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[26], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[27], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[28], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[29], Converter={StaticResource HeatToColorConverter}}" Grid.Row="3" Grid.Column="10"/>
+
+                        <!--Row 4-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[30], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[31], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[32], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[33], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[34], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[35], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[36], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[37], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[38], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[39], Converter={StaticResource HeatToColorConverter}}" Grid.Row="4" Grid.Column="10"/>
+
+                        <!--Row 5-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[40], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[41], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[42], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[43], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[44], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[45], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[46], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[47], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[48], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[49], Converter={StaticResource HeatToColorConverter}}" Grid.Row="5" Grid.Column="10"/>
+
+                        <!--Row 6-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[50], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[51], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[52], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[53], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[54], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[55], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[56], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[57], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[58], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[59], Converter={StaticResource HeatToColorConverter}}" Grid.Row="6" Grid.Column="10"/>
+
+                        <!--Row 7-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[60], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[61], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[62], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[63], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[64], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[65], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[66], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[67], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[68], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[69], Converter={StaticResource HeatToColorConverter}}" Grid.Row="7" Grid.Column="10"/>
+
+                        <!--Row 8-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[70], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[71], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[72], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[73], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[74], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[75], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[76], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[77], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[78], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[79], Converter={StaticResource HeatToColorConverter}}" Grid.Row="8" Grid.Column="10"/>
+
+                        <!--Row 9-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[80], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[81], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[82], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[83], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[84], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[85], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[86], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[87], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[88], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[89], Converter={StaticResource HeatToColorConverter}}" Grid.Row="9" Grid.Column="10"/>
+
+                        <!--Row 10-->
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[90], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="1"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[91], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="2"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[92], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="3"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[93], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="4"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[94], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="5"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[95], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="6"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[96], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="7"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[97], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="8"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[98], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="9"/>
+                    <Rectangle Fill="{Binding SelectedCaptain.AttackHeat[99], Converter={StaticResource HeatToColorConverter}}" Grid.Row="10" Grid.Column="10"/>
+
+                        <TextBlock Text="Attack Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" />
+                    </Grid>
+                </Border>
+        </Grid>
+    </Grid>
+</Window>

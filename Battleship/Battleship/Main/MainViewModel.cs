@@ -7,7 +7,7 @@ using Battleship.TestingWindow;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace Battleship
+namespace Battleship.Main
 {
     public class MainViewModel: ViewModelBase
     {
@@ -29,7 +29,11 @@ namespace Battleship
                     CaptainName = mytype.Name,
                     AssemblyQualifiedName = mytype.AssemblyQualifiedName,
                     CaptainStatistics = new Dictionary<string, CaptainStatistics>(),
-                    AllAttacks = new int[10,10]
+                    //AllAttacks = new int[10,10]
+                    AllAttacks = new int[100],
+                    AttackHeat = new float[100],
+                    PlacementHeat = new float[100],
+                    AllPlacements = new int[100]
                 };
                 _captains.Add(captain);
             }
@@ -100,22 +104,20 @@ namespace Battleship
             //int[][] startingTwoPlc = detailedRecords.get(nameTwo).getShipPlacement();
 
             var halfNumberOfMatches = SelectedNumberOfMatches / 2;
-            for (int i = 0; i < /*2 **/ halfNumberOfMatches/*SelectedNumberOfMatches*/; i++)
+            for (int i = 0; i < halfNumberOfMatches; i++)
             {
                 // Initialize the first captain and his fleet
-                //Console.WriteLine(i);
                 captainOne.Initialize(/*2 * halfNumberOfMatches*/ SelectedNumberOfMatches, numCaptains, nameTwo);
 
                 // Record his ship placement choices
                 Fleet fleetone = captainOne.GetFleet();
-                int[,] shipLocs = new int[10,10];
-                for (int j = 0; j < 10; j++)
+                for (int x = 0; x < 10; x++)
                 {
-                    for (int k = 0; k < 10; k++)
+                    for (int y = 0; y < 10; y++)
                     {
-                        if (fleetone.IsShipAt(new Coordinate(j, k)))
+                        if (fleetone.IsShipAt(new Coordinate(x, y)))
                         {
-                            shipLocs[j,k]++;
+                            captain1.AllPlacements[x*10 + y]++;
                         }
                     }
                 }
@@ -124,18 +126,19 @@ namespace Battleship
                 //detailedRecords.get(nameOne).addNewGame(shipLocs, nameTwo);
 
                 // Initialize the second captain and her fleet
-                captainTwo.Initialize(/*2 * halfNumberOfMatches*/SelectedNumberOfMatches, numCaptains, nameOne);
+                captainTwo.Initialize(SelectedNumberOfMatches, numCaptains, nameOne);
 
                 // Record her ship placement choices
                 Fleet fleettwo = captainTwo.GetFleet();
-                shipLocs = new int[10,10];
-                for (int j = 0; j < 10; j++)
+                //shipLocs = new int[10,10];
+                for (int x = 0; x < 10; x++)
                 {
-                    for (int k = 0; k < 10; k++)
+                    for (int y = 0; y < 10; y++)
                     {
-                        if (fleettwo.IsShipAt(new Coordinate(j, k)))
+                        if (fleettwo.IsShipAt(new Coordinate(x, y)))
                         {
-                            shipLocs[j,k]++;
+                            //shipLocs[j,k]++;
+                            captain2.AllPlacements[x*10 + y]++;
                         }
                     }
                 }
@@ -157,7 +160,7 @@ namespace Battleship
                         int attackone = fleettwo.Attacked(attackonecoord);      // Determine the result of that move
                         captainOne.ResultOfAttack(fleettwo.GetLastAttackValue());// Inform captain one of the result
                         captainTwo.OpponentAttack(attackonecoord);              // Inform captain two of the result
-                        captain1.AllAttacks[attackonecoord.X, attackonecoord.Y]++;
+                        captain1.AllAttacks[attackonecoord.X *10 + attackonecoord.Y]++;
 
                         // Did captain one win?
                         if (attackone == Constants.Defeated)
@@ -188,7 +191,7 @@ namespace Battleship
                         int attacktwo = fleetone.Attacked(attacktwocoord);      // Determine the result of that move
                         captainTwo.ResultOfAttack(fleetone.GetLastAttackValue());// Inform captain two of the result
                         captainOne.OpponentAttack(attacktwocoord);              // Inform captain one of the result
-                        captain2.AllAttacks[attacktwocoord.X, attacktwocoord.Y]++;
+                        captain2.AllAttacks[attacktwocoord.X *10 + attacktwocoord.Y]++;
 
                         // Did captain two win?
                         if (attacktwo == Constants.Defeated)
@@ -367,6 +370,9 @@ namespace Battleship
             captain2.Score = captain2.Score + scoreTwo;
             captain1.Score = captain1.Score + scoreOne;
 
+            captain1.UpdateGui();
+            captain2.UpdateGui();
+
             // Update the score model and repaint the table
             //battleModel.addCaptainScore(nameOne, scoreOne);
             //battleModel.addCaptainScore(nameTwo, scoreTwo);
@@ -418,8 +424,14 @@ namespace Battleship
 
         public Captain SelectedCaptain 
         { 
-            get{ return _selectedCaptain; } 
-            set{ Set(ref _selectedCaptain, value); } 
+            get{ return _selectedCaptain; }
+            set
+            {
+                if (Set(ref _selectedCaptain, value))
+                {
+                    Console.WriteLine("result!");
+                }
+            } 
         } 
         private Captain _selectedCaptain;
 
