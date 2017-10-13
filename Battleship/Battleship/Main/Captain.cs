@@ -13,6 +13,11 @@ namespace Battleship.Main
             ShowShipPlacement.CollectionChanged += (o, e) => UpdateGui();
         }
 
+        public bool HasPlayed(string opponent)
+        {
+            return CaptainStatistics.ContainsKey(opponent);
+        }
+
         public string CaptainName { get; set; }
         public string AssemblyQualifiedName { get; set; }
         public bool IsSelected { get; set; }
@@ -38,12 +43,20 @@ namespace Battleship.Main
             true
         };
         public IDictionary<string, CaptainStatistics> CaptainStatistics { get; set; }
+        //public ObservableDictionary
         public int Score
         {
             get { return _score; }
             set { Set(ref _score, value); }
         }
         private int _score;
+
+        public CaptainStatistics SelectedOpponentStatistics 
+        { 
+            get{ return _selectedOpponentStatistics; } 
+            set{ Set(ref _selectedOpponentStatistics, value); } 
+        } 
+        private CaptainStatistics _selectedOpponentStatistics;
 
         public void UpdateGui()
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Battleship.Core;
 using Battleship.TestingWindow;
@@ -10,12 +10,11 @@ using GalaSoft.MvvmLight.CommandWpf;
 
 namespace Battleship.Main
 {
-    public class MainViewModel: ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
         {
-            //_opponents = new List<string> {"Black Beard", "Red Beard", "Dread Pirate Roberts"};
-            _numberOfMatchesOptions = new List<int> {500, 1000, 5000, 10000, 50000, 250000, 1000000};
+            _numberOfMatchesOptions = new List<int> {100, 500, 1000, 5000, 10000, 50000, 250000, 1000000 };
 
             DoubleClickCommand = new RelayCommand(OnDoubleClick);
             RunCompetitionCommand = new RelayCommand(RunCompetition);
@@ -37,7 +36,7 @@ namespace Battleship.Main
                     AllPlacements = new int[100],
                     //ShowShipPlacement = new [] {true, true, true, true, true},
                     //ShowShipPlacement = new ObservableCollection<bool> { true, true, true, true, true },
-                    ShipPlacements = new int[5,10,10]
+                    ShipPlacements = new int[5, 10, 10]
                 };
                 _captains.Add(captain);
             }
@@ -51,24 +50,35 @@ namespace Battleship.Main
             }
         }
 
-        private void RunCompetition()
+        private async void RunCompetition()
         {
             var captainsToRun = Captains.Where(c => c.IsSelected).ToList();
 
+            var numCaptains = captainsToRun.Count;
+            // Compute the number of total rounds for keeping track of progress
+            int numberofrounds = numCaptains * numCaptains - numCaptains;
+
+            int counter = 0;
             foreach (var captain in captainsToRun)
             {
                 var captainOpponents = captainsToRun.Where(c => c.AssemblyQualifiedName != captain.AssemblyQualifiedName);
                 foreach (var captain2 in captainOpponents)
                 {
-                    BattleCaptains(captain, captain2, captainsToRun.Count);
+                    if (await BattleCaptains(captain, captain2, captainsToRun.Count))
+                    {
+                        counter++;
+                    }
+
+                    MatchProgress = /*2**/ (100*counter)/numberofrounds;
                 }
             }
         }
 
-        private bool BattleCaptains(Captain captain1, Captain captain2, int numCaptains)
+        private async Task<bool> BattleCaptains(Captain captain1, Captain captain2, int numCaptains)
         {
             // reset the progress bar
             //currentProgressBar.setValue(0);
+            CurrentMatchProgress = 0;
 
             var captainOne = GetCaptain(captain1);
             var captainTwo = GetCaptain(captain2);
@@ -108,7 +118,7 @@ namespace Battleship.Main
             //int[][] startingTwoPlc = detailedRecords.get(nameTwo).getShipPlacement();
 
             var halfNumberOfMatches = SelectedNumberOfMatches / 2;
-            for (int i = 0; i < halfNumberOfMatches; i++)
+            for (int i = 0; i < SelectedNumberOfMatches; i++)
             {
                 // Initialize the first captain and his fleet
                 captainOne.Initialize(/*2 * halfNumberOfMatches*/ SelectedNumberOfMatches, numCaptains, nameTwo);
@@ -170,13 +180,13 @@ namespace Battleship.Main
                     {
                         // Run and keep track of rounds during this match
                         rounds++;
-
+                        
                         // Captain one goes first
                         Coordinate attackonecoord = captainOne.MakeAttack();    // Ask captain one for his move
                         int attackone = fleettwo.Attacked(attackonecoord);      // Determine the result of that move
                         captainOne.ResultOfAttack(fleettwo.GetLastAttackValue());// Inform captain one of the result
                         captainTwo.OpponentAttack(attackonecoord);              // Inform captain two of the result
-                        captain1.AllAttacks[attackonecoord.X *10 + attackonecoord.Y]++;
+                        captain1.AllAttacks[attackonecoord.X * 10 + attackonecoord.Y]++;
 
                         // Did captain one win?
                         if (attackone == Constants.Defeated)
@@ -203,11 +213,11 @@ namespace Battleship.Main
                         }
 
                         // Captain two goes second
-                        Coordinate attacktwocoord = captainTwo.MakeAttack();    // Ask captain two for her move
-                        int attacktwo = fleetone.Attacked(attacktwocoord);      // Determine the result of that move
+                        Coordinate attacktwocoord = captainTwo.MakeAttack();     // Ask captain two for her move
+                        int attacktwo = fleetone.Attacked(attacktwocoord);       // Determine the result of that move
                         captainTwo.ResultOfAttack(fleetone.GetLastAttackValue());// Inform captain two of the result
-                        captainOne.OpponentAttack(attacktwocoord);              // Inform captain one of the result
-                        captain2.AllAttacks[attacktwocoord.X *10 + attacktwocoord.Y]++;
+                        captainOne.OpponentAttack(attacktwocoord);               // Inform captain one of the result
+                        captain2.AllAttacks[attacktwocoord.X * 10 + attacktwocoord.Y]++;
 
                         // Did captain two win?
                         if (attacktwo == Constants.Defeated)
@@ -227,7 +237,7 @@ namespace Battleship.Main
 
                             captainTwo.ResultOfGame(Constants.Won);
                             captainOne.ResultOfGame(Constants.Lost);
-                            
+
                             break;
                         }
 
@@ -327,8 +337,8 @@ namespace Battleship.Main
                         }
 
                         // Was the result of either attack a hit?
-                        bool oneHit = (attackone / Constants.HitModifier == 1 || attackone / Constants.HitModifier == 2);
-                        bool twoHit = (attacktwo / Constants.HitModifier == 1 || attacktwo / Constants.HitModifier == 2);
+                        bool oneHit = attackone / Constants.HitModifier == 1 || attackone / Constants.HitModifier == 2;
+                        bool twoHit = attacktwo / Constants.HitModifier == 1 || attacktwo / Constants.HitModifier == 2;
 
                         if (oneHit)
                         {
@@ -361,46 +371,35 @@ namespace Battleship.Main
                 //    return false;
                 //}
 
-                // update the progress bar
-                //currentProgressBar.setValue((100 * (i + 1)) / (2 * halfNumberOfMatches));
-
                 if (i % 500 == 0 && i > 0)
                 {
-                    //battleModel.addCaptainScore(nameOne, scoreOne);
-                    //battleModel.addCaptainScore(nameTwo, scoreTwo);
-                    //captain2.Score += scoreTwo;
-                    //captain1.Score += scoreOne;
                     captain2.Score = captain2.Score + scoreTwo;
                     captain1.Score = captain1.Score + scoreOne;
-                    //table.repaint();
+                    
                     scoreOne = 0;
                     scoreTwo = 0;
                 }
 
-                //if ((i + 1) % (halfNumberOfMatches * .02) == 0)
-                //{
-                //    detailedRecords.get(nameOne).addSample(nameTwo, startingOneAtk, startingOnePlc);
-                //    detailedRecords.get(nameTwo).addSample(nameOne, startingTwoAtk, startingTwoPlc);
-                //}
+                //update progress bar
+                await Task.Delay(TimeSpan.FromMilliseconds(300));
+                CurrentMatchProgress = 100 * (i + 1) / (2 * halfNumberOfMatches);
             }
             captain2.Score = captain2.Score + scoreTwo;
             captain1.Score = captain1.Score + scoreOne;
 
             captain1.UpdateGui();
             captain2.UpdateGui();
-
-            // Update the score model and repaint the table
-            //battleModel.addCaptainScore(nameOne, scoreOne);
-            //battleModel.addCaptainScore(nameTwo, scoreTwo);
-            //table.repaint();
-
-            // Battle was successful!
+            
             return true;
         }
+        //private Task SetMatchProgress()
+        //{
+            
+        //}
 
         private void OnDoubleClick()
         {
-            var window = new CaptainDebugWindow {DataContext = new CaptainDebugViewModel(/*new CaptainMorgan()*//*myObject*/GetCaptain(SelectedCaptain)) };
+            var window = new CaptainDebugWindow { DataContext = new CaptainDebugViewModel(/*new CaptainMorgan()*//*myObject*/GetCaptain(SelectedCaptain)) };
             window.Show();
         }
 
@@ -410,81 +409,79 @@ namespace Battleship.Main
             return (ICaptain)Activator.CreateInstance(type);
         }
 
-        public List<string> Opponents 
-        { 
-            get{ return _opponents; } 
-            set{ Set(ref _opponents, value); } 
-        } 
+        public List<string> Opponents
+        {
+            get { return _opponents; }
+            set { Set(ref _opponents, value); }
+        }
         private List<string> _opponents;
 
-        public List<int> NumberOfMatchesOptions 
-        { 
-            get{ return _numberOfMatchesOptions; } 
-            set{ Set(ref _numberOfMatchesOptions, value); } 
-        } 
+        public List<int> NumberOfMatchesOptions
+        {
+            get { return _numberOfMatchesOptions; }
+            set { Set(ref _numberOfMatchesOptions, value); }
+        }
         private List<int> _numberOfMatchesOptions;
 
-        public int SelectedNumberOfMatches 
-        { 
-            get{ return _selectedNumberOfMatches; } 
-            set{ Set(ref _selectedNumberOfMatches, value); } 
-        } 
+        public int SelectedNumberOfMatches
+        {
+            get { return _selectedNumberOfMatches; }
+            set { Set(ref _selectedNumberOfMatches, value); }
+        }
         private int _selectedNumberOfMatches;
 
-        public List<Captain> Captains 
+        public int MatchProgress 
         { 
-            get{ return _captains; } 
-            set{ Set(nameof(Captains),ref _captains, value); } 
+            get{ return _matchProgress; } 
+            set{ Set(ref _matchProgress, value); } 
         } 
+        private int _matchProgress;
+
+        public int CurrentMatchProgress 
+        { 
+            get{ return _currentMatchProgress; } 
+            set{ Set(ref _currentMatchProgress, value); } 
+        } 
+        private int _currentMatchProgress;
+
+        public List<Captain> Captains
+        {
+            get { return _captains; }
+            set { Set(nameof(Captains), ref _captains, value); }
+        }
         private List<Captain> _captains;
 
-        //public bool ShowPatrolPlacement 
-        //{ 
-        //    get{ return _showPatrolPlacement; } 
-        //    set{ Set(ref _showPatrolPlacement, value); } 
-        //} 
-        //private bool _showPatrolPlacement;
+        public Captain SelectedCaptain
+        {
+            get { return _selectedCaptain; }
+            set { Set(ref _selectedCaptain, value); }
+        }
+        private Captain _selectedCaptain;
 
-        //public bool ShowDestroyerPlacement 
-        //{ 
-        //    get{ return _showDestroyerPlacement; } 
-        //    set{ Set(ref _showDestroyerPlacement, value); } 
-        //} 
-        //private bool _showDestroyerPlacement;
-
-        //public bool ShowSubmarinePlacement 
-        //{ 
-        //    get{ return _showSubmarinePlacement; } 
-        //    set{ Set(ref _showSubmarinePlacement, value); } 
-        //} 
-        //private bool _showSubmarinePlacement;
-    
-        //public bool ShowBattleshipPlacement 
-        //{ 
-        //    get{ return _showBattleshipPlacement; } 
-        //    set{ Set(ref _showBattleshipPlacement, value); } 
-        //} 
-        //private bool _showBattleshipPlacement;
-
-        //public bool ShowAircraftCarrierPlacement 
-        //{ 
-        //    get{ return _showAircraftCarrierPlacement; } 
-        //    set{ Set(ref _showAircraftCarrierPlacement, value); } 
-        //} 
-        //private bool _showAircraftCarrierPlacement;
-
-        public Captain SelectedCaptain 
-        { 
-            get{ return _selectedCaptain; }
+        public Captain SelectedOpponentCaptain
+        {
+            get { return _selectedOpponentCaptain; }
             set
             {
-                if (Set(ref _selectedCaptain, value))
+                if (Set(ref _selectedOpponentCaptain, value))
                 {
-                    Console.WriteLine("result!");
+                    var opponent = _selectedOpponentCaptain.CaptainName;
+                    if (SelectedCaptain.HasPlayed(opponent))
+                    {
+                        OpponentStatistics =
+                            SelectedCaptain.CaptainStatistics[opponent];
+                    }
                 }
-            } 
-        } 
-        private Captain _selectedCaptain;
+            }
+        }
+        private Captain _selectedOpponentCaptain;
+
+        public CaptainStatistics OpponentStatistics
+        {
+            get { return _opponentStatistics; }
+            set { Set(ref _opponentStatistics, value); }
+        }
+        private CaptainStatistics _opponentStatistics;
 
         public ICommand DoubleClickCommand { get; set; }
         public ICommand RunCompetitionCommand { get; set; }

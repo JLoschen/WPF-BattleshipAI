@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:Battleship.Controls"
         xmlns:main="clr-namespace:Battleship.Main"
         mc:Ignorable="d"
-        Title="Battleship" Height="650" Width="725">
+        Title="Battleship" Height="650" Width="750">
     <Window.Resources>
         <converter:HeatToColorConverter x:Key="HeatToColorConverter"/>
     </Window.Resources>
@@ -39,9 +39,12 @@
             <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}" SelectedItem="{Binding SelectedNumberOfMatches}"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Text="Total Progress:" VerticalAlignment="Center"/>
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding MatchProgress}" Width="100" Margin="4"/>
+
             <TextBlock Text="Current Match:" VerticalAlignment="Center"/>
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding CurrentMatchProgress}" Width="100" Margin="4"/>
         </StackPanel>
 
         <!--Row 2-->
@@ -84,27 +87,27 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Select an opponent:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedOpponentCaptain}"/>
             <TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.Wins}" Grid.Row="2" Grid.Column="1" />
 
             <TextBlock Text="Losses Against:" Grid.Row="3" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.Losses}" Grid.Row="3" Grid.Column="1" />
 
             <TextBlock Text="Hits:" Grid.Row="4" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.Hits}" Grid.Row="4" Grid.Column="1" />
 
             <TextBlock Text="Misses:" Grid.Row="5" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="5" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.Misses}" Grid.Row="5" Grid.Column="1" />
 
             <TextBlock Text="Accuracy:" Grid.Row="6" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="6" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.Accuracy}" Grid.Row="6" Grid.Column="1" />
 
             <TextBlock Text="Avg. Attacks For a Win:" Grid.Row="7" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="7" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.AverageAttacksForWin}" Grid.Row="7" Grid.Column="1" />
 
             <TextBlock Text="Avg. Attacks For a Loss:" Grid.Row="8" Grid.Column="0" />
-            <TextBlock Text="3,396" Grid.Row="8" Grid.Column="1" />
+            <TextBlock Text="{Binding OpponentStatistics.AverageAttacksForLoss}" Grid.Row="8" Grid.Column="1" />
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Background="LightGray" DataContext="{Binding SelectedCaptain}">
@@ -371,124 +374,124 @@
                             </Style>
                         </UniformGrid.Resources>
                         <!--Row 1-->
-                        <Rectangle Fill="{Binding AttackHeat[90], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[91], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[92], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[93], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[94], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[95], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[96], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[97], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[98], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[9], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[19], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[29], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[39], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[49], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[59], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[69], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[79], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[89], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[99], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 2-->
-                        <Rectangle Fill="{Binding AttackHeat[80], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[81], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[82], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[83], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[84], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[85], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[86], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[87], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[8], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[18], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[28], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[38], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[48], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[58], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[68], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[78], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[88], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[89], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[98], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 3-->
-                        <Rectangle Fill="{Binding AttackHeat[70], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[71], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[72], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[73], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[74], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[75], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[76], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[7], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[17], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[27], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[37], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[47], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[57], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[67], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[77], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[78], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[79], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[87], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[97], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 4-->
-                        <Rectangle Fill="{Binding AttackHeat[60], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[61], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[62], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[63], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[64], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[65], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[6], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[16], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[26], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[36], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[46], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[56], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[66], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[67], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[68], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[69], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[76], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[86], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[96], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 5-->
-                        <Rectangle Fill="{Binding AttackHeat[50], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[51], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[52], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[53], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[54], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[5], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[15], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[25], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[35], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[45], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[55], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[56], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[57], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[58], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[59], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[65], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[75], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[85], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[95], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 6-->
-                        <Rectangle Fill="{Binding AttackHeat[40], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[41], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[42], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[43], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[4], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[14], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[24], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[34], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[44], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[45], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[46], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[47], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[48], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[49], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[54], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[64], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[74], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[84], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[94], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 7-->
-                        <Rectangle Fill="{Binding AttackHeat[30], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[31], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[32], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[3], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[13], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[23], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[33], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[34], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[35], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[36], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[37], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[38], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[39], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[43], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[53], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[63], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[73], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[83], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[93], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 8-->
-                        <Rectangle Fill="{Binding AttackHeat[20], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[21], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[2], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[12], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[22], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[23], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[24], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[25], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[26], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[27], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[28], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[29], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[32], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[42], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[52], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[62], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[72], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[82], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[92], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 9-->
-                        <Rectangle Fill="{Binding AttackHeat[10], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[1], Converter={StaticResource HeatToColorConverter}}" />
                         <Rectangle Fill="{Binding AttackHeat[11], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[12], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[13], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[14], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[15], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[16], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[17], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[18], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[19], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[21], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[31], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[41], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[51], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[61], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[71], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[81], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[91], Converter={StaticResource HeatToColorConverter}}" />
 
                         <!--Row 10-->
                         <Rectangle Fill="{Binding AttackHeat[0], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[1], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[2], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[3], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[4], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[5], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[6], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[7], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[8], Converter={StaticResource HeatToColorConverter}}" />
-                        <Rectangle Fill="{Binding AttackHeat[9], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[10], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[20], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[30], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[40], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[50], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[60], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[70], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[80], Converter={StaticResource HeatToColorConverter}}" />
+                        <Rectangle Fill="{Binding AttackHeat[90], Converter={StaticResource HeatToColorConverter}}" />
 
                     </UniformGrid>
                     <TextBlock Text="Attack Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" />

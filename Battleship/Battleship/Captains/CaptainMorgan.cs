@@ -50,6 +50,7 @@ namespace Battleship.Captains
             }
             else//new opponent
             {
+                _opponent = opponent;
                 Board = new TrackCoords[10,10];
                 targeting = new int[10,10];
                 sinceReset = 0;
@@ -66,7 +67,27 @@ namespace Battleship.Captains
                 }
                 GenerateHunterSeeker();
             }
-            
+
+            for (int x = 0; x < 10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    Board[x,y].Status = Unattacked;
+                    //values[x,y] = 0;
+                    //spotsTaken[x][y] = false;
+                    //touchingHit[x][y] = false;
+                    //clusterBoard[x][y] = 0;
+                    //if (x == 0 || x == 9)
+                    //    clusterBoard[x][y]++;
+                    //if (y == 0 || y == 9)
+                    //    clusterBoard[x][y]++;
+                }
+            }
+            for (int ship = 0; ship < 5; ship++)
+            {
+                sunkShips[ship] = null;
+            }
+
             attackVector = new List<shipCoord>();
             GeneratePossiblePlacements();
             values = new double[10,10];
