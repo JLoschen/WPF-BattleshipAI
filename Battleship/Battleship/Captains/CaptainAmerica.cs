@@ -24,21 +24,27 @@ namespace Battleship.Captains
         {
             var fleet = new Fleet();
 
-            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.PatrolBoat))
-            {
-            }
-            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Destroyer))
-            {
-            }
-            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Submarine))
-            {
-            }
-            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Battleship))
-            {
-            }
-            while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.AircraftCarrier))
-            {
-            }
+            //while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.PatrolBoat))
+            //{
+            //}
+            //while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Destroyer))
+            //{
+            //}
+            //while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Submarine))
+            //{
+            //}
+            //while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.Battleship))
+            //{
+            //}
+            //while (!fleet.PlaceShip(generator.Next(10), generator.Next(10), generator.Next(2), Constants.AircraftCarrier))
+            //{
+            //}
+
+            fleet.PlaceShip(0, 0, Constants.Vertical, Constants.PatrolBoat);
+            fleet.PlaceShip(1, 0, Constants.Vertical, Constants.Destroyer);
+            fleet.PlaceShip(2, 0, Constants.Vertical, Constants.Submarine);
+            fleet.PlaceShip(3, 0, Constants.Vertical, Constants.Battleship);
+            fleet.PlaceShip(4, 0, Constants.Vertical, Constants.AircraftCarrier);
 
             return fleet;
         }

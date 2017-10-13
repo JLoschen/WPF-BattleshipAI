@@ -10,6 +10,10 @@
  *
  * @version SPRING.2013
  */
+
+using System.Collections.Generic;
+using System.Windows.Documents;
+
 namespace Battleship.Core
 {
     public class Ship
@@ -53,6 +57,26 @@ namespace Battleship.Core
         public bool IsSunk()
         {
             return Sunk;
+        }
+
+        public List<Coordinate> GetCoordinates()
+        {
+            var coords = new List<Coordinate>();
+            if (IsVertical)
+            {
+                for (int i = 0; i < Length; i++)
+                {
+                    coords.Add(new Coordinate(Location.X, Location.Y + i));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Length; i++)
+                {
+                    coords.Add(new Coordinate(Location.X + i, Location.Y));
+                }
+            }
+            return coords;
         }
 
         public bool IsVertical => Direction == 1;

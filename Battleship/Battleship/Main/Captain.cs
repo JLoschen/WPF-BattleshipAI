@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Battleship.Core;
 using GalaSoft.MvvmLight;
 
-namespace Battleship
+namespace Battleship.Main
 {
     public class Captain:ViewModelBase
     {
+        public Captain()
+        {
+            ShowShipPlacement.CollectionChanged += (o, e) => UpdateGui();
+        }
+
         public string CaptainName { get; set; }
         public string AssemblyQualifiedName { get; set; }
         public bool IsSelected { get; set; }
@@ -16,11 +22,21 @@ namespace Battleship
         public float[] AttackHeat { get; set; }//Attack percent on each tile
         public float[] PlacementHeat { get; set; }//Placement percent on each tile
         public int[] AllPlacements { get; set; }
-        public int[,] PatrolPlacements { get; set; }
-        public int[,] DestroyerPlacements { get; set; }
-        public int[,] SubmarinePlacements { get; set; }
-        public int[,] BattleshipPlacements { get; set; }
-        public int[,] AircraftCarrierPlacements { get; set; }
+        //public int[] PatrolPlacements { get; set; }
+        //public int[] DestroyerPlacements { get; set; }
+        //public int[] SubmarinePlacements { get; set; }
+        //public int[] BattleshipPlacements { get; set; }
+        //public int[] AircraftCarrierPlacements { get; set; }
+        public int [,,] ShipPlacements { get; set; } //3 dimensional array ship,x,y
+
+        public /*bool[]*/ ObservableCollection<bool> ShowShipPlacement { get; set; } = new ObservableCollection<bool>
+        {
+            true,
+            true,
+            true,
+            true,
+            true
+        };
         public IDictionary<string, CaptainStatistics> CaptainStatistics { get; set; }
         public int Score
         {
@@ -31,6 +47,22 @@ namespace Battleship
 
         public void UpdateGui()
         {
+            for (int i = 0; i < 100; i++)
+            {
+                AllPlacements[i] = 0;
+            }
+            for (int ship = 0; ship < 5; ship++)
+            {
+                if (!ShowShipPlacement[ship]) continue;
+                for (var x = 0; x < 10; x++)
+                {
+                    for (var y = 0; y < 10; y++)
+                    {
+                        AllPlacements[x*10 + y] += ShipPlacements[ship, x, y];
+                    }
+                }
+            }
+
             var expectedAttacksPerCell = AllAttacks.Sum(x => x) / 100f;
             var expectedPlacementsPerCell = AllPlacements.Sum(x => x) / 100f;
 

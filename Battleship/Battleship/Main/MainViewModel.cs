@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Battleship.Core;
@@ -14,7 +15,7 @@ namespace Battleship.Main
         public MainViewModel()
         {
             //_opponents = new List<string> {"Black Beard", "Red Beard", "Dread Pirate Roberts"};
-            _numberOfMatchesOptions = new List<int> {2, 4, 500, 1000, 5000, 10000, 50000, 250000, 1000000};
+            _numberOfMatchesOptions = new List<int> {500, 1000, 5000, 10000, 50000, 250000, 1000000};
 
             DoubleClickCommand = new RelayCommand(OnDoubleClick);
             RunCompetitionCommand = new RelayCommand(RunCompetition);
@@ -33,7 +34,10 @@ namespace Battleship.Main
                     AllAttacks = new int[100],
                     AttackHeat = new float[100],
                     PlacementHeat = new float[100],
-                    AllPlacements = new int[100]
+                    AllPlacements = new int[100],
+                    //ShowShipPlacement = new [] {true, true, true, true, true},
+                    //ShowShipPlacement = new ObservableCollection<bool> { true, true, true, true, true },
+                    ShipPlacements = new int[5,10,10]
                 };
                 _captains.Add(captain);
             }
@@ -111,14 +115,21 @@ namespace Battleship.Main
 
                 // Record his ship placement choices
                 Fleet fleetone = captainOne.GetFleet();
-                for (int x = 0; x < 10; x++)
+                //for (int x = 0; x < 10; x++)
+                //{
+                //    for (int y = 0; y < 10; y++)
+                //    {
+                //        if (fleetone.IsShipAt(new Coordinate(x, y)))
+                //        {
+                //            captain1.AllPlacements[x * 10 + y]++;
+                //        }
+                //    }
+                //}
+                foreach (var ship in fleetone.GetFleet())
                 {
-                    for (int y = 0; y < 10; y++)
+                    foreach (var coordinate in ship.GetCoordinates())
                     {
-                        if (fleetone.IsShipAt(new Coordinate(x, y)))
-                        {
-                            captain1.AllPlacements[x*10 + y]++;
-                        }
+                        captain1.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
                     }
                 }
 
@@ -130,16 +141,21 @@ namespace Battleship.Main
 
                 // Record her ship placement choices
                 Fleet fleettwo = captainTwo.GetFleet();
-                //shipLocs = new int[10,10];
-                for (int x = 0; x < 10; x++)
+                //for (int x = 0; x < 10; x++)
+                //{
+                //    for (int y = 0; y < 10; y++)
+                //    {
+                //        if (fleettwo.IsShipAt(new Coordinate(x, y)))
+                //        {
+                //            captain2.AllPlacements[x * 10 + y]++;
+                //        }
+                //    }
+                //}
+                foreach (var ship in fleettwo.GetFleet())
                 {
-                    for (int y = 0; y < 10; y++)
+                    foreach (var coordinate in ship.GetCoordinates())
                     {
-                        if (fleettwo.IsShipAt(new Coordinate(x, y)))
-                        {
-                            //shipLocs[j,k]++;
-                            captain2.AllPlacements[x*10 + y]++;
-                        }
+                        captain2.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
                     }
                 }
 
@@ -421,6 +437,41 @@ namespace Battleship.Main
             set{ Set(nameof(Captains),ref _captains, value); } 
         } 
         private List<Captain> _captains;
+
+        //public bool ShowPatrolPlacement 
+        //{ 
+        //    get{ return _showPatrolPlacement; } 
+        //    set{ Set(ref _showPatrolPlacement, value); } 
+        //} 
+        //private bool _showPatrolPlacement;
+
+        //public bool ShowDestroyerPlacement 
+        //{ 
+        //    get{ return _showDestroyerPlacement; } 
+        //    set{ Set(ref _showDestroyerPlacement, value); } 
+        //} 
+        //private bool _showDestroyerPlacement;
+
+        //public bool ShowSubmarinePlacement 
+        //{ 
+        //    get{ return _showSubmarinePlacement; } 
+        //    set{ Set(ref _showSubmarinePlacement, value); } 
+        //} 
+        //private bool _showSubmarinePlacement;
+    
+        //public bool ShowBattleshipPlacement 
+        //{ 
+        //    get{ return _showBattleshipPlacement; } 
+        //    set{ Set(ref _showBattleshipPlacement, value); } 
+        //} 
+        //private bool _showBattleshipPlacement;
+
+        //public bool ShowAircraftCarrierPlacement 
+        //{ 
+        //    get{ return _showAircraftCarrierPlacement; } 
+        //    set{ Set(ref _showAircraftCarrierPlacement, value); } 
+        //} 
+        //private bool _showAircraftCarrierPlacement;
 
         public Captain SelectedCaptain 
         { 
