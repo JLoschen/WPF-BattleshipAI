@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Battleship.Core;
 using Battleship.TestingWindow;
 using GalaSoft.MvvmLight;
@@ -232,7 +233,19 @@ namespace Battleship.Main
 
         private void OnDoubleClick()
         {
-            var window = new CaptainDebugWindow { DataContext = new CaptainDebugViewModel(SelectedCaptain.GetNewCaptain()) };
+            //var window = new Window
+            //{
+            //    Content = new ImporterView
+            //    {
+            //        DataContext = importerViewModel
+            //    },
+            //    Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Boa;component/Images/importer.ico", UriKind.RelativeOrAbsolute))
+            //};
+            var window = new CaptainDebugWindow
+            {
+                DataContext = new CaptainDebugViewModel(SelectedCaptain.GetNewCaptain()) ,
+                //Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Battleship;component/battleshipIcon.ico", UriKind.RelativeOrAbsolute))
+            };
             window.Show();
         }
 

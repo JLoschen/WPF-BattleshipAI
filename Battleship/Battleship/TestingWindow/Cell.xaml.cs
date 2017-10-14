@@ -8,7 +8,7 @@ namespace Battleship.TestingWindow
         public Cell()
         {
             InitializeComponent();
-            (Content as FrameworkElement).DataContext = this;//found at the URL mentioned above.
+            (Content as FrameworkElement).DataContext = this;
         }
 
         public static readonly DependencyProperty AttackCodeProperty = DependencyProperty.Register("AttackCode", typeof(int), typeof(Cell), new PropertyMetadata(0));

@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:Battleship.Controls"
         xmlns:main="clr-namespace:Battleship.Main"
         mc:Ignorable="d"
+        Icon="/battleshipIcon.ico"
         Title="Battleship" Height="650" Width="750">
     <Window.Resources>
         <converter:HeatToColorConverter x:Key="HeatToColorConverter"/>
