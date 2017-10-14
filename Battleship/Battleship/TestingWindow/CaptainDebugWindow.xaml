@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:Battleship.TestingWindow"
         mc:Ignorable="d"
         Icon="../battleshipIcon.ico"
-        Title="CaptainDebugWindow" Height="500" Width="800">
+        Title="Captain Debug Window" Height="500" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <local:CellCodeToFillConverter x:Key="CellCodeToFillConverter"/>
         <local:GameStateToReadyButtonVisibilityConverter x:Key="GameStateToReadyButtonVisibilityConverter"/>
     </Window.Resources>
     <Grid>
@@ -235,115 +234,116 @@
 
             <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
                 
-                <Ellipse  Fill="{Binding AIGameBoard[0][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                
-                <Ellipse  Fill="{Binding AIGameBoard[0][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[1][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[2][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[3][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[4][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[5][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[6][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[7][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[8][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding AIGameBoard[9][9], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][0]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][0]}"/>
+
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][1]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][1]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][2]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][2]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][3]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][3]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][4]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][4]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][5]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][5]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][6]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][6]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][7]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][7]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][8]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][8]}"/>
+
+                <local:ShotCircle CellCode="{Binding AIGameBoard[0][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[1][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[2][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[3][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[4][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[5][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[6][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[7][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[8][9]}"/>
+                <local:ShotCircle CellCode="{Binding AIGameBoard[9][9]}"/>
             </UniformGrid>
         </Grid>
 
@@ -540,115 +540,115 @@
 
             <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][0], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][0], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][0]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][0]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][1], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][1], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][1]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][1]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][2], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][2], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][2]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][2]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][3], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][3], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][3]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][3]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][4], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][4], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][4]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][4]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][5], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][5], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][5]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][5]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][6], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][6], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][6]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][6]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][7], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][7], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][7]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][7]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][8], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][8], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][8]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][8]}"/>
 
-                <Ellipse  Fill="{Binding PlayerGameBoard[0][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[1][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[2][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[3][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[4][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[5][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[6][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[7][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[8][9], Converter={StaticResource CellCodeToFillConverter}}"/>
-                <Ellipse  Fill="{Binding PlayerGameBoard[9][9], Converter={StaticResource CellCodeToFillConverter}}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[0][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[1][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[2][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[3][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[4][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[5][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[6][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[7][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[8][9]}"/>
+                <local:ShotCircle CellCode="{Binding PlayerGameBoard[9][9]}"/>
             </UniformGrid>
         </Grid>
 

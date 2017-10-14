@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="TestingWindow\GameState.cs" />
     <Compile Include="TestingWindow\GameStateToReadyButtonVisibilityConverter.cs" />
+    <Compile Include="TestingWindow\ShotCircle.xaml.cs">
+      <DependentUpon>ShotCircle.xaml</DependentUpon>
+    </Compile>
     <Page Include="Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestingWindow\GameBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestingWindow\ShotCircle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
