@@ -71,4 +71,17 @@ namespace Battleship.Core
         public const int SunkBattleship = SunkModifier + Battleship;
         public const int SunkAircraftCarrier = SunkModifier + AircraftCarrier;
     }
+
+    public static class ShotCodeExtensions
+    {
+        public static bool IsHit(this int shotValue)
+        {
+            return shotValue / Constants.HitModifier == 1 || shotValue / Constants.HitModifier == 2;
+        }
+
+        public static bool IsSunk(this int shotValue)
+        {
+            return  shotValue / Constants.HitModifier == 2;
+        }
+    }
 }

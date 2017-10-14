@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Battleship.Core;
@@ -85,9 +86,46 @@ namespace Battleship.Main
                 PlacementHeat[i] = AllPlacements[i] / expectedPlacementsPerCell;
             }
 
-            RaisePropertyChanged("AllAttacks");
-            RaisePropertyChanged("AttackHeat");
-            RaisePropertyChanged("PlacementHeat");
+            RaisePropertyChanged(nameof(AllAttacks));
+            RaisePropertyChanged(nameof(AttackHeat));
+            RaisePropertyChanged(nameof(PlacementHeat));
         }
+
+        public void RecordShot(bool hit, string opponentName)
+        {
+            if (hit)
+            {
+                CaptainStatistics[opponentName].Hits++;
+            }
+            else//miss
+            {
+                CaptainStatistics[opponentName].Misses++;
+            }
+        }
+
+        public ICaptain GetNewCaptain()
+        {
+            var type = Type.GetType(AssemblyQualifiedName);
+            CaptainAI = (ICaptain) Activator.CreateInstance(type);
+            return CaptainAI;
+        }
+
+        public void RecordResultOfGame(bool won, string opponent , int rounds)
+        {
+            if (won)
+            {
+                CaptainStatistics[opponent].WinAttacks += rounds;
+                CaptainStatistics[opponent].Wins++;
+                CaptainAI.ResultOfGame(Constants.Won);
+            }
+            else
+            {
+                CaptainStatistics[opponent].LossAttacks += rounds;
+                CaptainStatistics[opponent].Losses++;
+                CaptainAI.ResultOfGame(Constants.Lost);
+            }
+        }
+
+        public ICaptain CaptainAI { get; set; }
     }
 }

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Battleship"
         xmlns:converter="clr-namespace:Battleship.Main.Converter"
         xmlns:controls="clr-namespace:Battleship.Controls"
         xmlns:main="clr-namespace:Battleship.Main"
@@ -17,7 +16,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="45"/>
+            <!--<ColumnDefinition Width="45"/>-->
             <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="95"/>
             <ColumnDefinition Width="30"/>
@@ -30,16 +29,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Content="Browse" Grid.Row="0" Grid.Column="0"/>
-        <Button Content="Reset" Grid.Row="0" Grid.Column="1" Command="{Binding ResetCommand}"/>
-        <Button Content="Run Competition" Grid.Row="0" Grid.Column="2" Command="{Binding RunCompetitionCommand}"/>
-        <Button Content="Stop" Grid.Row="0" Grid.Column="3"/>
-        <StackPanel Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
+        
+        <Button Content="Reset" Grid.Row="0" Grid.Column="0" Command="{Binding ResetCommand}"/>
+        <Button Content="Run Competition" Grid.Row="0" Grid.Column="1" Command="{Binding RunCompetitionCommand}"/>
+        <Button Content="Stop" Grid.Row="0" Grid.Column="2" Command="{Binding StopCommand}"/>
+        <StackPanel Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
             <TextBlock Text="Number of Matches: " VerticalAlignment="Center"/>
             <ComboBox ItemsSource="{Binding NumberOfMatchesOptions}" SelectedItem="{Binding SelectedNumberOfMatches}"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Text="Total Progress:" VerticalAlignment="Center"/>
             <ProgressBar Minimum="0" Maximum="100" Value="{Binding MatchProgress}" Width="100" Margin="4"/>
 
@@ -69,7 +68,7 @@
             </DataGrid.Columns>
         </controls:MultiSelectDataGrid>
 
-        <Grid Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Background="LightGray">
+        <Grid Grid.Row="1" Grid.Column="5" Background="LightGray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
