@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship.TestingWindow"
         mc:Ignorable="d"
-        Icon="../battleshipIcon.ico"
+        Icon="../Images/battleshipIcon.ico"
         Title="Captain Debug Window" Height="500" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -220,17 +220,19 @@
             </UniformGrid>
 
             <!--Render Battleship-->
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal" Visibility="{Binding PlayerShipVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" Visibility="{Binding PlayerShipVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="SubmarineHorizontal" Visibility="{Binding PlayerShipVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="BattleshipHorizontal" Visibility="{Binding PlayerShipVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AircraftCarrierHorizontal" Visibility="{Binding PlayerShipVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <!--<Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal" Visibility="{Binding PlayerShipVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="PatrolHorizontal"  Visibility="{Binding PlayerShipVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <!--<Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" Visibility="{Binding PlayerShipVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+            <Border Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="DestroyerHorizontal" Background="LightGray" IsHitTestVisible="False" Visibility="{Binding PlayerShipVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="SubmarineHorizontal" Visibility="{Binding PlayerShipVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="BattleshipHorizontal" Visibility="{Binding PlayerShipVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AircraftCarrierHorizontal" Visibility="{Binding PlayerShipVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PatrolVertical" Visibility="{Binding PlayerShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="DestroyerVertical" Visibility="{Binding PlayerShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="SubmarineVertical" Visibility="{Binding PlayerShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="BattleshipVertical" Visibility="{Binding PlayerShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AircraftCarrierVertical" Visibility="{Binding PlayerShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="PatrolVertical" Visibility="{Binding PlayerShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="DestroyerVertical" Visibility="{Binding PlayerShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="SubmarineVertical" Visibility="{Binding PlayerShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="BattleshipVertical" Visibility="{Binding PlayerShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AircraftCarrierVertical" Visibility="{Binding PlayerShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
                 
@@ -526,17 +528,17 @@
                 <local:Cell LocationId="99" CellCode="{Binding PlayerGameBoard[9][9]}" GameState="{Binding GameState}"/>
             </UniformGrid>
 
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AIPatrolHorizontal" Visibility="{Binding AIShipHorizontalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AIDestroyerHorizontal" Visibility="{Binding AIShipHorizontalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AISubmarineHorizontal" Visibility="{Binding AIShipHorizontalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AIBattleshipHorizontal" Visibility="{Binding AIShipHorizontalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AIAircraftCarrierHorizontal" Visibility="{Binding AIShipHorizontalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AIPatrolHorizontal" Visibility="{Binding AIShipHorizontalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AIDestroyerHorizontal" Visibility="{Binding AIShipHorizontalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="AISubmarineHorizontal" Visibility="{Binding AIShipHorizontalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" x:Name="AIBattleshipHorizontal" Visibility="{Binding AIShipHorizontalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" x:Name="AIAircraftCarrierHorizontal" Visibility="{Binding AIShipHorizontalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="AIPatrolVertical" Visibility="{Binding AIShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AIDestroyerVertical" Visibility="{Binding AIShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AISubmarineVertical" Visibility="{Binding AIShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="AIBattleshipVertical" Visibility="{Binding AIShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <Ellipse Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AIAircraftCarrierVertical" Visibility="{Binding AIShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="AIPatrolVertical" Visibility="{Binding AIShipVerticalVisibility[0], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AIDestroyerVertical" Visibility="{Binding AIShipVerticalVisibility[1], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="AISubmarineVertical" Visibility="{Binding AIShipVerticalVisibility[2], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" x:Name="AIBattleshipVertical" Visibility="{Binding AIShipVerticalVisibility[3], Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Border Background="LightGray" IsHitTestVisible="False" Margin="2" CornerRadius="10" Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" x:Name="AIAircraftCarrierVertical" Visibility="{Binding AIShipVerticalVisibility[4], Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <UniformGrid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="10" Margin="0">
 

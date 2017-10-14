@@ -53,7 +53,7 @@ namespace Battleship.TestingWindow
             }
         }
 
-        private void SetShipsPosition(Ellipse shipHorizontal, Ellipse shipVertical,  int col, int row, int max)
+        private void SetShipsPosition(/*Ellipse shipHorizontal, Ellipse shipVertical, */FrameworkElement shipHorizontal, FrameworkElement shipVertical,  int col, int row, int max)
         {
             if (col < max)
                 shipHorizontal.SetGridPosition(col, row);
@@ -145,12 +145,12 @@ namespace Battleship.TestingWindow
     {
         public static class MyExtensions
         {
-            public static void SetGridPosition(this Ellipse element, int col, int row)
+            public static void SetGridPosition(this /*Ellipse element*/FrameworkElement element, int col, int row)
             {
                 Grid.SetColumn(element, col);
                 Grid.SetRow(element, row);
             }
-            public static void SetGridPosition(this Ellipse element, Coordinate coord)
+            public static void SetGridPosition(this /*Ellipse element*/FrameworkElement element, Coordinate coord)
             {
                 Grid.SetColumn(element, coord.X +1 );
                 Grid.SetRow(element, coord.Y);

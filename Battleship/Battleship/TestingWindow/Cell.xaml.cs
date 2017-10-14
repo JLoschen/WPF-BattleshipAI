@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Battleship.TestingWindow
 {
     public partial class Cell 
     {
+        readonly Cursor _myCursor = new Cursor(Application.GetResourceStream(new Uri("pack://application:,,,/Battleship;component/Images/crosshairs.cur", UriKind.RelativeOrAbsolute)).Stream);
         public Cell()
         {
             InitializeComponent();
@@ -80,6 +82,11 @@ namespace Battleship.TestingWindow
         private void UIElement_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             RightClickCommand?.Execute(null);
+        }
+
+        private void Border_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            Cursor = GameState == GameState.HumansTurn ? _myCursor : Cursors.Arrow;
         }
     }
 }

@@ -166,7 +166,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="battleshipIcon.ico" />
+    <Resource Include="Images\battleshipIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\crosshairs.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

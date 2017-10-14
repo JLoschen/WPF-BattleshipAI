@@ -9,11 +9,12 @@
     <UserControl.Resources>
         <local:CellCodeToFillConverter x:Key="CellCodeToFill"/>
     </UserControl.Resources>
-    <Border  BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseRightButtonUp="UIElement_OnMouseRightButtonUp">
+    <Border  BorderBrush="Black" BorderThickness="1" MouseEnter="Border_OnMouseEnter" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseRightButtonUp="UIElement_OnMouseRightButtonUp" x:Name="Border">
         <Border.Style>
             <Style TargetType="Border">
                 <!--Background="Aqua"-->
                 <Setter Property="Background" Value="Aqua"/>
+                <!--<Setter Property="Cursor" Value="Arrow"/>-->
                 <Style.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
@@ -21,15 +22,40 @@
                             <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
                             <Condition Binding="{Binding CellCode}" Value="0"/>
                             <Condition Binding="{Binding GameState}" Value="HumansTurn"/>
+                            
                             <!--<Condition Binding="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False" />
                         <Condition Binding="{Binding Path=ContextMenu.IsOpen, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False" />-->
                         </MultiDataTrigger.Conditions>
                         <Setter Property="Background" Value="#FF00BBBB" />
+                        <!--<Setter Property="Cursor" Value="Cross"/>-->
                         <!--<Setter Property="Foreground" Value="{StaticResource InactiveMouseOverSelectedForeground}" />-->
                     </MultiDataTrigger>
+                    <!--<MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                            <Condition Binding="{Binding GameState}" Value="HumansTurn"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Cursor" Value="Cross"/>
+                    </MultiDataTrigger>-->
                 </Style.Triggers>
             </Style>
         </Border.Style>
-        <!--<Ellipse  Fill="{Binding AttackCode, Converter={StaticResource CellCodeToFill}}"/>-->
+        <!--<Image Source="crosshairs.png" Opacity="0.5">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsMouseOver, ElementName=Border}" Value="True" />
+                                <Condition Binding="{Binding CellCode}" Value="0"/>
+                                <Condition Binding="{Binding GameState}" Value="HumansTurn"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>-->
     </Border>
 </UserControl>
