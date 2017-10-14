@@ -21,18 +21,6 @@ namespace Battleship.TestingWindow
         public static readonly DependencyProperty CellCodeProperty = DependencyProperty.Register("CellCode", typeof(int), typeof(Cell));
         public static readonly DependencyProperty GameStateProperty = DependencyProperty.Register("GameState", typeof(GameState), typeof(Cell));
 
-        //private static void OnMouseOverHighlightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if ((bool) e.NewValue)
-        //    {
-
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //}
-
         public int AttackCode
         {
             get { return (int)GetValue(AttackCodeProperty); }
