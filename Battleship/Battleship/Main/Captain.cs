@@ -22,7 +22,16 @@ namespace Battleship.Main
         public string CaptainName { get; set; }
         public string AssemblyQualifiedName { get; set; }
         public bool IsSelected { get; set; }
-        public long TotalAttacks { get; set; }
+        //public long TotalAttacks { get; set; }
+        public long TotalHits { get; set; }
+        public long TotalMisses { get; set; }
+        public long TotalLosses { get; set; }
+        public long TotalShots { get; set; }
+        public long WinAttacks { get; set; }
+        public long LossAttacks { get; set; }
+        public float Accuracy { get; set; }
+        public float AttacksPerWin { get; set; }
+        public float AttacksPerLoss { get; set; }
         //public int[,] AllAttacks { get; set; }
         public int[] AllAttacks { get; set; }
         public float[] AttackHeat { get; set; }//Attack percent on each tile
@@ -86,9 +95,45 @@ namespace Battleship.Main
                 PlacementHeat[i] = AllPlacements[i] / expectedPlacementsPerCell;
             }
 
+            TotalLosses = 0;
+            TotalHits = 0;
+            TotalMisses = 0;
+            TotalShots = 0;
+            LossAttacks = 0;
+            WinAttacks = 0;
+
+            _score = 0;
+            foreach (var captainStatistics in CaptainStatistics.Values)
+            {
+                TotalLosses += captainStatistics.Losses;
+                _score += captainStatistics.Wins;
+                TotalHits += captainStatistics.Hits;
+                TotalMisses += captainStatistics.Misses;
+                LossAttacks += captainStatistics.LossAttacks;
+                TotalShots += (captainStatistics.Misses + captainStatistics.Hits);
+                WinAttacks += captainStatistics.WinAttacks;
+            }
+
+            AttacksPerWin = (float) WinAttacks / _score;
+            AttacksPerLoss = (float) LossAttacks / TotalLosses;
+            Accuracy = (float) TotalHits / (TotalHits + TotalMisses);
+
+            RaisePropertyChanges();
+        }
+
+        private void RaisePropertyChanges()
+        {
             RaisePropertyChanged(nameof(AllAttacks));
             RaisePropertyChanged(nameof(AttackHeat));
             RaisePropertyChanged(nameof(PlacementHeat));
+            RaisePropertyChanged(nameof(TotalHits));
+            RaisePropertyChanged(nameof(TotalMisses));
+            RaisePropertyChanged(nameof(TotalLosses));
+            RaisePropertyChanged(nameof(TotalShots));
+            RaisePropertyChanged(nameof(Accuracy));
+            RaisePropertyChanged(nameof(AttacksPerWin));
+            RaisePropertyChanged(nameof(AttacksPerLoss));
+            RaisePropertyChanged(nameof(Score));
         }
 
         public void RecordShot(bool hit, string opponentName)
@@ -114,14 +159,14 @@ namespace Battleship.Main
         {
             if (won)
             {
-                CaptainStatistics[opponent].WinAttacks += rounds;
-                CaptainStatistics[opponent].Wins++;
+                //CaptainStatistics[opponent].WinAttacks += rounds;
+                //CaptainStatistics[opponent].Wins++;
                 CaptainAI.ResultOfGame(Constants.Won);
             }
             else
             {
-                CaptainStatistics[opponent].LossAttacks += rounds;
-                CaptainStatistics[opponent].Losses++;
+                //CaptainStatistics[opponent].LossAttacks += rounds;
+                //CaptainStatistics[opponent].Losses++;
                 CaptainAI.ResultOfGame(Constants.Lost);
             }
         }

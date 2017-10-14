@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Battleship.Core;
 
-namespace Battleship.TestingWindow
+namespace Battleship.TestingWindow.UserControls
 {
-    /// <summary>
-    /// Interaction logic for GameBoard.xaml
-    /// </summary>
-    public partial class GameBoard : UserControl
+    public partial class GameBoard 
     {
         public GameBoard()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty FleetProperty = DependencyProperty.Register("Fleet", typeof(Fleet), typeof(GameBoard), new PropertyMetadata(null));
+
+        public Fleet Fleet
+        {
+            get { return (Fleet)GetValue(FleetProperty); }
+            set { SetValue(FleetProperty, value); }
         }
     }
 }

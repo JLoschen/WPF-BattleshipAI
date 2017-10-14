@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Battleship.Core;
 
 namespace Battleship.Captains
@@ -43,20 +44,35 @@ namespace Battleship.Captains
             return fleet;
         }
 
+        private void Get100KFleets()
+        {
+            var watch = Stopwatch.StartNew();
+            
+            for (int i = 0; i < 9999999; i++)
+            {
+                Fleet x = GetRandomFleet();
+            }
+            watch.Stop();
+            Console.WriteLine("elapsed time:" + watch.ElapsedMilliseconds);
+
+        }
+
         public Fleet GetFleet()
         {
+            Get100KFleets();
             return GetRandomFleet();
         }
 
         public Coordinate MakeAttack()
         {
-            var coord = new Coordinate(generator.Next(10), generator.Next(10));
-            while (attacked[coord.X, coord.Y])
-            {
-                coord = new Coordinate(generator.Next(10), generator.Next(10));
-            }
-            attacked[coord.X, coord.Y] = true;
-            return coord;
+            //var coord = new Coordinate(generator.Next(10), generator.Next(10));
+            //while (attacked[coord.X, coord.Y])
+            //{
+            //    coord = new Coordinate(generator.Next(10), generator.Next(10));
+            //}
+            //attacked[coord.X, coord.Y] = true;
+            //return coord;
+            return new Coordinate(generator.Next(10), generator.Next(10));
         }
 
         public void ResultOfAttack(int result)

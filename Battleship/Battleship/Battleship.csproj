@@ -81,23 +81,23 @@
     <Compile Include="Core\CaptainDebugger.cs" />
     <Compile Include="Core\CaptainStatistics.cs" />
     <Compile Include="Main\Converter\HeatToColorConverter.cs" />
-    <Compile Include="TestingWindow\BooleanNotToVisibilityConverter.cs" />
+    <Compile Include="TestingWindow\Converters\BooleanNotToVisibilityConverter.cs" />
     <Compile Include="TestingWindow\CaptainDebugViewModel.cs" />
     <Compile Include="TestingWindow\CaptainDebugWindow.xaml.cs">
       <DependentUpon>CaptainDebugWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestingWindow\Cell.xaml.cs">
+    <Compile Include="TestingWindow\UserControls\Cell.xaml.cs">
       <DependentUpon>Cell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestingWindow\CellCodeToBackgroundConverter.cs" />
-    <Compile Include="TestingWindow\CellCodeToFillConverter.cs" />
-    <Compile Include="TestingWindow\CellCodeToVisibility.cs" />
-    <Compile Include="TestingWindow\GameBoard.xaml.cs">
+    <Compile Include="TestingWindow\Converters\CellCodeToBackgroundConverter.cs" />
+    <Compile Include="TestingWindow\Converters\CellCodeToFillConverter.cs" />
+    <Compile Include="TestingWindow\Converters\CellCodeToVisibility.cs" />
+    <Compile Include="TestingWindow\UserControls\GameBoard.xaml.cs">
       <DependentUpon>GameBoard.xaml</DependentUpon>
     </Compile>
     <Compile Include="TestingWindow\GameState.cs" />
-    <Compile Include="TestingWindow\GameStateToReadyButtonVisibilityConverter.cs" />
-    <Compile Include="TestingWindow\ShotCircle.xaml.cs">
+    <Compile Include="TestingWindow\Converters\GameStateToReadyButtonVisibilityConverter.cs" />
+    <Compile Include="TestingWindow\UserControls\ShotCircle.xaml.cs">
       <DependentUpon>ShotCircle.xaml</DependentUpon>
     </Compile>
     <Page Include="Main\MainWindow.xaml">
@@ -124,15 +124,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestingWindow\Cell.xaml">
+    <Page Include="TestingWindow\UserControls\Cell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestingWindow\GameBoard.xaml">
+    <Page Include="TestingWindow\UserControls\GameBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestingWindow\ShotCircle.xaml">
+    <Page Include="TestingWindow\UserControls\ShotCircle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
