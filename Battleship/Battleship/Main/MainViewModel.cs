@@ -54,8 +54,8 @@ namespace Battleship.Main
             MatchProgress = 0;
         }
 
-        private /*async*/ void RunCompetition()
-        {
+        //private async void RunCompetition()
+        //{
             //var captainsToRun = Captains.Where(c => c.IsSelected).ToList();
 
             //var numCaptains = captainsToRun.Count;
@@ -77,8 +77,8 @@ namespace Battleship.Main
             //        MatchProgress =  100 * counter / numberofrounds;
             //    }
             //}
-            RunCompetitionAsync();
-        }
+        //    RunCompetitionAsync();
+        //}
 
         private async Task<bool> RunCompetitionAsync()
         {
@@ -96,7 +96,8 @@ namespace Battleship.Main
                 foreach (var captain2 in captainOpponents)
                 {
                     if (StopCompetition) return true;
-                    if (/*await*/ BattleCaptains(captain, captain2, captainsToRun.Count))
+                    //if (/*await*/ BattleCaptains(captain, captain2, captainsToRun.Count))
+                    if (await BattleCaptains(captain, captain2, captainsToRun.Count))
                     {
                         counter++;
                     }
@@ -109,7 +110,93 @@ namespace Battleship.Main
             return true;
         }
 
-        private /*async Task<bool>*/bool BattleCaptains(Captain captain1, Captain captain2, int numCaptains)
+        //From before perf testing
+        private async void RunCompetition()
+        {
+            var captainsToRun = Captains.Where(c => c.IsSelected).ToList();
+
+            var numCaptains = captainsToRun.Count;
+            // Compute the number of total rounds for keeping track of progress
+            int numberofrounds = numCaptains * numCaptains - numCaptains;
+
+            int counter = 0;
+            foreach (var captain in captainsToRun)
+            {
+                var captainOpponents = captainsToRun.Where(c => c.AssemblyQualifiedName != captain.AssemblyQualifiedName);
+                foreach (var captain2 in captainOpponents)
+                {
+                    if (StopCompetition) return;
+                    if (await BattleCaptains(captain, captain2, captainsToRun.Count))
+                    {
+                        counter++;
+                    }
+
+                    MatchProgress = 100 * counter / numberofrounds;
+                }
+            }
+        }
+
+        //private /*async Task<bool>*/bool BattleCaptains(Captain captain1, Captain captain2, int numCaptains)
+        //{
+        //    // reset the progress bar
+        //    StopCompetition = false;
+        //    CurrentMatchProgress = 0;
+
+        //    var captainOne = captain1.GetNewCaptain();
+        //    var captainTwo = captain2.GetNewCaptain();
+        //    // Get the names of the two captains
+        //    string nameOne = captain1.CaptainName;
+        //    string nameTwo = captain2.CaptainName;
+
+        //    if (!captain1.CaptainStatistics.ContainsKey(nameTwo))//if haven't played before
+        //    {
+        //        captain1.CaptainStatistics.Add(new KeyValuePair<string, CaptainStatistics>(nameTwo, new CaptainStatistics()));
+        //        captain2.CaptainStatistics.Add(new KeyValuePair<string, CaptainStatistics>(nameOne, new CaptainStatistics()));
+        //    }
+
+        //    // Remember their scores (how many matches they have won).
+        //    var halfNumberOfMatches = SelectedNumberOfMatches / 2;
+        //    for (int i = 0; i < halfNumberOfMatches; i++)
+        //    {
+        //        captainOne.Initialize(SelectedNumberOfMatches, numCaptains, nameTwo);
+        //        captainTwo.Initialize(SelectedNumberOfMatches, numCaptains, nameOne);
+
+        //        if (i % 2 == 0)
+        //        {
+        //            //captain 1 goes first
+        //            RunGame(captain1, captain2);
+        //        }
+        //        else
+        //        {
+        //            //captain 2 goes first
+        //            RunGame(captain2, captain1);
+        //        }
+
+        //        // Has the user requested that we stop?
+        //        if (StopCompetition) return false;
+
+        //        if (i % 5000 == 0 && i > 0)
+        //        {
+        //            //update progress bar   
+        //            CurrentMatchProgress = 100 * (i + 1) / halfNumberOfMatches + 1;
+        //            //await Task.Delay(TimeSpan.FromMilliseconds(1));//give up thread control so UI can render
+
+        //            //update score totals every 500 matches
+        //            if (i % 5000 == 0 && i > 0)
+        //            {
+        //                captain1.UpdateGui();
+        //                captain2.UpdateGui();
+        //            }
+        //        }
+        //    }
+        //    captain1.UpdateGui();
+        //    captain2.UpdateGui();
+
+        //    return true;
+        //}
+
+        //From before perftesting last commit
+        private async Task<bool> BattleCaptains(Captain captain1, Captain captain2, int numCaptains)
         {
             // reset the progress bar
             StopCompetition = false;
@@ -128,6 +215,8 @@ namespace Battleship.Main
             }
 
             // Remember their scores (how many matches they have won).
+            int scoreOne = 0, scoreTwo = 0;
+
             var halfNumberOfMatches = SelectedNumberOfMatches / 2;
             for (int i = 0; i < halfNumberOfMatches; i++)
             {
@@ -137,34 +226,54 @@ namespace Battleship.Main
                 if (i % 2 == 0)
                 {
                     //captain 1 goes first
-                    RunGame(captain1, captain2);
+                    if (RunGame(captain1, captain2))
+                    {
+                        scoreOne++;
+                    }
+                    else
+                    {
+                        scoreTwo++;
+                    }
+
                 }
                 else
                 {
                     //captain 2 goes first
-                    RunGame(captain2, captain1);
+                    if (RunGame(captain2, captain1))
+                    {
+                        scoreTwo++;
+                    }
+                    else
+                    {
+                        scoreOne++;
+                    }
                 }
 
                 // Has the user requested that we stop?
                 if (StopCompetition) return false;
 
-                if (i % 5000 == 0 && i > 0)
+                if (i % 5 == 0)
                 {
                     //update progress bar   
                     CurrentMatchProgress = 100 * (i + 1) / halfNumberOfMatches + 1;
-                    //await Task.Delay(TimeSpan.FromMilliseconds(1));//give up thread control so UI can render
+                    await Task.Delay(TimeSpan.FromMilliseconds(1));//give up thread control so UI can render
 
                     //update score totals every 500 matches
-                    if (i % 5000 == 0 && i > 0)
+                    if (i % 500 == 0 && i > 0)
                     {
-                        captain1.UpdateGui();
-                        captain2.UpdateGui();
+                        captain2.Score += scoreTwo;
+                        captain1.Score += scoreOne;
+
+                        scoreOne = scoreTwo = 0;
                     }
                 }
             }
+            captain2.Score += scoreTwo;
+            captain1.Score += scoreOne;
+
             captain1.UpdateGui();
             captain2.UpdateGui();
-            
+
             return true;
         }
 
@@ -172,23 +281,23 @@ namespace Battleship.Main
         {
             // Record his ship placement choices
             Fleet fleetone = captain1.CaptainAI.GetFleet();
-            //foreach (var ship in fleetone.GetFleet())
-            //{
-            //    foreach (var coordinate in ship.GetCoordinates())
-            //    {
-            //        captain1.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
-            //    }
-            //}
+            foreach (var ship in fleetone.GetFleet())
+            {
+                foreach (var coordinate in ship.GetCoordinates())
+                {
+                    captain1.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
+                }
+            }
 
             // Record her ship placement choices
             Fleet fleettwo = captain2.CaptainAI.GetFleet();
-            //foreach (var ship in fleettwo.GetFleet())
-            //{
-            //    foreach (var coordinate in ship.GetCoordinates())
-            //    {
-            //        captain2.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
-            //    }
-            //}
+            foreach (var ship in fleettwo.GetFleet())
+            {
+                foreach (var coordinate in ship.GetCoordinates())
+                {
+                    captain2.ShipPlacements[ship.Model, coordinate.X, coordinate.Y]++;
+                }
+            }
             // While the user has not requested that we stop ...
             //int rounds = 0;
             while (!StopCompetition)

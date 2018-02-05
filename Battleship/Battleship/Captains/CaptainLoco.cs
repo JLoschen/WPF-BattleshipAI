@@ -65,14 +65,14 @@ namespace Battleship.Captains
 
         public Coordinate MakeAttack()
         {
-            //var coord = new Coordinate(generator.Next(10), generator.Next(10));
-            //while (attacked[coord.X, coord.Y])
-            //{
-            //    coord = new Coordinate(generator.Next(10), generator.Next(10));
-            //}
-            //attacked[coord.X, coord.Y] = true;
-            //return coord;
-            return new Coordinate(generator.Next(10), generator.Next(10));
+            var coord = new Coordinate(generator.Next(10), generator.Next(10));
+            while (attacked[coord.X, coord.Y])
+            {
+                coord = new Coordinate(generator.Next(10), generator.Next(10));
+            }
+            attacked[coord.X, coord.Y] = true;
+            return coord;
+            //return new Coordinate(generator.Next(10), generator.Next(10));
         }
 
         public void ResultOfAttack(int result)

@@ -159,14 +159,14 @@ namespace Battleship.Main
         {
             if (won)
             {
-                //CaptainStatistics[opponent].WinAttacks += rounds;
-                //CaptainStatistics[opponent].Wins++;
+                CaptainStatistics[opponent].WinAttacks += rounds;
+                CaptainStatistics[opponent].Wins++;
                 CaptainAI.ResultOfGame(Constants.Won);
             }
             else
             {
-                //CaptainStatistics[opponent].LossAttacks += rounds;
-                //CaptainStatistics[opponent].Losses++;
+                CaptainStatistics[opponent].LossAttacks += rounds;
+                CaptainStatistics[opponent].Losses++;
                 CaptainAI.ResultOfGame(Constants.Lost);
             }
         }

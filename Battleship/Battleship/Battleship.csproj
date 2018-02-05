@@ -78,6 +78,7 @@
     <Compile Include="Captains\CaptainAmerica.cs" />
     <Compile Include="Captains\CaptainLoco.cs" />
     <Compile Include="Captains\CaptainMorgan.cs" />
+    <Compile Include="Captains\CaptainMorgan2.cs" />
     <Compile Include="Core\CaptainDebugger.cs" />
     <Compile Include="Core\CaptainStatistics.cs" />
     <Compile Include="Main\Converter\HeatToColorConverter.cs" />

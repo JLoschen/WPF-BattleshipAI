@@ -70,14 +70,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Captain Name" Binding="{Binding CaptainName}"/>
-                <!--<DataGridTextColumn Header="Wins" Binding="{Binding Score, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Wins" Binding="{Binding Score, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Losses" Binding="{Binding TotalLosses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Hits" Binding="{Binding TotalHits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Misses" Binding="{Binding TotalMisses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Total Attacks" Binding="{Binding TotalShots, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Accuracy" Binding="{Binding Accuracy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Attacks/Win" Binding="{Binding AttacksPerWin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                <DataGridTextColumn Header="Attacks/Loss" Binding="{Binding AttacksPerLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>-->
+                <DataGridTextColumn Header="Attacks/Loss" Binding="{Binding AttacksPerLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
             </DataGrid.Columns>
         </controls:MultiSelectDataGrid>
 
@@ -99,8 +99,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Select an opponent:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-            <!--<ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedOpponentCaptain}"/>-->
-            <!--<TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
+            <ComboBox ItemsSource="{Binding Captains}" DisplayMemberPath="CaptainName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedOpponentCaptain}"/>
+            <TextBlock Text="Wins Against:" Grid.Row="2" Grid.Column="0" />
             <TextBlock Text="{Binding OpponentStatistics.Wins}" Grid.Row="2" Grid.Column="1" />
 
             <TextBlock Text="Losses Against:" Grid.Row="3" Grid.Column="0" />
@@ -119,7 +119,7 @@
             <TextBlock Text="{Binding OpponentStatistics.AverageAttacksForWin}" Grid.Row="7" Grid.Column="1" />
 
             <TextBlock Text="Avg. Attacks For a Loss:" Grid.Row="8" Grid.Column="0" />
-            <TextBlock Text="{Binding OpponentStatistics.AverageAttacksForLoss}" Grid.Row="8" Grid.Column="1" />-->
+            <TextBlock Text="{Binding OpponentStatistics.AverageAttacksForLoss}" Grid.Row="8" Grid.Column="1" />
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" Background="LightGray" DataContext="{Binding SelectedCaptain}">
@@ -134,14 +134,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <!--<CheckBox IsChecked="{Binding ShowShipPlacement[0]}" Content="Patrol Boat"/>
+                <CheckBox IsChecked="{Binding ShowShipPlacement[0]}" Content="Patrol Boat"/>
                 <CheckBox IsChecked="{Binding ShowShipPlacement[1]}" Content="Destroyer"/>
                 <CheckBox IsChecked="{Binding ShowShipPlacement[2]}" Content="Submarine"/>
                 <CheckBox IsChecked="{Binding ShowShipPlacement[3]}" Content="Battleship"/>
-                <CheckBox IsChecked="{Binding ShowShipPlacement[4]}" Content="AircraftCarrier"/>-->
+                <CheckBox IsChecked="{Binding ShowShipPlacement[4]}" Content="AircraftCarrier"/>
             </StackPanel>
 
-            <!--<Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
+            <Border Background="White" CornerRadius="5" Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="23"/>
@@ -488,7 +488,7 @@
                     </UniformGrid>
                     <TextBlock Text="Attack Pattern" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="12" />
                 </Grid>
-            </Border>-->
+            </Border>
         </Grid>
     </Grid>
 </Window>
